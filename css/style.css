@@ -63,7 +63,7 @@ h1 {
     width: 40px;
 }
 
-h1::after{
+h1::after {
     content: url(./images-css/img-logo-titre-backgroung.png);
     position: absolute;
     transform: scale(0.45);
@@ -221,13 +221,12 @@ footer::after {
     #magicien {
         bottom: 19%;
     }
-    
-    #baleine{
+    #baleine {
         top: 2.5%;
     }
 }
 
-#liensIndex{
+#liensIndex {
     display: flex;
     justify-content: space-around;
     max-width: 700px;
@@ -236,10 +235,10 @@ footer::after {
     font-size: 25px;
 }
 
-#liensIndex a{
+#liensIndex a {
     color: black;
     font-weight: bold;
-    text-decoration: none;    
+    text-decoration: none;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -247,13 +246,14 @@ footer::after {
     width: 100px;
 }
 
-#liensIndex a:first-child{
+#liensIndex a:first-child {
     background-image: url(./images-css/img-clips-audio-background.png);
 }
 
-#liensIndex a:nth-child(2){
+#liensIndex a:nth-child(2) {
     background-image: url(./images-css/img-clips-videos-foreground.png);
 }
+
 
 /*************** GALERIE ***************/
 
@@ -288,7 +288,6 @@ footer::after {
     width: 18px;
     margin: 5px
 }
-
 
 #imgGalerie {
     margin-left: auto;
@@ -417,7 +416,7 @@ main h2 {
 }
 
 #participation {
-    width: 500px;
+    width: 520px;
     background-image: url(images-css/img-processus-publication.png);
     background-size: contain;
     background-position: center;
@@ -427,17 +426,22 @@ main h2 {
     margin-bottom: auto;
 }
 
-#participation ol {
+#participation #listeForm {
     width: 65%;
     margin-right: auto;
     margin-left: auto;
 }
 
-#participation ol>li {
+#participation .liste {
     font-size: 15pt;
     text-align-last: left;
     margin-top: 10px;
     margin-bottom: 5px;
+    list-style-type: none;
+}
+
+#participation .liste:nth-child(even) {
+    margin-left: 30px;
 }
 
 #participation div:nth-child(2) label {
@@ -454,7 +458,6 @@ main h2 {
     /* MODIFIER BOUTON */
     padding: 10px;
     font-family: 'Open Sans Condensed', sans-serif;
-    display: none;
 }
 
 #participation input[type=text] {
@@ -500,9 +503,11 @@ main h2 {
     box-sizing: border-box;
 }
 
-#participation #titre,textarea{
+#participation #titre,
+textarea {
     font-family: 'Open Sans Condensed', sans-serif;
 }
+
 
 /*************** AFFICHE IMAGE ***************/
 
@@ -526,6 +531,7 @@ main h2 {
     justify-content: center;
 }
 
+
 /*************** MODALITES ***************/
 
 #modalites {
@@ -536,7 +542,7 @@ main h2 {
     font-family: 'Open Sans Condensed', sans-serif;
     text-align: justify;
     width: 90%;
-    display: inline-flex;
+    display: inline-block;
     margin: 10px;
 }
 

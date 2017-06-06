@@ -1,0 +1,544 @@
+html {
+    background-image: url(./images-css/img-background.png);
+}
+
+
+/********** BODY *********/
+
+body {
+    background-image: url(./images-css/img-foreground.png);
+    background-size: cover;
+    width: 70%;
+    min-width: 580px;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+
+/********** HEADER **********/
+
+header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-size: cover;
+    box-sizing: border-box;
+}
+
+.reseauxSoc {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 150px;
+    flex-wrap: wrap;
+}
+
+.reseauxSoc img {
+    width: 40px;
+}
+
+h1 {
+    font-size: 40pt;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.compte>a:first-child {
+    font-size: 20pt;
+}
+
+.compte img:nth-child(2) {
+    width: 50px;
+}
+
+.log img {
+    width: 40px;
+}
+
+h1::after{
+    content: url(./images-css/img-logo-titre-backgroung.png);
+    position: absolute;
+    transform: scale(0.45);
+    left: -100%;
+    top: -65%;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+h1::before {
+    content: url(./images-css/img-logo-animation.gif);
+    width: 200px;
+    position: absolute;
+    transform: scale(0.7);
+    left: -20px;
+    top: -175px;
+    z-index: -3;
+}
+
+
+/*************** NAV ***************/
+
+nav {
+    position: relative;
+    top: -35px;
+    height: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    font-weight: bold;
+    font-size: 25pt;
+    background-image: url(./images-css/img-foreground-accueil-body-footer.png);
+    background-size: cover;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+nav li {
+    list-style-type: none;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+/*************** FOOTER ***************/
+
+footer {
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    height: 150px;
+    font-size: 20pt;
+    padding: 5px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+footer div:first-child {
+    width: 75%;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer p {
+    display: inline-flex;
+    padding: 5px;
+    word-wrap: break-word;
+    font-size: 18px;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+footer p>a {
+    text-decoration: none;
+    color: #000000
+}
+
+footer div:nth-child(2) {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 150px;
+    flex-wrap: wrap;
+}
+
+footer img {
+    height: 40px;
+}
+
+@media (max-width: 550px) {
+    footer img {
+        display: none;
+    }
+    footer div:first-child {
+        width: 100%;
+    }
+}
+
+footer::after {
+    content: url(./images-css/img-famille-cabadix-animation.gif);
+    position: absolute;
+    transform: scale(0.6);
+    left: -150px;
+    top: 30px;
+}
+
+
+/*************** INDEX ***************/
+
+.illustrationsIndex {
+    width: 100%;
+    position: relative;
+}
+
+.illustrationsIndex img {
+    width: 90%;
+    margin-top: 10px;
+}
+
+.illustrationsIndex p {
+    position: absolute;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.6vw;
+}
+
+#baleine {
+    right: 15%;
+    top: 4%;
+    width: 27%;
+}
+
+#usine {
+    right: 8%;
+    top: 35%;
+    width: 30%;
+}
+
+#magicien {
+    width: 30%;
+    right: 30%;
+    bottom: 20.5%;
+}
+
+@media (min-width: 1300px) {
+    #magicien {
+        bottom: 19%;
+    }
+    
+    #baleine{
+        top: 2.5%;
+    }
+}
+
+#liensIndex{
+    display: flex;
+    justify-content: space-around;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+}
+
+#liensIndex a{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 25px;
+    width: 100px;
+}
+
+#liensIndex a:first-child{
+    background-image: url(./images-css/img-clips-audio-background.png);
+}
+
+#liensIndex a:nth-child(2){
+    background-image: url(./images-css/img-clips-videos-foreground.png);
+}
+
+/*************** GALERIE ***************/
+
+#selecGalerie p {
+    display: inline-flex;
+    font-size: 15pt;
+    color: #ffffff;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 95px;
+    justify-content: center;
+}
+
+#selecGalerie p:first-child {
+    background-image: url(images-css/img-affiches-foreground.png);
+}
+
+#selecGalerie p:nth-child(2) {
+    background-image: url(images-css/img-clips-videos-foreground.png);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#selecGalerie p:last-child {
+    background-image: url(images-css/img-clips-audio-background.png);
+}
+
+.naviGalerie img {
+    width: 18px;
+    margin: 5px
+}
+
+
+#imgGalerie {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+}
+
+#imgGalerie img {
+    border: 16px solid transparent;
+    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
+    display: inline-flex;
+    width: 25%;
+    margin: 10px;
+}
+
+#imgGalerie video {
+    border: 16px solid transparent;
+    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
+    display: inline-flex;
+    margin: 10px;
+    width: 25%;
+}
+
+#imgGalerie audio {
+    border: 16px solid transparent;
+    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
+    display: inline-flex;
+    margin: 10px;
+    width: 25%;
+}
+
+#imgGalerie a {
+    text-decoration: none;
+}
+
+
+/*************** CONTACT ***************/
+
+main h2 {
+    background-image: url(images-css/img-affiches-foreground.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+#contact label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-size: 15pt;
+}
+
+#contact input:not([type=submit]),
+#contact textarea {
+    width: 375px;
+    vertical-align: middle;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    margin: 15px;
+    padding-left: 17px;
+    border: none;
+    box-sizing: border-box;
+}
+
+#contact div:first-child input,
+#contact div:nth-child(4) input {
+    transform: rotate(1deg);
+}
+
+#contact div:nth-child(2) input {
+    transform: rotate(-1deg);
+}
+
+#contact input:not([type=submit]) {
+    background-image: url(images-css/img-formulaire-nom.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 55px;
+}
+
+#contact textarea {
+    background-image: url(images-css/img-formulaire-message.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-top: 13px;
+    padding-bottom: 17px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    resize: none;
+    height: 185px;
+}
+
+.inputSubmit {
+    width: 95px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: none;
+    background: none;
+    background-image: url(images-css/img-clips-videos-foreground.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 12pt;
+    cursor: pointer;
+}
+
+.formObli {
+    color: red;
+}
+
+
+/*************** PARTICIPATION ***************/
+
+#participer {
+    background-image: url(images-css/img-clips-videos-foreground.png);
+}
+
+#divParticipation {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#participation {
+    width: 500px;
+    background-image: url(images-css/img-processus-publication.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 25px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#participation ol {
+    width: 65%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#participation ol>li {
+    font-size: 15pt;
+    text-align-last: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#participation div:nth-child(2) label {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#participation .reseauxSoc {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+#participation input[type=file] {
+    /* MODIFIER BOUTON */
+    padding: 10px;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#participation input[type=text] {
+    border: none;
+    background: none;
+    background-image: url(images-css/img-formulaire-nom.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 45px;
+    width: 90%;
+    padding-left: 13px;
+    padding-right: 13px;
+    box-sizing: border-box;
+}
+
+#participation textarea {
+    background-image: url(images-css/img-formulaire-message.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-top: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 14px;
+    height: 145px;
+    box-sizing: border-box;
+    resize: none;
+    border: none;
+}
+
+#participation .inputSubmit {
+    background-image: url(images-css/img-clips-audio-background.png);
+}
+
+#participation+div {
+    max-width: 325px;
+}
+
+#participation+div>img {
+    border: 16px solid transparent;
+    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
+    display: inline-flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#participation #titre,textarea{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+/*************** AFFICHE IMAGE ***************/
+
+.grandeOeuvre {
+    border: 16px solid transparent;
+    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
+    width: 60%;
+}
+
+.descOeuvre {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: justify;
+    display: inline-flex
+}
+
+.titreDesc {
+    width: 575px;
+    height: 85px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*************** MODALITES ***************/
+
+#modalites {
+    background-image: url(images-css/img-clips-audio-background.png);
+}
+
+#modalites~p {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: justify;
+    width: 90%;
+    display: inline-flex;
+    margin: 10px;
+}
+
+.modalites {
+    font-weight: 700;
+}

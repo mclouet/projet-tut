@@ -1,8 +1,6 @@
 <?php
     header("Content-type: text/html");
 ?>
-
-
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -26,58 +24,32 @@
                 <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="../images/img-instagram-icon.png" alt="logo instagram" /></a>
                 <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="logo google+" /></a>
             </div>
-
             <h1>C'est dans le sac !</h1>
-
-            <div class="compte">
-                <a>Mon compte</a>
-                <img src="../images/img-profil-photo.png" alt="image profil"/>
+            <div class="compte"> <a>Mon compte</a> <img src="../images/img-profil-photo.png" alt="image profil" />
                 <div class="log">
-                    <a href="" title="Se connecter"><img src="../images/img-login.png" alt="logo connexion"/></a>
-                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" alt="logo déconnexion"/></a>
+                    <a href="" title="Se connecter"><img src="../images/img-login.png" alt="logo connexion" /></a>
+                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" alt="logo déconnexion" /></a>
                 </div>
             </div>
         </header>
-
         <nav>
             <ul>
-                <li>
-                    <a href="../index.html">Accueil</a>
-                </li>
-                <li>
-                    <a href="./galerie.php">Galerie</a>
-                </li>
-                <li>
-                    <a href="../contact.html">Nous contacter</a>
-                </li>
-                <li>
-                    <a href="./participation.php">Je participe</a>
-                </li>
-                <li>
-                    <a href="../modalites.html">Modalités</a>
-                </li>
+                <li> <a href="../index.html">Accueil</a> </li>
+                <li> <a href="./galerie.php">Galerie</a> </li>
+                <li> <a href="../contact.html">Nous contacter</a> </li>
+                <li> <a href="./participation.php">Je participe</a> </li>
+                <li> <a href="../modalites.html">Modalités</a> </li>
             </ul>
         </nav>
-
-
         <main>
             <div id="selecGalerie">
-                <p>Affiches</p>
-                <p>Vidéos</p>
-                <p>Clips audio</p>
+                <p data-format="image">Affiches</p>
+                <p data-format="video">Vidéos</p>
+                <p data-format="audio">Clips audio</p>
             </div>
-            <div class="naviGalerie">
-                <img src="../images/img-page-precedente.png" alt="Flèche page précedente" />
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" />
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" />
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" />
-                <img src="../images/img-page-suivante.png" alt="Flèche page suivante" />
-            </div>
-
-
+            <div class="naviGalerie"> <img src="../images/img-page-precedente.png" alt="Flèche page précedente" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> <img src="../images/img-page-suivante.png" alt="Flèche page suivante" /> </div>
             <div id="imgGalerie">
                 <!----------------------------- PHP -------------------------------------->
-
                 <?php
                     $repertoire=new DirectoryIterator(".");
 	               // début de boucle sur chaque vignette
@@ -88,65 +60,41 @@
 		              if(substr($nomFichier,0,strlen("vignette_")) == "vignette_") { // Si nom commence par vignette_
 		                  $nomImageOrigine = substr($nomFichier,strlen("vignette_"));
                 ?>
-
-                    <!---------------------------------------------------------------------->
-
-                    <a href="afficheImage.php?image=<?php echo($nomImageOrigine) ;?>">
+                    <!----------------------------------------------------------------------><a href="afficheImage.php?image=<?php echo($nomImageOrigine) ;?>">
                          <img src="./<?php echo($nomFichier); ?>" alt="<?php echo($nomImageOrigine) ;?>" data-format="image"/>
                     </a>
-
                     <!---------------------------------- PHP ------------------------------------->
-
                     <?php
 		              }	else if (substr($nomFichier,0,strlen("vid_")) == "vid_") { // Si nom commence par vid_)
                           $nomVideoOrigine = substr($nomFichier,strlen("vid"));
                       
                 ?>
-
                         <!---------------------------------------------------------------------->
-
                         <video controls preload="metadata" data-format="video">
-                            <source src="./<?php echo($nomFichier); ?>" />
-                        </video>
-
+                            <source src="./<?php echo($nomFichier); ?>" /> </video>
                         <!-- Vidéo de démonstration :
                         Author: mskrzyp
                         Author webpage: https://vimeo.com/mskrzyp125 
                         Licence: ATTRIBUTION LICENSE 3.0 (http://creativecommons.org/licenses/by/3.0/us/)
                         Downloaded at Mazwai.com -->
-
                         <!---------------------------------- PHP ------------------------------------->
                         <?php
                       } else if (substr($nomFichier,0,strlen("aud_")) == "aud_") { // Si nom commence par aud_)
                           $nomAudioOrigine = substr($nomFichier,strlen("aud"));
                 ?>
-
                             <!---------------------------------------------------------------------->
-
                             <audio src="./<?php echo($nomFichier); ?>" controls preload="metadata" data-format="audio"></audio>
-
                             <!---------------------------------- PHP ------------------------------------->
-
                             <?php
                       } // Fin if else if
 		              $repertoire->next();
                     } //while
                     // fin de la boucle
                 ?>
-
-
                                 <!---------------------------------------------------------------------->
             </div>
-
-            <div class="naviGalerie">
-                <img src="../images/img-page-precedente.png" alt="Flèche page précedente" />
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" />
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" />
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" />
-                <img src="../images/img-page-suivante.png" alt="Flèche page suivante" />
-            </div>
+            <div class="naviGalerie"> <img src="../images/img-page-precedente.png" alt="Flèche page précedente" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> <img src="../images/img-page-suivante.png" alt="Flèche page suivante" /> </div>
         </main>
-
         <footer>
             <div class="txtFooter">
                 <p><a href="">Mentions légales</a></p>

@@ -63,7 +63,7 @@ h1 {
     width: 40px;
 }
 
-h1::after{
+h1::after {
     content: url(./images-css/img-logo-titre-backgroung.png);
     position: absolute;
     transform: scale(0.45);
@@ -183,6 +183,10 @@ footer::after {
 
 /*************** INDEX ***************/
 
+#presentationSite {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
 .illustrationsIndex {
     width: 100%;
     position: relative;
@@ -193,7 +197,7 @@ footer::after {
     margin-top: 10px;
 }
 
-.illustrationsIndex p {
+.illustrationsIndex .textGif {
     position: absolute;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1.6vw;
@@ -201,13 +205,13 @@ footer::after {
 
 #baleine {
     right: 15%;
-    top: 4%;
+    bottom: 75%;
     width: 27%;
 }
 
 #usine {
     right: 8%;
-    top: 35%;
+    bottom: 51%;
     width: 30%;
 }
 
@@ -221,13 +225,9 @@ footer::after {
     #magicien {
         bottom: 19%;
     }
-    
-    #baleine{
-        top: 2.5%;
-    }
 }
 
-#liensIndex{
+#liensIndex {
     display: flex;
     justify-content: space-around;
     max-width: 700px;
@@ -236,10 +236,10 @@ footer::after {
     font-size: 25px;
 }
 
-#liensIndex a{
+#liensIndex a {
     color: black;
     font-weight: bold;
-    text-decoration: none;    
+    text-decoration: none;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -247,13 +247,14 @@ footer::after {
     width: 100px;
 }
 
-#liensIndex a:first-child{
+#liensIndex a:first-child {
     background-image: url(./images-css/img-clips-audio-background.png);
 }
 
-#liensIndex a:nth-child(2){
+#liensIndex a:nth-child(2) {
     background-image: url(./images-css/img-clips-videos-foreground.png);
 }
+
 
 /*************** GALERIE ***************/
 
@@ -288,7 +289,6 @@ footer::after {
     width: 18px;
     margin: 5px
 }
-
 
 #imgGalerie {
     margin-left: auto;
@@ -500,9 +500,11 @@ main h2 {
     box-sizing: border-box;
 }
 
-#participation #titre,textarea{
+#participation #titre,
+textarea {
     font-family: 'Open Sans Condensed', sans-serif;
 }
+
 
 /*************** AFFICHE IMAGE ***************/
 
@@ -525,6 +527,7 @@ main h2 {
     align-items: center;
     justify-content: center;
 }
+
 
 /*************** MODALITES ***************/
 

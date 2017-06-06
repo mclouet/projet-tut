@@ -20,11 +20,13 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     var inputBtnIco = document.createElement("input");
     var labelBtnIco = document.createElement("label");
 
-    var listeNum = document.querySelector("#participation>ol");
-    var liNum3 = document.querySelector("li:nth-child(6)");
+    var listeNum = document.querySelector("#participation>#listeForm");
+    var liNum3 = document.querySelector(".liste:nth-child(7)");
 
     var btnVideo = document.getElementById("radioVideo");
     var btnAudio = document.getElementById("radioAudio");
+
+    var participation = document.getElementById("participation");
 
     // Type file
     inputBtnIco.name = "vignetteMonFichier";
@@ -39,6 +41,10 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     labelBtnIco.style.fontFamily = "Open Sans Condensed";
     labelBtnIco.id = "labelIco";
     listeNum.insertBefore(labelBtnIco, inputBtnIco);
+
+    // CHANGER FRERE PRECEDENT INPUT
+
+    participation.style.width = "550px";
 }
 
 function arreter(evt) {
@@ -55,9 +61,15 @@ function supprimerBtnIco(evt) { // Supprimer le bouton permettant à l'utilisate
     var btnVid = document.getElementById("radioVideo");
     var btnAud = document.getElementById("radioAudio");
 
+    var background = document.getElementById("participation");
+
     if (btnAjoutIco && labelAjoutIco) {
         btnAjoutIco.remove();
         labelAjoutIco.remove();
+        background.style.width = "500px";
     }
 
+    // A REVOIR : remettre écouteur de clic après avoir cliqué sur affiche
+    // btnVid.addEventListener("click", afficherBtnIco);
+    // btnAud.addEventListener("click", afficherBtnIco);
 }

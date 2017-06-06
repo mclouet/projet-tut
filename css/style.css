@@ -225,6 +225,9 @@ footer::after {
     #magicien {
         bottom: 19%;
     }
+    #baleine {
+        top: 2.5%;
+    }
 }
 
 #liensIndex {
@@ -417,7 +420,7 @@ main h2 {
 }
 
 #participation {
-    width: 500px;
+    width: 520px;
     background-image: url(images-css/img-processus-publication.png);
     background-size: contain;
     background-position: center;
@@ -427,17 +430,22 @@ main h2 {
     margin-bottom: auto;
 }
 
-#participation ol {
+#participation #listeForm {
     width: 65%;
     margin-right: auto;
     margin-left: auto;
 }
 
-#participation ol>li {
+#participation .liste {
     font-size: 15pt;
     text-align-last: left;
     margin-top: 10px;
     margin-bottom: 5px;
+    list-style-type: none;
+}
+
+#participation .liste:nth-child(even) {
+    margin-left: 30px;
 }
 
 #participation div:nth-child(2) label {
@@ -454,7 +462,6 @@ main h2 {
     /* MODIFIER BOUTON */
     padding: 10px;
     font-family: 'Open Sans Condensed', sans-serif;
-    display: none;
 }
 
 #participation input[type=text] {
@@ -539,7 +546,7 @@ textarea {
     font-family: 'Open Sans Condensed', sans-serif;
     text-align: justify;
     width: 90%;
-    display: inline-flex;
+    display: inline-block;
     margin: 10px;
 }
 

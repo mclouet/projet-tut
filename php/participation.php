@@ -13,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <script type="text/javascript" src="../js/participation.js"></script>
     </head>
 
     <body>
@@ -29,10 +30,10 @@
 
             <div class="compte">
                 <a>Mon compte</a>
-                <img src="../images/img-profil-photo.png" alt="image profil"/>
+                <img src="../images/img-profil-photo.png" alt="image profil" />
                 <div class="log">
-                    <a href="" title="Se connecter"><img src="../images/img-login.png" alt="logo connexion"/></a>
-                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" alt="logo déconnexion"/></a>
+                    <a href="" title="Se connecter"><img src="../images/img-login.png" alt="logo connexion" /></a>
+                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" alt="logo déconnexion" /></a>
                 </div>
             </div>
         </header>
@@ -52,8 +53,8 @@
                     <a href="./participation.php">Je participe</a>
                 </li>
                 <li>
-                <a href="../modalites.html">Modalités</a>
-            </li>
+                    <a href="../modalites.html">Modalités</a>
+                </li>
             </ul>
         </nav>
 
@@ -61,9 +62,9 @@
             <h2 id="participer">Participez !</h2>
             <div id="divParticipation">
                 <form action="participation.php" enctype="multipart/form-data" method="post" id="participation">
-                    <ol>
+                    <div id="listeForm">
                         <!-- 1 -->
-                        <li>Choisissez votre catégorie</li>
+                        <p class="liste">Choisissez votre catégorie</p>   
                         <div>
                             <input type="radio" name="categorie" value="affiche" id="radioAffiche" />
                             <label for="radioAffiche">Affiche</label>
@@ -73,12 +74,13 @@
                             <label for="radioAudio">Clip Audio</label>
                         </div>
                         <!-- 2 -->
-                        <li>Importez votre travail</li>
+                        <p class="liste">Importez votre travail</p>
                         <input type="hidden" name="MAX_FILE_SIZE" value="31457280" />
                         <!-- 31457280 octets = 30Mo -->
+                        <label for="monFichier">Fichier</label>
                         <input name="monFichier" type="file" />
                         <!-- 3 -->
-                        <li>Partagez avec vos amis !</li>
+                        <p class="liste">Partagez avec vos amis !</p>
                         <div class="reseauxSoc">
                             <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="../images/img-facebook-icon.png" alt="logo Facebook" /></a>
                             <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="../images/img-tweeter-icon.png" alt="logo Twitter" /></a>
@@ -87,17 +89,14 @@
                             <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="logo Google+" /></a>
                         </div>
                         <!-- 4 -->
-                        <li>
-                            <label for="titre">Donnez un titre à votre oeuvre !</label>
-                        </li>
-                        <input type="text" name="titre" id="titre" required="required" />
+                        <label for="titre">Donnez un titre à votre oeuvre !</label>
+                        <input type="text" name="titre" id="titre" required="required" value="<?php if(isset($_POST["titre"])) { echo($_POST["titre"]); } ?>"/>
                         <!-- 5 -->
-                        <li>
-                            <label for="desc">Décrivez votre oeuvre !</label>
-                        </li>
+                        <label for="desc">Décrivez votre oeuvre !</label>
                         <textarea name="desc" rows="10" cols="35" required="required"></textarea>
                         <!-- Envoyer -->
-                        <input type="submit" value="Envoyer" class="inputSubmit" /> </ol>
+                        <input type="submit" value="Envoyer" class="inputSubmit" />
+                    </div>
                 </form>
 
                 <div> <img src="../images/img-test-participation.png" alt="" /> </div>

@@ -3,3 +3,8 @@ whiteliliesmp4.mp4,Une fleur;
 tp-12-star-trek.WAV,Star Trek;
 affiche-etoile.jpg,Etoile;
 affiche-terre.jpg,Terre;
+bdd-insertion-utilisateurs - Feuille 1.csv,TITRE;
+bdd-insertion-valeur-OEUVRE - Feuille 1.csv,tewt;
+bdd-insertion-valeur-OEUVRE - Feuille 1.csv,krlnfkre;
+,krlnfkre;
+,f;

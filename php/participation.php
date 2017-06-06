@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Participez ! &#124; CDLS</title>
-        <meta name="description" content="Page de participation du concours Cabadix !" />
+        <meta name="description" content="Déposez votre fichier et remplissez sa description pour faire valoir votre oeuvre aux yeux des jurys." />
         <meta name="keywords" content="participation, concours, lots, sacs plastique, pollution, affiches, vidéos, clips audio" />
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -29,10 +29,10 @@
 
             <div class="compte">
                 <a>Mon compte</a>
-                <img src="../images/img-profil-photo.png" />
+                <img src="../images/img-profil-photo.png" alt="image profil"/>
                 <div class="log">
-                    <a href="" title="Se connecter"><img src="../images/img-login.png" /></a>
-                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" /> </a>
+                    <a href="" title="Se connecter"><img src="../images/img-login.png" alt="logo connexion"/></a>
+                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" alt="logo déconnexion"/></a>
                 </div>
             </div>
         </header>
@@ -51,6 +51,9 @@
                 <li>
                     <a href="./participation.php">Je participe</a>
                 </li>
+                <li>
+                <a href="../modalites.html">Modalités</a>
+            </li>
             </ul>
         </nav>
 
@@ -63,11 +66,11 @@
                         <li>Choisissez votre catégorie</li>
                         <div>
                             <input type="radio" name="categorie" value="affiche" id="radioAffiche" />
-                            <label for="affiche">Affiche</label>
+                            <label for="radioAffiche">Affiche</label>
                             <input type="radio" name="categorie" value="video" id="radioVideo" />
-                            <label for="video">Vidéo</label>
+                            <label for="radioVideo">Vidéo</label>
                             <input type="radio" name="categorie" value="audio" id="radioAudio" />
-                            <label for="audio">Clip Audio</label>
+                            <label for="radioAudio">Clip Audio</label>
                         </div>
                         <!-- 2 -->
                         <li>Importez votre travail</li>
@@ -195,6 +198,6 @@
         
                 ?>
 
-        <!------------------------FIN PHP------------------->
+        <!------------------------ FIN PHP ------------------->
 
     </html>

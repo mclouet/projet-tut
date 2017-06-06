@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Contactez-nous ! &#124; CDLS</title>
-    <meta name="description" content="Page de contact du concours C'est dans le sac !" />
+    <meta name="description" content="Une question ou une réclamation ? N'hésitez pas à nous contacter en remplissant ce petit formulaire !" />
     <meta name="keywords" content="contact, sponsors, concours, sacs plastique, pollution, lots, gains, affiches, vidéos, clips audio" />
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -25,11 +25,10 @@
 
         <div class="compte">
             <a>Mon compte</a>
-            <img src="./images/img-profil-photo.png" />
+            <img src="./images/img-profil-photo.png" alt="image profil"/>
             <div class="log">
-                <a href="" title="Se connecter"><img src="./images/img-login.png" /></a>
-                <a href="" title="Se déconnecter"><img src="./images/img-logout.png" />
-                </a>
+                <a href="" title="Se connecter"><img src="./images/img-login.png" alt="logo connexion"/></a>
+                <a href="" title="Se déconnecter"><img src="./images/img-logout.png" alt="logo déconnexion"/></a>
             </div>
         </div>
     </header>
@@ -59,7 +58,7 @@
     <main>
         <h2>Contactez-nous !</h2>
 
-        <form method="post" action="" id="contact">
+        <form method="post" action="<!-- à faire -->" id="contact">
             <div>
                 <label for="nom">Nom<span class="formObli">*</span></label>
                 <input id="nom" name="nom" type="text" placeholder="CABADIX" required="required" />
@@ -78,7 +77,7 @@
             </div>
             <div>
                 <label for="message">Message<span class="formObli">*</span></label>
-                <textarea name="message" placeholder="A bientôt !" rows="10" required="required"></textarea>
+                <textarea name="message" id="message" placeholder="A bientôt !" rows="10" required="required"></textarea>
             </div>
             <input type="submit" value="Envoyer" class="inputSubmit" />
         </form>

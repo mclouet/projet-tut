@@ -454,6 +454,7 @@ main h2 {
     /* MODIFIER BOUTON */
     padding: 10px;
     font-family: 'Open Sans Condensed', sans-serif;
+    display: none;
 }
 
 #participation input[type=text] {

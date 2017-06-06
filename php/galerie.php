@@ -9,7 +9,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Galerie &#124; CDLS</title>
-        <meta name="description" content="Page des représentations du concours Cabadix !" />
+        <meta name="description" content="Découvrez vos oeuvres et celles des autres participants dans notre galerie." />
         <meta name="keywords" content="galerie, représentations, concours, lots, sacs plastique, pollution, affiches, vidéos, clips audio" />
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -31,10 +31,10 @@
 
             <div class="compte">
                 <a>Mon compte</a>
-                <img src="../images/img-profil-photo.png" />
+                <img src="../images/img-profil-photo.png" alt="image profil"/>
                 <div class="log">
-                    <a href="" title="Se connecter"><img src="../images/img-login.png" /></a>
-                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" /> </a>
+                    <a href="" title="Se connecter"><img src="../images/img-login.png" alt="logo connexion"/></a>
+                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" alt="logo déconnexion"/></a>
                 </div>
             </div>
         </header>
@@ -76,7 +76,7 @@
 
 
             <div id="imgGalerie">
-                <!-----------------------------PHP-------------------------------------->
+                <!----------------------------- PHP -------------------------------------->
 
                 <?php
                     $repertoire=new DirectoryIterator(".");
@@ -95,7 +95,7 @@
                          <img src="./<?php echo($nomFichier); ?>" alt="<?php echo($nomImageOrigine) ;?>" data-format="image"/>
                     </a>
 
-                    <!----------------------------------PHP------------------------------------->
+                    <!---------------------------------- PHP ------------------------------------->
 
                     <?php
 		              }	else if (substr($nomFichier,0,strlen("vid_")) == "vid_") { // Si nom commence par vid_)
@@ -113,10 +113,9 @@
                         Author: mskrzyp
                         Author webpage: https://vimeo.com/mskrzyp125 
                         Licence: ATTRIBUTION LICENSE 3.0 (http://creativecommons.org/licenses/by/3.0/us/)
-                        Downloaded at Mazwai.com
-                    -->
+                        Downloaded at Mazwai.com -->
 
-                        <!----------------------------------PHP------------------------------------->
+                        <!---------------------------------- PHP ------------------------------------->
                         <?php
                       } else if (substr($nomFichier,0,strlen("aud_")) == "aud_") { // Si nom commence par aud_)
                           $nomAudioOrigine = substr($nomFichier,strlen("aud"));
@@ -126,7 +125,7 @@
 
                             <audio src="./<?php echo($nomFichier); ?>" controls preload="metadata" data-format="audio"></audio>
 
-                            <!----------------------------------PHP------------------------------------->
+                            <!---------------------------------- PHP ------------------------------------->
 
                             <?php
                       } // Fin if else if

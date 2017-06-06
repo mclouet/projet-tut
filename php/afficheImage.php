@@ -9,7 +9,7 @@
         <meta charset="utf-8" />
         <title>TITRE &#124; CDLS</title>
         <!-- AFFICHER LE TITRE DE L'OEUVRE -->
-        <meta name="description" content="Description de l'image ... du concours Cabadix !" />
+        <meta name="description" content="Description de votre image ... pour notre concours Cabadix !" />
         <!-- AFFICHER TITRE DE L'OEUVRE -->
         <meta name="keywords" content="oeuvre, description, concours, sacs plastique, pollution, affiches, vidéos, clips audio" />
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
@@ -31,10 +31,10 @@
 
             <div class="compte">
                 <a>Mon compte</a>
-                <img src="../images/img-profil-photo.png" />
+                <img src="../images/img-profil-photo.png" alt="image profil"/>
                 <div class="log">
-                    <a href="" title="Se connecter"><img src="../images/img-login.png" /></a>
-                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" /> </a>
+                    <a href="" title="Se connecter"><img src="../images/img-login.png" alt="logo connexion"/></a>
+                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" alt="logo déconnexion"/></a>
                 </div>
             </div>
         </header>

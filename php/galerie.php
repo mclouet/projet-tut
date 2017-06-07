@@ -47,51 +47,75 @@
                 <p data-format="video">Vidéos</p>
                 <p data-format="audio">Clips audio</p>
             </div>
-            <div class="naviGalerie"> <img src="../images/img-page-precedente.png" alt="Flèche page précedente" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> <img src="../images/img-page-suivante.png" alt="Flèche page suivante" /> </div>
-            <div id="imgGalerie">
-                <!----------------------------- PHP -------------------------------------->
-                <?php
-                    $repertoire=new DirectoryIterator(".");
-	               // début de boucle sur chaque vignette
-	
-	               while($repertoire->valid()) {
-		              $nomFichier = $repertoire->getFilename();
-			
-		              if(substr($nomFichier,0,strlen("vignette_")) == "vignette_") { // Si nom commence par vignette_
-		                  $nomImageOrigine = substr($nomFichier,strlen("vignette_"));
-                ?>
-                    <!----------------------------------------------------------------------><a href="afficheImage.php?image=<?php echo($nomImageOrigine) ;?>">
-                         <img src="./<?php echo($nomFichier); ?>" alt="<?php echo($nomImageOrigine) ;?>" data-format="image"/>
-                    </a>
-                    <!---------------------------------- PHP ------------------------------------->
+            <div class="naviGalerie"> 
+                <img src="../images/img-page-precedente.png" alt="Flèche page précedente" class="boutonNavi" data-navi="reculer"/> 
+                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1"/> 
+                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> 
+                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> 
+                <img src="../images/img-page-suivante.png" alt="Flèche page suivante" class="boutonNavi" data-navi="avancer"/> 
+            </div>
+            <div id="galerie">
+                <ul id="imgGalerie">
+                    <li>
+                    <!-- --------------------------- PHP ------------------------------------ -->
                     <?php
-		              }	else if (substr($nomFichier,0,strlen("vid_")) == "vid_") { // Si nom commence par vid_)
-                          $nomVideoOrigine = substr($nomFichier,strlen("vid"));
-                      
-                ?>
-                        <!---------------------------------------------------------------------->
-                        <video controls preload="metadata" data-format="video">
-                            <source src="./<?php echo($nomFichier); ?>" /> </video>
-                        <!-- Vidéo de démonstration :
-                        Author: mskrzyp
-                        Author webpage: https://vimeo.com/mskrzyp125 
-                        Licence: ATTRIBUTION LICENSE 3.0 (http://creativecommons.org/licenses/by/3.0/us/)
-                        Downloaded at Mazwai.com -->
-                        <!---------------------------------- PHP ------------------------------------->
+                        $repertoire=new DirectoryIterator(".");
+                       // début de boucle sur chaque vignette
+                        
+                        while($repertoire->valid()) {
+                            $nomFichier = $repertoire->getFilename();
+                            $compteur = 0;
+
+                            if(substr($nomFichier,0,strlen("vignette_")) == "vignette_") { // Si nom commence par vignette_
+                              $nomImageOrigine = substr($nomFichier,strlen("vignette_"));
+                              
+                                if($compteur == 3){ //quand le li contient 3 éléments
+                        ?>
+                        <!-- ------------------------------------------------------------------ -->
+                                </li>
+                                <li>
+                        <!-- -------------------------------- PHP ----------------------------------- -->
                         <?php
-                      } else if (substr($nomFichier,0,strlen("aud_")) == "aud_") { // Si nom commence par aud_)
-                          $nomAudioOrigine = substr($nomFichier,strlen("aud"));
-                ?>
-                            <!---------------------------------------------------------------------->
-                            <audio src="./<?php echo($nomFichier); ?>" controls preload="metadata" data-format="audio"></audio>
-                            <!---------------------------------- PHP ------------------------------------->
+                                    $compteur = 0; //remise à 0 du compteur
+                                } //fin du if
+                        ?>
+                        <!-- ------------------------------------------------------------------ -->   
+                            <a href="afficheImage.php?image=<?php echo($nomImageOrigine) ;?>">
+                             <img src="./<?php echo($nomFichier); ?>" alt="<?php echo($nomImageOrigine) ;?>" data-format="image" class="enfantGalerie"/>
+                            </a>
+                        <!-- -------------------------------- PHP ----------------------------------- -->
+                        <?php
+                            $compteur = $compteur++;
+                                
+                          }	else if (substr($nomFichier,0,strlen("vid_")) == "vid_") { // Si nom commence par vid_)
+                              $nomVideoOrigine = substr($nomFichier,strlen("vid"));
+
+                    ?>
+                            <!-- ------------------------------------------------------------------ -->
+                            <video controls preload="metadata" data-format="video" class="enfantGalerie">
+                                <source src="./<?php echo($nomFichier); ?>" /> </video>
+                            <!-- Vidéo de démonstration :
+                            Author: mskrzyp
+                            Author webpage: https://vimeo.com/mskrzyp125 
+                            Licence: ATTRIBUTION LICENSE 3.0 (http://creativecommons.org/licenses/by/3.0/us/)
+                            Downloaded at Mazwai.com -->
+                            <!---------------------------------- PHP ----------------------------------- -->
                             <?php
-                      } // Fin if else if
-		              $repertoire->next();
-                    } //while
-                    // fin de la boucle
-                ?>
-                                <!---------------------------------------------------------------------->
+                          } else if (substr($nomFichier,0,strlen("aud_")) == "aud_") { // Si nom commence par aud_)
+                              $nomAudioOrigine = substr($nomFichier,strlen("aud"));
+                    ?>
+                                <!-- ------------------------------------------------------------------ -->
+                                <audio src="./<?php echo($nomFichier); ?>" controls preload="metadata" data-format="audio" class="enfantGalerie"></audio>
+                                <!-- -------------------------------- PHP ----------------------------------- -->
+                                <?php
+                          } // Fin if else if
+                          $repertoire->next();
+                        } //while
+                        // fin de la boucle
+                    ?>
+                                    <!-- ------------------------------------------------------------------ -->
+                    </li>
+                </ul>
             </div>
             <div class="naviGalerie"> <img src="../images/img-page-precedente.png" alt="Flèche page précedente" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> <img src="../images/img-page-suivante.png" alt="Flèche page suivante" /> </div>
         </main>

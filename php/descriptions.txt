@@ -11,6 +11,16 @@ bdd-insertion-valeur-OEUVRE - Feuille 1.csv,testtgr;
 bdd-insertion-valeur-OEUVRE - Feuille 1.csv,littlehkorp;
 ,jioj;
 ,fze;
+
+vespabault.png,mignon;
+vespabault.png,c bo;
+tablette mamoune.png,bo;
+vespabault.png,EF;
+grande_affiche-terre.jpg,jn;
+grande_affiche-demon-sac.jpg,ada;
+grande_affiche-demon-sac.jpg,k;;
+grande_affiche-etoile.jpg,zlfkje;
+vespabault.png,sfjn;
 Desert.jpg,désert désert désert;
 Jellyfish.jpg,jellyfishjellyfishjellyfishjellyfishjellyfishjellyfish;
 vid_whiteliliesmp4.mp4,test vidéo;

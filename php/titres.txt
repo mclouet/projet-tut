@@ -8,6 +8,7 @@ bdd-insertion-valeur-OEUVRE - Feuille 1.csv,tewt;
 bdd-insertion-valeur-OEUVRE - Feuille 1.csv,krlnfkre;
 ,krlnfkre;
 ,f;
+<<<<<<< HEAD
 Desert.jpg,désert;
 Jellyfish.jpg,jelly;
 vid_whiteliliesmp4.mp4,test vid;
@@ -45,3 +46,14 @@ vid_vid_vid_whitelilies.mp4,fds;
 vid_vid_whitelilies.mp4,just killed a man;
 TEST.jpeg,Coquelicot (je ne sais plus);
 vid_vid_vid_whitelilies.mp4,test vidéo et vig;
+=======
+vespabault.png,vesphabault;
+vespabault.png,vesphabault;
+tablette mamoune.png,wow;
+vespabault.png,VespHabault;
+grande_affiche-terre.jpg,Affiche terre;
+grande_affiche-demon-sac.jpg,sac;
+grande_affiche-demon-sac.jpg,sac;
+grande_affiche-etoile.jpg,etoile;
+vespabault.png,habault;
+>>>>>>> lea-07-06

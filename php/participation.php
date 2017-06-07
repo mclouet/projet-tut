@@ -183,7 +183,7 @@
                                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                                             // Etape 2 : envoi de la requête SQL au serveur INSERER VIDEO
-                                            $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramVid, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
+                                            $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramVid, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                         
                                             $statement = $pdo->prepare($sql);
                                             $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "/php/videos/vid_".$_FILES["monFichier"]["name"], ":paramVig" => "/php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => "mClouEtMarteau"));
@@ -222,17 +222,11 @@
                                         $pdo->query("SET CHARACTER SET 'utf8'");
 
                                         // Etape 2 : envoi de la requête SQL au serveur INSERER AUDIO
-                                        $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramNote, :paramTitre, :paramType, :paramPseudo)";
-                                        /* Prise en compte vignette :
-                                        $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
-                                        */
+                                        $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                         
                                         $statement = $pdo->prepare($sql);
-                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "/php/clips-audio/vid_".$_FILES["monFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => "mClouEtMarteau"));
-                                        /* Prise en compte vignette :
-                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "/php/images/grande_".$_FILES["monFichier"]["name"], ":paramVig" => "/php/vignette_".$_FILES["monFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => "mClouEtMarteau"));
-                                        */
-
+                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "/php/clips-audio/vid_".$_FILES["monFichier"]["name"], ":paramVig" => "/php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => "mClouEtMarteau"));
+                                        
                                         echo('<script language="javascript">');
                                         echo('alert("Votre fichier a été enregistré !")');
                                         echo('</script>');

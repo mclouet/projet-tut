@@ -1,10 +1,10 @@
 <?php
     if(!defined("MYHOST"))
-        define("MYHOST","projets.iut-laval.univ-lemans.fr");
+        define("MYHOST","localhost");
     if(!defined("MYUSER"))
-        define("MYUSER","16mmi1us06");
+        define("MYUSER","root");
     if(!defined("MYPASS"))
-        define("MYPASS","GoUT5i97");
+        define("MYPASS","root");
     if(!defined("MYDB"))
-        define("MYDB","16mmi1pj06");
+        define("MYDB","test-ptut");
 ?>

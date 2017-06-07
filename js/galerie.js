@@ -38,7 +38,7 @@ function trierGalerie(evt) {
 
 function naviguerGalerie(evt) {
     if (this.dataset.navi = "avancer"){
-
+        
     }else{
 
     }

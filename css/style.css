@@ -226,9 +226,10 @@ footer::after {
         bottom: 19%;
     }
     #baleine {
-        top: 2.5%;
+        bottom: 76%;
     }
 }
+
 
 #liensIndex {
     display: flex;
@@ -293,17 +294,25 @@ footer::after {
     margin: 5px
 }
 
-#imgGalerie {
+#galerie{
+    border: solid green 3px;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
-    max-width: 700px;
+}
+
+#imgGalerie {
+    height: 200px;
+    position: relative;
+    overflow: visible;
+    display: inline-flex;
 }
 
 #imgGalerie img {
     border: 16px solid transparent;
     border-image: url("./images-css/img-media-4-foreground.png") 65 45;
     display: inline-flex;
-    width: 25%;
+    height: 160px;
     margin: 10px;
 }
 
@@ -318,7 +327,7 @@ footer::after {
 #imgGalerie audio {
     border: 16px solid transparent;
     border-image: url("./images-css/img-media-4-foreground.png") 65 45;
-    display: inline-flex;
+    display: inline-block;
     margin: 10px;
     width: 25%;
 }

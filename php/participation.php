@@ -90,7 +90,7 @@
                         </div>
                         <!-- 4 -->
                         <label for="titre">Donnez un titre à votre oeuvre !</label>
-                        <input type="text" name="titre" id="titre" required="required" value="<?php if(isset($_POST["titre"])) { echo($_POST["titre"]); } ?>"/>
+                        <input type="text" name="titre" id="titre" required="required" />
                         <!-- 5 -->
                         <label for="desc">Décrivez votre oeuvre !</label>
                         <textarea name="desc" rows="10" cols="35" required="required"></textarea>
@@ -99,7 +99,7 @@
                     </div>
                 </form>
 
-                <div> <img src="../images/img-test-participation.png" alt="" /> </div>
+                <div> <img src="../images/img-test-participation.png" alt="Aperçu de l'image téléchargée" /> </div>
             </div>
         </main>
 
@@ -120,49 +120,128 @@
     </body>
 
 
-    <!------------------- PHP ------------------>
+    <!-- ----------------- PHP ---------------- -->
 
     <?php        
                     if (isset($_FILES["monFichier"])) {
                         
                         if ($_FILES["monFichier"]["name"] != ".htaccess") { // Si le fichier est différent de .htaccess
+                            
                         
-                            if ($_POST["categorie"] == "affiche") { // Si la catégorie choisie est image
+                            if ($_POST["categorie"] == "affiche") { // Si la catégorie choisie est IMAGE
                                 
                                 if ($_FILES["monFichier"]["type"] == "image/jpeg" || $_FILES["monFichier"]["type"] == "image/pjpeg" || $_FILES["monFichier"]["type"] == "image/png") { // Si le format est .jpeg, .jpg ou .png
+                                    
                                     copy($_FILES["monFichier"]["tmp_name"], "./images/grande_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./images/
+                                    
                                     require("convertirImage700x700.inc.php");
-                                    convertirImage700x700($_FILES["monFichier"]["tmp_name"], "vignette_".$_FILES["monFichier"]["name"]); // Copie de la vignette dans .
-                                    echo('<script language="javascript">');
-                                    echo('alert("Votre fichier a été enregistré !")');
-                                    echo('</script>');
+                                    convertirImage700x700($_FILES["monFichier"]["tmp_name"], "./vignettes/vignette_".$_FILES["monFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                    
+                                    
+                                    try {
+                                        // Etape 1 : connexion au serveur de base de données
+                                        require("param.inc.php");
+                                        $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                        $pdo->query("SET NAMES utf8");
+                                        $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                        // Etape 2 : envoi de la requête SQL au serveur INSERER IMAGE
+                                        $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
+                                        $statement = $pdo->prepare($sql);
+                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "/php/images/grande_".$_FILES["monFichier"]["name"], ":paramVig" => "/php/vignettes/vignette_".$_FILES["monFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => "mClouEtMarteau"));
+
+                                        echo('<script language="javascript">');
+                                        echo('alert("Votre fichier a été enregistré !")');
+                                        echo('</script>');
+
+                                        $pdo = null;
+                                    } catch(Exception $e) {
+                                        echo("Exception :".$e->getMessage());
+                                    }
+                                                                        
                                 } else { // Si le format est différent de ceux attendus
                                     echo('<script language="javascript">');
                                     echo('alert("Les formats acceptés sont .jpeg, .jpg et .png.")');
                                     echo('</script>');
                                 } // Fin condition format image
                                 
-                            } else if ($_POST["categorie"] == "video") { // Si la catégorie choisie est vidéo
+                            } else if ($_POST["categorie"] == "video") { // Si la catégorie choisie est VIDEO
                                 
                                 if ($_FILES["monFichier"]["type"] == "video/mp4") { // Si le fichier est en .mp4
-                                    copy($_FILES["monFichier"]["tmp_name"], "./vid_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./videos/
+                                    if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
                                     
-                                    echo('<script language="javascript">');
-                                    echo('alert("Votre fichier a été enregistré !")');
-                                    echo('</script>');
+                                        copy($_FILES["monFichier"]["tmp_name"], "./videos/vid_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./videos/
+                                        
+                                        require("convertirImage700x700.inc.php");
+                                        convertirImage700x700($_FILES["vignetteMonFichier"]["tmp_name"], "./vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                    
+                                        try {
+                                            // Etape 1 : connexion au serveur de base de données
+                                            require("param.inc.php");
+                                            $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                            $pdo->query("SET NAMES utf8");
+                                            $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                            // Etape 2 : envoi de la requête SQL au serveur INSERER VIDEO
+                                            $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramVid, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
+                                        
+                                            $statement = $pdo->prepare($sql);
+                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "/php/videos/vid_".$_FILES["monFichier"]["name"], ":paramVig" => "/php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => "mClouEtMarteau"));
+                                            
+                                            echo('<script language="javascript">');
+                                            echo('alert("Votre fichier a été enregistré !")');
+                                            echo('</script>');
+
+                                            $pdo = null;
+                                        } catch(Exception $e) {
+                                            echo("Exception :".$e->getMessage());
+                                        }
+                                        
+                                    } else { // Si aucune vignette n'a été choisie
+                                        echo('<script language="javascript">');
+                                        echo('alert("Vous devez choisir une vignette au format .jpeg, .jpg ou .png.")');
+                                        echo('</script>');
+                                    } // Fin condition vignette
+                                    
                                 } else { // Si le format est différent de celui attendu
                                     echo('<script language="javascript">');
                                     echo('alert("Le format accepté est .mp4.")');
                                     echo('</script>');
                                 } // Fin condition format vidéo
                                 
-                            } else if ($_POST["categorie"] == "audio") { // Si la catégorie choisie est clip audio
+                            } else if ($_POST["categorie"] == "audio") { // Si la catégorie choisie est clip AUDIO
                                 
                                 if ($_FILES["monFichier"]["type"] == "audio/mpeg" || $_FILES["monFichier"]["type"] == "audio/x-wav" || $_FILES["monFichier"]["type"] == "audio/wav") { // Si le format est .mpeg ou .wav
-                                    copy($_FILES["monFichier"]["tmp_name"], "./aud_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./clips-audio/
-                                    echo('<script language="javascript">');
-                                    echo('alert("Votre fichier a été enregistré !")');
-                                    echo('</script>');
+                                    copy($_FILES["monFichier"]["tmp_name"], "./clips-audio/aud_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./clips-audio/
+                                    
+                                    try {
+                                        // Etape 1 : connexion au serveur de base de données
+                                        require("param.inc.php");
+                                        $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                        $pdo->query("SET NAMES utf8");
+                                        $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                        // Etape 2 : envoi de la requête SQL au serveur INSERER AUDIO
+                                        $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramNote, :paramTitre, :paramType, :paramPseudo)";
+                                        /* Prise en compte vignette :
+                                        $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
+                                        */
+                                        
+                                        $statement = $pdo->prepare($sql);
+                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "/php/clips-audio/vid_".$_FILES["monFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => "mClouEtMarteau"));
+                                        /* Prise en compte vignette :
+                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "/php/images/grande_".$_FILES["monFichier"]["name"], ":paramVig" => "/php/vignette_".$_FILES["monFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => "mClouEtMarteau"));
+                                        */
+
+                                        echo('<script language="javascript">');
+                                        echo('alert("Votre fichier a été enregistré !")');
+                                        echo('</script>');
+
+                                        $pdo = null;
+                                    } catch(Exception $e) {
+                                        echo("Exception :".$e->getMessage());
+                                    }
+                                    
                                 } else { // Si le format est différent de ceux attendus
                                     echo('<script language="javascript">');
                                     echo('alert("Les formats acceptés sont .mp3 et .wav.")');
@@ -197,6 +276,6 @@
         
                 ?>
 
-        <!------------------------ FIN PHP ------------------->
+        <!-- ---------------------- FIN PHP ----------------- -->
 
     </html>

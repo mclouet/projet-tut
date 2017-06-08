@@ -57,63 +57,76 @@
             <div id="galerie">
                 <ul id="imgGalerie">
                     <li>
-                    <!-- --------------------------- PHP ------------------------------------ -->
-                    <?php
-                        $repertoire=new DirectoryIterator(".");
-                       // début de boucle sur chaque vignette
+        <!-- --------------------------- PHP ------------------------------------ -->
+            <?php
+                
+                try {        
+                    //boucle sur chaque oeuvre (depuis BDD)
+                    //ETAPE 1: connexion à la base de données
+                    require("param.inc.php");
+                    $pdo = new PDO("mysql:host=".MYHOST.";dbname=".MYDB,MYUSER,MYPASS);
+                    $pdo -> query("SET NAMES utf8");
+                    $pdo -> query("SET CHARACTER SET 'utf8'");
+
+                    //ETAPE 2: Envoyer une requête SQL
+                    $sql = "SELECT Vignette, Type, DescOeuvre FROM oeuvre";
+
+                    $statement = $pdo->prepare($sql);
+                    $statement->execute();
+
+                    //ETAPE 3: Traiter les données retournées
+                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                    //Boucle sur chaque oeuvre (depuis la BDD)
+                    while($ligne != false){
                         
-                        while($repertoire->valid()) {
-                            $nomFichier = $repertoire->getFilename();
-                            $compteur = 0;
-
-                            if(substr($nomFichier,0,strlen("vignette_")) == "vignette_") { // Si nom commence par vignette_
-                              $nomImageOrigine = substr($nomFichier,strlen("vignette_"));
-                              
-                                if($compteur == 3){ //quand le li contient 3 éléments
-                        ?>
-                        <!-- ------------------------------------------------------------------ -->
-                                </li>
-                                <li>
-                        <!-- -------------------------------- PHP ----------------------------------- -->
-                        <?php
-                                    $compteur = 0; //remise à 0 du compteur
-                                } //fin du if
-                        ?>
-                        <!-- ------------------------------------------------------------------ -->   
-                            <a href="afficheImage.php?image=<?php echo($nomImageOrigine) ;?>">
-                             <img src="./<?php echo($nomFichier); ?>" alt="<?php echo($nomImageOrigine) ;?>" data-format="image" class="enfantGalerie"/>
-                            </a>
-                        <!-- -------------------------------- PHP ----------------------------------- -->
-                        <?php
-                            $compteur = $compteur++;
-                                
-                          }	else if (substr($nomFichier,0,strlen("vid_")) == "vid_") { // Si nom commence par vid_)
-                              $nomVideoOrigine = substr($nomFichier,strlen("vid"));
-
-                    ?>
-                            <!-- ------------------------------------------------------------------ -->
-                            <video controls preload="metadata" data-format="video" class="enfantGalerie">
-                                <source src="./<?php echo($nomFichier); ?>" /> </video>
-                            <!-- Vidéo de démonstration :
-                            Author: mskrzyp
-                            Author webpage: https://vimeo.com/mskrzyp125 
-                            Licence: ATTRIBUTION LICENSE 3.0 (http://creativecommons.org/licenses/by/3.0/us/)
-                            Downloaded at Mazwai.com -->
-                            <!---------------------------------- PHP ----------------------------------- -->
-                            <?php
-                          } else if (substr($nomFichier,0,strlen("aud_")) == "aud_") { // Si nom commence par aud_)
-                              $nomAudioOrigine = substr($nomFichier,strlen("aud"));
-                    ?>
-                                <!-- ------------------------------------------------------------------ -->
-                                <audio src="./<?php echo($nomFichier); ?>" controls preload="metadata" data-format="audio" class="enfantGalerie"></audio>
-                                <!-- -------------------------------- PHP ----------------------------------- -->
-                                <?php
-                          } // Fin if else if
-                          $repertoire->next();
-                        } //while
-                        // fin de la boucle
-                    ?>
-                                    <!-- ------------------------------------------------------------------ -->
+                        if($ligne["Type"] == "affiche"){
+                ?>
+            <!-- ------------------------------------------------------------------ -->
+                            <a href="./afficheImage.php">
+                                <img  alt="./vignettes/<?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="image" class="enfantGalerie"/>
+                            </a> 
+                        
+            <!-- --------------------------- PHP ------------------------------------ --> 
+            <?php 
+                        }else if($ligne["DescOeuvre"] == "video"){
+                                       
+             ?> 
+            <!-- ------------------------------------------------------------------ -->  
+                        <a href="./afficheImage.php">
+                            <img alt="./vignettes/<?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="video" class="enfantGalerie"/>
+                        </a>      
+                        <!-- Vidéo de démonstration :
+                        Author: mskrzyp
+                        Author webpage: https://vimeo.com/mskrzyp125 
+                        Licence: ATTRIBUTION LICENSE 3.0 (http://creativecommons.org/licenses/by/3.0/us/)
+                        Downloaded at Mazwai.com -->
+                                                                                                                                     
+            <!-- --------------------------- PHP ------------------------------------ -->                                                                                                                              
+            <?php
+                        }else{
+            ?>
+            <!-- ------------------------------------------------------------------ -->  
+                        <a href="./afficheImage.php">
+                            <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
+                        </a>    
+                        
+              
+            <!-- --------------------------- PHP ------------------------------------ --> 
+            <?php            
+                        }
+                        
+                //image suivante
+                        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                    } //fin while
+                //ETAPE 4: Déconnexion
+                $pdo = null;    
+                    
+            } catch(Exception $e){
+                    echo("Exception :".$e->getMessage());
+            }
+        ?>
+                        
+        <!-- ------------------------------------------------------------------ -->        
                     </li>
                 </ul>
             </div>

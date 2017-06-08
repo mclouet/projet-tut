@@ -61,3 +61,6 @@ grande_vespabault.png,Test Vespabo;
 vid_whitelilies.mp4,Test à 23h;
 vid_vid_whitelilies.mp4,Test à 23h;
 aud_aud_tp-12-star-trek.WAV,Test audio 23h;
+vespabault.png,da;
+vespabault.png,ef;
+grande_affiche-terre.jpg,terre;

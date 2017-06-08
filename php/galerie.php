@@ -59,41 +59,74 @@
                     <li>
         <!-- --------------------------- PHP ------------------------------------ -->
             <?php
-                //boucle sur chaque oeuvre (depuis BDD)
-                //ETAPE 1: connexion à la base de données
-                require("param.inc.php");
-                $pdo = new PDO("mysql:host=".MYHOST.";dbname".MYDB,MYUSER,MYPASS);
-                $pdo -> query("SET NAMES utf8");
-                $pdo -> query("SET CHARACTER SET 'utf8'");
+                
+                try {        
+                    //boucle sur chaque oeuvre (depuis BDD)
+                    //ETAPE 1: connexion à la base de données
+                    require("param.inc.php");
+                    $pdo = new PDO("mysql:host=".MYHOST.";dbname=".MYDB,MYUSER,MYPASS);
+                    $pdo -> query("SET NAMES utf8");
+                    $pdo -> query("SET CHARACTER SET 'utf8'");
 
-                //ETAPE 2: Envoyer une requête SQL
-                $sql = "SELECT Vignette, Type FROM OEUVRE";
+                    //ETAPE 2: Envoyer une requête SQL
+                    $sql = "SELECT Vignette, Type, DescOeuvre FROM oeuvre";
 
-                $statement = $pdo->prepare($sql);
-                $statement = execute();
-                        
-                //ETAPE 3: Traiter les données retournées
-                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                //Boucle sur chaque catégorie (depuis la BDD)
-                while($ligne != false){
-            ?>
-        <!-- ------------------------------------------------------------------ -->
-                       <a>
-                        <img src="<?php echo($ligne["vignette"]) ?>"/>
-                        </a> 
-                        
-        <!-- --------------------------- PHP ------------------------------------ --> 
-        <?php
-            //article suivant
+                    $statement = $pdo->prepare($sql);
+                    $statement->execute();
+
+                    //ETAPE 3: Traiter les données retournées
                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                } //fin while
-            //ETAPE 4: Déconnexion
-            $pdo = null;            
+                    //Boucle sur chaque oeuvre (depuis la BDD)
+                    while($ligne != false){
+                        
+                        if($ligne["Type"] == "affiche"){
+                ?>
+            <!-- ------------------------------------------------------------------ -->
+                            <a href="./afficheImage.php">
+                                <img  alt="./vignettes/<?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="image" class="enfantGalerie"/>
+                            </a> 
+                        
+            <!-- --------------------------- PHP ------------------------------------ --> 
+            <?php 
+                        }else if($ligne["DescOeuvre"] == "video"){
+                                       
+             ?> 
+            <!-- ------------------------------------------------------------------ -->  
+                        <a href="./afficheImage.php">
+                            <img alt="./vignettes/<?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="video" class="enfantGalerie"/>
+                        </a>      
+                        <!-- Vidéo de démonstration :
+                        Author: mskrzyp
+                        Author webpage: https://vimeo.com/mskrzyp125 
+                        Licence: ATTRIBUTION LICENSE 3.0 (http://creativecommons.org/licenses/by/3.0/us/)
+                        Downloaded at Mazwai.com -->
+                                                                                                                                     
+            <!-- --------------------------- PHP ------------------------------------ -->                                                                                                                              
+            <?php
+                        }else{
+            ?>
+            <!-- ------------------------------------------------------------------ -->  
+                        <a href="./afficheImage.php">
+                            <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
+                        </a>    
+                        
+              
+            <!-- --------------------------- PHP ------------------------------------ --> 
+            <?php            
+                        }
+                        
+                //image suivante
+                        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                    } //fin while
+                //ETAPE 4: Déconnexion
+                $pdo = null;    
+                    
+            } catch(Exception $e){
+                    echo("Exception :".$e->getMessage());
+            }
         ?>
                         
-        <!-- ------------------------------------------------------------------ -->
-
-                        
+        <!-- ------------------------------------------------------------------ -->        
                     </li>
                 </ul>
             </div>

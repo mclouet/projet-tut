@@ -151,7 +151,7 @@
                                         // Etape 2 : envoi de la requête SQL au serveur INSERER IMAGE
                                         $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                         $statement = $pdo->prepare($sql);
-                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "/php/images/grande_".$_FILES["monFichier"]["name"], ":paramVig" => "/php/vignettes/vignette_".$_FILES["monFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => "mClouEtMarteau"));
+                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["monFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => "mClouEtMarteau"));
 
                                         echo('<script language="javascript">');
                                         echo('alert("Votre fichier a été enregistré !")');
@@ -189,7 +189,7 @@
                                             $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramVid, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                         
                                             $statement = $pdo->prepare($sql);
-                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "/php/videos/vid_".$_FILES["monFichier"]["name"], ":paramVig" => "/php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => "mClouEtMarteau"));
+                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "vid_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => "mClouEtMarteau"));
                                             
                                             echo('<script language="javascript">');
                                             echo('alert("Votre fichier a été enregistré !")');
@@ -228,7 +228,7 @@
                                         $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                         
                                         $statement = $pdo->prepare($sql);
-                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "/php/clips-audio/vid_".$_FILES["monFichier"]["name"], ":paramVig" => "/php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => "mClouEtMarteau"));
+                                        $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => "mClouEtMarteau"));
                                         
                                         echo('<script language="javascript">');
                                         echo('alert("Votre fichier a été enregistré !")');

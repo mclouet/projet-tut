@@ -451,13 +451,14 @@ main h2 {
     margin-top: 10px;
     margin-bottom: 5px;
     list-style-type: none;
+    display: block;
 }
 
 #participation .liste:nth-child(even) {
     margin-left: 30px;
 }
 
-#participation div:nth-child(2) label {
+#participation label:not(.liste) {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
@@ -502,6 +503,8 @@ main h2 {
 
 #participation .inputSubmit {
     background-image: url(images-css/img-clips-audio-background.png);
+    display: inline-flex;
+    margin-bottom: 20px;
 }
 
 #participation+div {

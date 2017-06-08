@@ -13,7 +13,6 @@
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
-        <script type="text/javascript" src="../js/participation.js"></script>
     </head>
 
     <body>
@@ -64,7 +63,7 @@
                 <form action="participation.php" enctype="multipart/form-data" method="post" id="participation">
                     <div id="listeForm">
                         <!-- 1 -->
-                        <p class="liste">Choisissez votre catégorie</p>   
+                        <p class="liste">1. Choisissez votre catégorie</p>   
                         <div>
                             <input type="radio" name="categorie" value="affiche" id="radioAffiche" />
                             <label for="radioAffiche">Affiche</label>
@@ -74,13 +73,15 @@
                             <label for="radioAudio">Clip Audio</label>
                         </div>
                         <!-- 2 -->
-                        <p class="liste">Importez votre travail</p>
-                        <input type="hidden" name="MAX_FILE_SIZE" value="31457280" />
-                        <!-- 31457280 octets = 30Mo -->
-                        <label for="monFichier">Fichier</label>
-                        <input name="monFichier" type="file" />
+                        <p class="liste">2. Importez votre travail</p>
+                        <div class="parentInputFile">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="31457280" />
+                            <!-- 31457280 octets = 30Mo -->
+                            <label for="monFichier">Fichier</label>
+                            <input name="monFichier" type="file" id="monFichier" onchange="previewFile()"/>
+                        </div>
                         <!-- 3 -->
-                        <p class="liste">Partagez avec vos amis !</p>
+                        <p class="liste">3. Partagez avec vos amis !</p>
                         <div class="reseauxSoc">
                             <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="../images/img-facebook-icon.png" alt="logo Facebook" /></a>
                             <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="../images/img-tweeter-icon.png" alt="logo Twitter" /></a>
@@ -89,17 +90,17 @@
                             <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="logo Google+" /></a>
                         </div>
                         <!-- 4 -->
-                        <label for="titre">Donnez un titre à votre oeuvre !</label>
+                        <label for="titre" class="liste">4. Donnez un titre à votre oeuvre !</label>
                         <input type="text" name="titre" id="titre" required="required" />
                         <!-- 5 -->
-                        <label for="desc">Décrivez votre oeuvre !</label>
-                        <textarea name="desc" rows="10" cols="35" required="required"></textarea>
+                        <label for="desc" class="liste">5. Décrivez votre oeuvre !</label>
+                        <textarea name="desc" rows="10" cols="35" id="desc" required="required"></textarea>
                         <!-- Envoyer -->
                         <input type="submit" value="Envoyer" class="inputSubmit" />
                     </div>
                 </form>
 
-                <div> <img src="../images/img-test-participation.png" alt="Aperçu de l'image téléchargée" /> </div>
+                <div> <img src="" alt="Aperçu de l'image téléchargée" id="apercu"/> </div>
             </div>
         </main>
 
@@ -117,6 +118,8 @@
                 <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="logo Google+" /></a>
             </div>
         </footer>
+        
+        <script type="text/javascript" src="../js/participation.js"></script>
     </body>
 
 
@@ -247,23 +250,6 @@
                                 echo('alert("Veuillez choisir une catégorie.")');
                                 echo('</script>');
                             } // Fin condition aucune catégorie choisie
-                            
-                            
-                            // Début copie titre
-                            $fic_titres = fopen("./titres.txt","a+");
-                            if (isset($_POST["titre"])) {
-                                fwrite($fic_titres, $_FILES["monFichier"]["name"].",".$_POST["titre"].";\n");
-                            }                           
-                            fclose($fic_titres);
-                            // Fin copie titre
-                            
-                            // Début copie description
-                            $fic_desc = fopen("./descriptions.txt","a+");
-                            if (isset($_POST["desc"])) {
-                                fwrite($fic_desc, $_FILES["monFichier"]["name"].",".$_POST["desc"].";\n");
-                            }
-                            fclose($fic_desc);
-                            // Fin copie description
                         
                         } // Fin condition fichier différent de .htaccess
                     } // Fin condition fichier isset

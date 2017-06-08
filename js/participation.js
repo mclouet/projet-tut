@@ -20,9 +20,9 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     var inputBtnIco = document.createElement("input");
     var labelBtnIco = document.createElement("label");
 
-    var listeNum = document.querySelector("#participation>#listeForm");
-    var liNum3 = document.querySelector(".liste:nth-child(7)");
-
+    var listeForm = document.querySelector("#participation>#listeForm");
+    var pChildCinq = document.querySelector(".liste:nth-child(5)");
+    
     var btnVideo = document.getElementById("radioVideo");
     var btnAudio = document.getElementById("radioAudio");
 
@@ -31,18 +31,15 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     // Type file
     inputBtnIco.name = "vignetteMonFichier";
     inputBtnIco.type = "file";
-    inputBtnIco.id = "ajoutIco";
-    listeNum.insertBefore(inputBtnIco, liNum3);
+    inputBtnIco.id = "vignetteMonFichier";
+    inputBtnIco.onchange = "previewFile()";
+    listeForm.insertBefore(inputBtnIco, pChildCinq);
 
     // Label pour input
-    labelBtnIco.for = "vignette";
-    labelBtnIco.innerHTML = "Ajoutez une vignette !";
-    labelBtnIco.style.display = "inline-flex";
-    labelBtnIco.style.fontFamily = "Open Sans Condensed";
+    labelBtnIco.for = "vignetteMonFichier";
+    labelBtnIco.innerHTML = "Vignette";
     labelBtnIco.id = "labelIco";
-    listeNum.insertBefore(labelBtnIco, inputBtnIco);
-
-    // CHANGER FRERE PRECEDENT INPUT
+    listeForm.insertBefore(labelBtnIco, inputBtnIco);
 
     participation.style.width = "550px";
 }
@@ -55,7 +52,7 @@ function arreter(evt) {
 }
 
 function supprimerBtnIco(evt) { // Supprimer le bouton permettant à l'utilisateur d'ajouter une vignette pour vidéo ou clip audio
-    var btnAjoutIco = document.getElementById("ajoutIco");
+    var btnAjoutIco = document.getElementById("vignetteMonFichier");
     var labelAjoutIco = document.getElementById("labelIco");
 
     var btnVid = document.getElementById("radioVideo");
@@ -66,10 +63,39 @@ function supprimerBtnIco(evt) { // Supprimer le bouton permettant à l'utilisate
     if (btnAjoutIco && labelAjoutIco) {
         btnAjoutIco.remove();
         labelAjoutIco.remove();
-        background.style.width = "500px";
+        background.style.width = "520px";
+        // A REVOIR : remettre écouteur de clic après avoir cliqué sur affiche
+        // btnVid.addEventListener("click", afficherBtnIco);
+        // btnAud.addEventListener("click", afficherBtnIco);
     }
-
-    // A REVOIR : remettre écouteur de clic après avoir cliqué sur affiche
-    // btnVid.addEventListener("click", afficherBtnIco);
-    // btnAud.addEventListener("click", afficherBtnIco);
 }
+
+function previewFile() {
+    var btnRadioAffiche = document.getElementById("radioAffiche");
+    
+    if (document.querySelector("#vignetteMonFichier")) {
+        var file = document.querySelector("#vignetteMonFichier").files[0];
+        btnRadioAffiche.addEventListener("click", supprimerBtnIco);
+    } else {
+        var file = document.querySelector("#monFichier").files[0];
+    }
+    
+    var preview = document.querySelector("#apercu");
+    var reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+        preview.src = reader.result;
+    }, false);
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
+//function reset() { // Supprimer les fichiers uploadés lors d'un clic sur un bouton radio
+//    var inputFile = document.getElementById("monFichier");
+//    var inputVig = document.getElementById("vignetteMonFichier");
+//    
+//    inputFile.reset();
+//    inputVig.reset();
+//}

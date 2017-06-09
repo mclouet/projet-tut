@@ -208,7 +208,8 @@
                                     
                                 } else { // Si le format est différent de celui attendu
                                     echo('<script language="javascript">');
-                                    echo('alert("Le format accepté est .mp4.")');
+                                    /*echo('alert("Le format accepté est .mp4.")');*/
+                                    echo('alert("Le format accepté est '.$_FILES["monFichier"]["size"].'")');
                                     echo('</script>');
                                 } // Fin condition format vidéo
                                 

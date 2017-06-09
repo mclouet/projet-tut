@@ -467,12 +467,26 @@ main h2 {
     display: block;
 }
 
-#participation .liste:nth-child(even) {
-    margin-left: 30px;
-}
-
 #participation label:not(.liste) {
     font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#participation .labelFile {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 100px;
+}
+
+#participation .labelFile:nth-child(2) {
+    background-image: url(images-css/img-clips-audio-background.png);
+}
+
+#participation .labelFile:nth-child(5) {
+    background-image: url(images-css/img-label-foreground.png);
+    margin-top: 10px;
 }
 
 #participation .reseauxSoc {
@@ -485,6 +499,7 @@ main h2 {
     /* MODIFIER BOUTON */
     padding: 10px;
     font-family: 'Open Sans Condensed', sans-serif;
+    display: none;
 }
 
 #participation input[type=text] {

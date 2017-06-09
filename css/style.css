@@ -230,7 +230,6 @@ footer::after {
     }
 }
 
-
 #liensIndex {
     display: flex;
     justify-content: space-around;
@@ -294,7 +293,7 @@ footer::after {
     margin: 5px
 }
 
-#galerie{
+#galerie {
     border: solid green 3px;
     width: 90%;
     margin-left: auto;
@@ -310,9 +309,7 @@ footer::after {
     flex-wrap: nowrap;
 }
 
-#imgGalerie li{
-    
-}
+#imgGalerie li {}
 
 #imgGalerie img {
     border: 16px solid transparent;
@@ -560,14 +557,100 @@ textarea {
     background-image: url(images-css/img-clips-audio-background.png);
 }
 
+h3 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 40px;
+    font-size: 18px;
+}
+
 #modalites~p {
     font-family: 'Open Sans Condensed', sans-serif;
     text-align: justify;
     width: 90%;
     display: inline-block;
+    /* OU INLINE-flex ? */
     margin: 10px;
+}
+
+#modalites~p strong {
+    position: absolute;
 }
 
 .modalites {
     font-weight: 700;
+}
+
+
+/*************** MENTIONS LEGALES ***************/
+
+#mentionsLegales {
+    background-image: url(images-css/img-clips-audio-background.png);
+}
+
+#mentionsLegales~p {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: justify;
+    width: 90%;
+    display: inline-flex;
+    margin: 10px;
+}
+
+
+/*************** SPONSORS ***************/
+
+#sponsors {
+    background-image: url(images-css/img-affiches-foreground.png);
+}
+
+#sponsors~p {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: justify;
+    width: 90%;
+    display: inline-flex;
+    margin: 10px;
+}
+
+#sponsors~strong {
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: justify;
+    width: 90%;
+    display: inline-flex;
+    margin: 10px;
+}
+
+#sponsors~ul {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#sponsors~ul a {
+    text-decoration: none;
+    color: black;
+}
+
+#sponsors~img {
+    display: block;
+    margin-left: 20px;
+    margin-top: 5px;
+    width: 40%;
+}
+
+#sponsors~a {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18px;
+    margin-left: 40px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: black;
+    display: block;
+    text-align: left;
 }

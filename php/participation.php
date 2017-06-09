@@ -78,7 +78,7 @@
                             <input type="hidden" name="MAX_FILE_SIZE" value="31457280" />
                             <!-- 31457280 octets = 30Mo -->
                             <label for="monFichier">Fichier</label>
-                            <input name="monFichier" type="file" id="monFichier" onchange="previewFile()"/>
+                            <input name="monFichier" type="file" id="monFichier"/>
                         </div>
                         <!-- 3 -->
                         <p class="liste">3. Partagez avec vos amis !</p>

@@ -38,7 +38,7 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     inputBtnIco.name = "vignetteMonFichier";
     inputBtnIco.type = "file";
     inputBtnIco.id = "vignetteMonFichier";
-    inputBtnIco.onchange = "previewFile()";
+    inputBtnIco.addEventListener("change", previewFile);
     listeForm.insertBefore(labelBtnIco, inputBtnIco);
 
     participation.style.width = "550px";

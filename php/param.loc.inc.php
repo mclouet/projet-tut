@@ -6,5 +6,16 @@
     if(!defined("MYPASS"))
         define("MYPASS","root");
     if(!defined("MYDB"))
+        define("MYDB","test-ptut");
+?>
+
+<?php
+    if(!defined("MYHOST"))
+        define("MYHOST","localhost");
+    if(!defined("MYUSER"))
+        define("MYUSER","lea");
+    if(!defined("MYPASS"))
+        define("MYPASS","mdp");
+    if(!defined("MYDB"))
         define("MYDB","essai_ptut");
 ?>

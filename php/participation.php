@@ -207,9 +207,10 @@
                                     } // Fin condition vignette
                                     
                                 } else { // Si le format est différent de celui attendu
-                                    echo('<script language="javascript">');
+                                    echo($_FILES["monFichier"]["type"]);
+                                  /*  echo('<script language="javascript">');
                                     echo('alert("Le format accepté est .mp4.")');
-                                    echo('</script>');
+                                    echo('</script>');*/
                                 } // Fin condition format vidéo
                                 
                             } else if ($_POST["categorie"] == "audio") { // Si la catégorie choisie est clip AUDIO

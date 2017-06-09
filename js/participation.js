@@ -14,7 +14,7 @@ function initialiser(evt) {
 
     btnRadioVideo.addEventListener("click", arreter);
     btnRadioAudio.addEventListener("click", arreter);
-    
+
     inputMonFichier.addEventListener("change", previewFile);
 }
 
@@ -25,20 +25,21 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
 
     var listeForm = document.querySelector("#participation>#listeForm");
     var pChildCinq = document.querySelector(".liste:nth-child(5)");
-    
+
     var btnVideo = document.getElementById("radioVideo");
     var btnAudio = document.getElementById("radioAudio");
 
     var participation = document.getElementById("participation");
-    
+
     var inputMonFichier = document.getElementById("monFichier");
 
     // Label pour input
     labelBtnIco.setAttribute("for", "vignetteMonFichier");
     labelBtnIco.innerHTML = "Vignette";
     labelBtnIco.id = "labelIco";
+    labelBtnIco.className = "labelFile";
     listeForm.insertBefore(inputBtnIco, pChildCinq);
-    
+
     // Type file
     inputBtnIco.name = "vignetteMonFichier";
     inputBtnIco.type = "file";
@@ -47,7 +48,7 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     listeForm.insertBefore(labelBtnIco, inputBtnIco);
 
     participation.style.width = "550px";
-    
+
     inputMonFichier.removeEventListener("change", previewFile);
 }
 
@@ -83,22 +84,22 @@ function supprimerBtnIco(evt) { // Supprimer le bouton permettant à l'utilisate
 
 function previewFile() {
     var btnRadioAffiche = document.getElementById("radioAffiche");
-    
+
     if (document.querySelector("#vignetteMonFichier")) {
         var file = document.querySelector("#vignetteMonFichier").files[0];
         btnRadioAffiche.addEventListener("click", supprimerBtnIco);
     } else {
         var file = document.querySelector("#monFichier").files[0];
     }
-    
+
     var preview = document.querySelector("#apercu");
     var reader = new FileReader();
-    
-    reader.addEventListener("loadend", function(evt) {
+
+    reader.addEventListener("loadend", function (evt) {
         console.log(evt.loaded);
-        
+
         preview.src = reader.result;
-        
+
         console.log(reader.result);
     }, false);
 

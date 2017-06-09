@@ -58,12 +58,12 @@
         </nav>
 
         <main>
-            <h2 id="participer">Participez !</h2>
+            <h2 class="titreJaune">Participez !</h2>
             <div id="divParticipation">
                 <form action="participation.php" enctype="multipart/form-data" method="post" id="participation">
                     <div id="listeForm">
                         <!-- 1 -->
-                        <p class="liste">1. Choisissez votre catégorie</p>   
+                        <p class="liste">1. Choisissez votre catégorie</p>
                         <div>
                             <input type="radio" name="categorie" value="affiche" id="radioAffiche" />
                             <label for="radioAffiche">Affiche</label>
@@ -77,7 +77,7 @@
                         <div class="parentInputFile">
                             <input type="hidden" name="MAX_FILE_SIZE" value="31457280" />
                             <!-- 31457280 octets = 30Mo -->
-                            <label for="monFichier">Fichier</label>
+                            <label for="monFichier" class="labelFile">Fichier</label>
                             <input name="monFichier" type="file" id="monFichier" />
                         </div>
                         <!-- 3 -->
@@ -100,7 +100,7 @@
                     </div>
                 </form>
 
-                <div> <img src="" alt="Aperçu de l'image téléchargée" id="apercu"/> </div>
+                <div> <img src="" alt="Aperçu de l'image téléchargée" id="apercu" /> </div>
             </div>
         </main>
 
@@ -118,7 +118,7 @@
                 <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="logo Google+" /></a>
             </div>
         </footer>
-        
+
         <script type="text/javascript" src="../js/participation.js"></script>
     </body>
 

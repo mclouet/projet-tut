@@ -58,7 +58,7 @@
         </nav>
 
         <main>
-            <h2 id="participer">Participez !</h2>
+            <h2 class="titreJaune">Participez !</h2>
             <div id="divParticipation">
                 <form action="participation.php" enctype="multipart/form-data" method="post" id="participation">
                     <div id="listeForm">

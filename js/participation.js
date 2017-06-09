@@ -34,7 +34,7 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     var inputMonFichier = document.getElementById("monFichier");
 
     // Label pour input
-    labelBtnIco.for = "vignetteMonFichier";
+    labelBtnIco.setAttribute("for", "vignetteMonFichier");
     labelBtnIco.innerHTML = "Vignette";
     labelBtnIco.id = "labelIco";
     listeForm.insertBefore(inputBtnIco, pChildCinq);
@@ -56,6 +56,8 @@ function arreter(evt) {
     var btnAudio = document.getElementById("radioAudio");
     btnVideo.removeEventListener("click", afficherBtnIco);
     btnAudio.removeEventListener("click", afficherBtnIco);
+    btnVideo.removeEventListener("click", arreter);
+    btnAudio.removeEventListener("click", arreter);
 }
 
 function supprimerBtnIco(evt) { // Supprimer le bouton permettant à l'utilisateur d'ajouter une vignette pour vidéo ou clip audio
@@ -72,8 +74,10 @@ function supprimerBtnIco(evt) { // Supprimer le bouton permettant à l'utilisate
         labelAjoutIco.remove();
         background.style.width = "520px";
         // A REVOIR : remettre écouteur de clic après avoir cliqué sur affiche
-        // btnVid.addEventListener("click", afficherBtnIco);
-        // btnAud.addEventListener("click", afficherBtnIco);
+        btnVid.addEventListener("click", afficherBtnIco);
+        btnAud.addEventListener("click", afficherBtnIco);
+        btnVid.addEventListener("click", arreter);
+        btnAud.addEventListener("click", arreter);
     }
 }
 

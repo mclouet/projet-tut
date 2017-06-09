@@ -185,6 +185,15 @@ footer::after {
 
 #presentationSite {
     font-family: 'Open Sans Condensed', sans-serif;
+    background-image: url(./images-css/img-background-index.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+    width: 90%;
+    padding: 20px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .illustrationsIndex {
@@ -201,32 +210,33 @@ footer::after {
     position: absolute;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1.6vw;
+    transform-origin: bottom left;
 }
 
 #baleine {
     right: 15%;
-    bottom: 75%;
+    bottom: 71%;
     width: 27%;
 }
 
 #usine {
     right: 8%;
-    bottom: 51%;
+    bottom: 48%;
     width: 30%;
 }
 
 #magicien {
     width: 30%;
     right: 30%;
-    bottom: 20.5%;
+    bottom: 18%;
 }
 
-@media (min-width: 1300px) {
+@media (max-width: 1500px) {
     #magicien {
         bottom: 19%;
     }
     #baleine {
-        bottom: 76%;
+        bottom: 70%;
     }
 }
 

@@ -302,10 +302,16 @@ footer::after {
 }
 
 #imgGalerie {
-    height: 200px;
+    list-style-type: none;
+    width: 100vw;
     position: relative;
     overflow: visible;
-    display: inline-flex;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#imgGalerie li{
+    
 }
 
 #imgGalerie img {

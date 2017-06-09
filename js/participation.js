@@ -6,6 +6,7 @@ function initialiser(evt) {
     var btnRadioVideo = document.getElementById("radioVideo");
     var btnRadioAudio = document.getElementById("radioAudio");
     var btnRadioAffiche = document.getElementById("radioAffiche");
+    var inputMonFichier = document.getElementById("monFichier");
 
     btnRadioAffiche.addEventListener("click", supprimerBtnIco);
     btnRadioVideo.addEventListener("click", afficherBtnIco);
@@ -13,6 +14,8 @@ function initialiser(evt) {
 
     btnRadioVideo.addEventListener("click", arreter);
     btnRadioAudio.addEventListener("click", arreter);
+    
+    inputMonFichier.addEventListener("change", previewFile);
 }
 
 function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur d'ajouter une vignette pour vidéo ou clip audio
@@ -27,6 +30,8 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     var btnAudio = document.getElementById("radioAudio");
 
     var participation = document.getElementById("participation");
+    
+    var inputMonFichier = document.getElementById("monFichier");
 
     // Label pour input
     labelBtnIco.for = "vignetteMonFichier";
@@ -38,10 +43,12 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     inputBtnIco.name = "vignetteMonFichier";
     inputBtnIco.type = "file";
     inputBtnIco.id = "vignetteMonFichier";
-    inputBtnIco.onchange = "previewFile()";
+    inputBtnIco.addEventListener("change", previewFile);
     listeForm.insertBefore(labelBtnIco, inputBtnIco);
 
     participation.style.width = "550px";
+    
+    inputMonFichier.removeEventListener("change", previewFile);
 }
 
 function arreter(evt) {
@@ -65,8 +72,8 @@ function supprimerBtnIco(evt) { // Supprimer le bouton permettant à l'utilisate
         labelAjoutIco.remove();
         background.style.width = "520px";
         // A REVOIR : remettre écouteur de clic après avoir cliqué sur affiche
-        btnVid.addEventListener("click", afficherBtnIco);
-        btnAud.addEventListener("click", afficherBtnIco);
+        // btnVid.addEventListener("click", afficherBtnIco);
+        // btnAud.addEventListener("click", afficherBtnIco);
     }
 }
 
@@ -82,6 +89,15 @@ function previewFile() {
     
     var preview = document.querySelector("#apercu");
     var reader = new FileReader();
+    
+    reader.addEventListener("loadend", function(evt) {
+        console.log(evt.loaded);
+        
+        preview.src = reader.result;
+        
+        console.log(reader.result);
+    }, false);
+
 
     reader.addEventListener("load", function () {
         preview.src = reader.result;

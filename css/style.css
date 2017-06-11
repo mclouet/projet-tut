@@ -22,6 +22,12 @@ main h2 {
     background-image: url(images-css/img-clips-audio-background.png);
 }
 
+.titreBleu {
+    background-image: url(images-css/img-label-foreground.png);
+    height: 75px;
+    padding: 5px;
+}
+
 
 /********** BODY *********/
 
@@ -116,8 +122,6 @@ nav {
     padding: 0;
     font-weight: bold;
     font-size: 25pt;
-    background-image: url(./images-css/img-foreground-accueil-body-footer.png);
-    background-size: cover;
 }
 
 nav a {
@@ -520,6 +524,7 @@ footer::after {
     padding-left: 13px;
     padding-right: 13px;
     box-sizing: border-box;
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 #participation textarea {
@@ -534,6 +539,7 @@ footer::after {
     box-sizing: border-box;
     resize: none;
     border: none;
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 #participation .inputSubmit {
@@ -554,9 +560,8 @@ footer::after {
     box-sizing: border-box;
 }
 
-#participation #titre,
-textarea {
-    font-family: 'Open Sans Condensed', sans-serif;
+#apercu {
+    max-width: 250px;
 }
 
 

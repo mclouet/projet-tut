@@ -50,6 +50,8 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
     participation.style.width = "550px";
 
     inputMonFichier.removeEventListener("change", previewFile);
+
+    supprimerApercu();
 }
 
 function arreter(evt) {
@@ -79,6 +81,7 @@ function supprimerBtnIco(evt) { // Supprimer le bouton permettant à l'utilisate
         btnAud.addEventListener("click", afficherBtnIco);
         btnVid.addEventListener("click", arreter);
         btnAud.addEventListener("click", arreter);
+        supprimerApercu();
     }
 }
 
@@ -97,12 +100,9 @@ function previewFile() {
 
     reader.addEventListener("loadend", function (evt) {
         console.log(evt.loaded);
-
         preview.src = reader.result;
-
         console.log(reader.result);
     }, false);
-
 
     reader.addEventListener("load", function () {
         preview.src = reader.result;
@@ -111,6 +111,12 @@ function previewFile() {
     if (file) {
         reader.readAsDataURL(file);
     }
+}
+
+function supprimerApercu() {
+    var apercu = document.getElementById("apercu");
+    apercu.src = "../css/images-css/img-apercu-defaut.jpg";
+
 }
 
 //function reset() { // Supprimer les fichiers uploadés lors d'un clic sur un bouton radio

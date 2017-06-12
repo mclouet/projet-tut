@@ -37,9 +37,27 @@ function trierGalerie(evt) {
 }
 
 function naviguerGalerie(evt) {
-    if (this.dataset.navi = "avancer"){
-        
+/*    var ulGalerie = document.getElementById("imgGalerie");
+    var liGalerie = document.querySelectorAll("#imgGalerie li");
+    
+    if(this.dataset.navi == "avancer"){
+        ulGalerie.transform = "translateX(636px);"
     }else{
-
+        
+    }
+    */
+    
+    var ulGalerie = $("#imgGalerie");
+    var liGalerie = $("#imgGalerie li");
+    var bouton = $(this);
+    
+    if (bouton.data("navi") == "avancer"){
+        ulGalerie.css({
+            transform: "translateX(-640px)"     
+        })
+    }else{
+         ulGalerie.css({
+            transform: "translateX(640px)"
+        })
     }
 }

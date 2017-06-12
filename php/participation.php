@@ -100,7 +100,7 @@
                     </div>
                 </form>
 
-                <div> <img src="../css/images-css/img-apercu-defaut.jpg" alt="Aperçu de l'image téléchargée" id="apercu" /> </div>
+                <div> <img src="../images/img-apercu-defaut.jpg" alt="Aperçu de l'image téléchargée" id="apercu" /> </div>
             </div>
         </main>
 

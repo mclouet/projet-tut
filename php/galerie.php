@@ -55,7 +55,7 @@
             </div>
             <div id="galerie">
                 <ul id="imgGalerie">
-                    <li>
+                    <li data-numero = "0">
         <!-- --------------------------- PHP ------------------------------------ -->
             <?php
                 
@@ -68,7 +68,7 @@
                     $pdo -> query("SET CHARACTER SET 'utf8'");
                     
                     $compteur = 0;
-
+                    $dataNum = 0;
                     //ETAPE 2: Envoyer une requête SQL
                     $sql = "SELECT Vignette, Type, DescOeuvre FROM oeuvre";
 
@@ -119,11 +119,11 @@
                         }
                         
                         if($compteur == 3){
-                            
+                            $compteur = 0;
             ?>
             <!-- ------------------------------------------------------------------ -->       
                         </li>
-                        <li>
+                        <li data-numero ="<?php echo($dataNum++) ?>">
                         
             
             <!-- --------------------------- PHP ------------------------------------ -->           

@@ -48,16 +48,16 @@ function naviguerGalerie(evt) {
     */
     
     var ulGalerie = $("#imgGalerie");
-    var liGalerie = $("#imgGalerie li");
+    var pourcentage = 100/(ulGalerie.length); //pourcentage que prend un li dans imgGalerie
     var bouton = $(this);
     
     if (bouton.data("navi") == "avancer"){
         ulGalerie.css({
-            transform: "translateX(-640px)"     
+            transform: "translateX(-636px)"     
         })
     }else{
          ulGalerie.css({
-            transform: "translateX(640px)"
+            transform: "translateX(636px)"
         })
     }
 }

@@ -57,7 +57,7 @@ function naviguerGalerie(evt) {
         })
     }else{
          ulGalerie.css({
-            transform: "translateX(636px)"
+            transform: "translateX(0px)"
         })
     }
 }

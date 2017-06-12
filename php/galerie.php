@@ -51,7 +51,7 @@
             </ul>
         </nav>
         <main>
-            <h2 class="titreBleu">Merci <br/> de votre participation !</h2>
+            <h2 class="titreBleu">Réalisations</h2>
             <div id="selecGalerie">
                 <p data-format="image">Affiches</p>
                 <p data-format="video">Vidéos</p>

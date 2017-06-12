@@ -12,7 +12,6 @@
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
-        <script type="text/javascript" src="../js/galerie.js"></script>
     </head>
 
     <body>
@@ -67,9 +66,9 @@
             </div>
             <div id="galerie">
                 <ul id="imgGalerie">
-                    <li>
-                        <!-- --------------------------- PHP ------------------------------------ -->
-                        <?php
+                    <li data-numero = "0">
+        <!-- --------------------------- PHP ------------------------------------ -->
+            <?php
                 
                 try {        
                     //boucle sur chaque oeuvre (depuis BDD)
@@ -78,13 +77,15 @@
                     $pdo = new PDO("mysql:host=".MYHOST.";dbname=".MYDB,MYUSER,MYPASS);
                     $pdo -> query("SET NAMES utf8");
                     $pdo -> query("SET CHARACTER SET 'utf8'");
-
+                    
+                    $compteur = 0;
+                    $dataNum = 0;
                     //ETAPE 2: Envoyer une requête SQL
                     $sql = "SELECT Vignette, Type, DescOeuvre FROM oeuvre";
 
                     $statement = $pdo->prepare($sql);
                     $statement->execute();
-
+                    
                     //ETAPE 3: Traiter les données retournées
                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                     //Boucle sur chaque oeuvre (depuis la BDD)
@@ -95,10 +96,11 @@
                             <!-- ------------------------------------------------------------------ -->
                             <a href="./afficheImage.php">
                                 <img  alt="./vignettes/<?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="image" class="enfantGalerie"/>
-                            </a>
-
-                            <!-- --------------------------- PHP ------------------------------------ -->
-                            <?php 
+                            </a> 
+                        
+            <!-- --------------------------- PHP ------------------------------------ --> 
+            <?php       $compteur++;
+                            
                         }else if($ligne["DescOeuvre"] == "video"){
                                        
              ?>
@@ -111,21 +113,35 @@
                         Author webpage: https://vimeo.com/mskrzyp125 
                         Licence: ATTRIBUTION LICENSE 3.0 (http://creativecommons.org/licenses/by/3.0/us/)
                         Downloaded at Mazwai.com -->
-
-                                <!-- --------------------------- PHP ------------------------------------ -->
-                                <?php
+                                                                                                                                     
+            <!-- --------------------------- PHP ------------------------------------ -->                     <?php
+                        $compteur++;                                                                                      
                         }else{
             ?>
                                     <!-- ------------------------------------------------------------------ -->
                                     <a href="./afficheImage.php">
                             <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
-                        </a>
-
-
-                                    <!-- --------------------------- PHP ------------------------------------ -->
-                                    <?php            
+                        </a>    
+                        
+              
+            <!-- --------------------------- PHP ------------------------------------ --> 
+            <?php       
+                        $compteur++;
                         }
                         
+                        if($compteur == 3){
+                            $compteur = 0;
+            ?>
+            <!-- ------------------------------------------------------------------ -->       
+                        </li>
+                        <li data-numero ="<?php echo($dataNum++) ?>">
+                        
+            
+            <!-- --------------------------- PHP ------------------------------------ -->           
+            <?php
+                        }
+                        
+                    
                 //image suivante
                         $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                     } //fin while
@@ -159,5 +175,6 @@
             </div>
         </footer>
     </body>
-
+        <script type="text/javascript" src="../js/galerie.js"></script>
+        <script src="../js/jquery-3.2.1.js"></script>
     </html>

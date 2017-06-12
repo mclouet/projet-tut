@@ -37,9 +37,27 @@ function trierGalerie(evt) {
 }
 
 function naviguerGalerie(evt) {
-    if (this.dataset.navi = "avancer"){
-        
+/*    var ulGalerie = document.getElementById("imgGalerie");
+    var liGalerie = document.querySelectorAll("#imgGalerie li");
+    
+    if(this.dataset.navi == "avancer"){
+        ulGalerie.transform = "translateX(636px);"
     }else{
-
+        
+    }
+    */
+    
+    var ulGalerie = $("#imgGalerie");
+    var pourcentage = 100/(ulGalerie.length); //pourcentage que prend un li dans imgGalerie
+    var bouton = $(this);
+    
+    if (bouton.data("navi") == "avancer"){
+        ulGalerie.css({
+            transform: "translateX(-636px)"     
+        })
+    }else{
+         ulGalerie.css({
+            transform: "translateX(636px)"
+        })
     }
 }

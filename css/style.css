@@ -35,7 +35,7 @@ body {
     background-image: url(./images-css/img-foreground.png);
     background-size: cover;
     width: 70%;
-    min-width: 580px;
+    min-width: 640px;
     margin-top: 75px;
     margin-left: auto;
     margin-right: auto;
@@ -328,22 +328,30 @@ footer::after {
 }
 
 #galerie {
+    position: relative;
     border: solid green 3px;
     width: 90%;
+    width: 640px;
+    overflow: hidden;
     margin-left: auto;
     margin-right: auto;
 }
 
 #imgGalerie {
+    display: inline-flex;
     list-style-type: none;
-    width: 100vw;
+    margin: 0;
+    padding: 0;
     position: relative;
-    overflow: visible;
-    display: flex;
-    flex-wrap: nowrap;
+    transition: transform 0.25s linear;
 }
 
-#imgGalerie li {}
+#imgGalerie li{
+    display: inline-flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
 
 #imgGalerie img {
     border: 16px solid transparent;

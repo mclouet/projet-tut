@@ -1,5 +1,6 @@
 <?php
     header("Content-type: text/html");
+    session_start();
 ?>
 
 <!DOCTYPE html>

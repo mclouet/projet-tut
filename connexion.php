@@ -65,6 +65,7 @@
         <?php
             if(!isset($_SESSION["pseudoCo"])) { // Si la session n'existe pas = si l'utilisateur n'est pas connecté
                 echo("salut");
+                
                 if (isset($_POST["pseudoCo"])) { // Si le formulaire a été envoyé
                     $pseudoCo = addslashes($_POST["pseudoCo"]);
                     $motDePasseCo = addslashes($_POST["motDePasseCo"]);
@@ -91,13 +92,16 @@
                         }
                         
                         $pdo = null;
+                        header("Location: ./index.php");
                     } catch(Exception $e) {
                         echo("Exception :".$e->getMessage());
                     }
 
                 } // Fin condition si le formulaire a été envoyé
             } else {// Si la session existe = si l'utilisateur est connecté
+                session_destroy();
                 echo("d'accord");
+                header("Location: ./index.php");
             }
         ?>
 

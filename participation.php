@@ -224,29 +224,40 @@
                                 } else if ($_POST["categorie"] == "audio") { // Si la catégorie choisie est clip AUDIO
 
                                     if ($_FILES["monFichier"]["type"] == "audio/mpeg" || $_FILES["monFichier"]["type"] == "audio/x-wav" || $_FILES["monFichier"]["type"] == "audio/wav") { // Si le format est .mpeg ou .wav
-                                        copy($_FILES["monFichier"]["tmp_name"], "./php/clips-audio/aud_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./clips-audio/
+                                        if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
+                                            
+                                            copy($_FILES["monFichier"]["tmp_name"], "./php/clips-audio/aud_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./clips-audio/
 
-                                        try {
-                                            // Etape 1 : connexion au serveur de base de données
-                                            require("param.inc.php");
-                                            $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
-                                            $pdo->query("SET NAMES utf8");
-                                            $pdo->query("SET CHARACTER SET 'utf8'");
+                                            require("convertirImage700x700.inc.php");
+                                            convertirImage700x700($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
 
-                                            // Etape 2 : envoi de la requête SQL au serveur INSERER AUDIO
-                                            $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
+                                            try {
+                                                // Etape 1 : connexion au serveur de base de données
+                                                require("param.inc.php");
+                                                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                                $pdo->query("SET NAMES utf8");
+                                                $pdo->query("SET CHARACTER SET 'utf8'");
 
-                                            $statement = $pdo->prepare($sql);
-                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => "mClouEtMarteau"));
+                                                // Etape 2 : envoi de la requête SQL au serveur INSERER AUDIO
+                                                $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
 
+                                                $statement = $pdo->prepare($sql);
+                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => "mClouEtMarteau"));
+
+                                                echo('<script language="javascript">');
+                                                echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');
+                                                echo('</script>');
+
+                                                $pdo = null;
+                                            } catch(Exception $e) {
+                                                echo("Exception :".$e->getMessage());
+                                            }
+                                            
+                                        } else { // Si aucune vignette n'a été choisie
                                             echo('<script language="javascript">');
-                                            echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');
+                                            echo('alert("Vous devez choisir une vignette au format .jpeg, .jpg ou .png.")');
                                             echo('</script>');
-
-                                            $pdo = null;
-                                        } catch(Exception $e) {
-                                            echo("Exception :".$e->getMessage());
-                                        }
+                                        } // Fin condition vignette
 
                                     } else { // Si le format est différent de ceux attendus
                                         echo('<script language="javascript">');

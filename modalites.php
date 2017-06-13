@@ -8,7 +8,7 @@
     <meta name="keywords" content="modalités, concours, sacs plastique, pollution, lots, gains, affiches, vidéos, clips audio" />
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
 <body>
@@ -35,19 +35,19 @@
     <nav>
         <ul>
             <li>
-                <a href="./index.html">Accueil</a>
+                <a href="./index.php">Accueil</a>
             </li>
             <li>
-                <a href="./php/galerie.php">Galerie</a>
+                <a href="./galerie.php">Galerie</a>
             </li>
             <li>
-                <a href="./contact.html">Nous contacter</a>
+                <a href="./contact.php">Nous contacter</a>
             </li>
             <li>
-                <a href="./php/participation.php">Je participe</a>
+                <a href="./participation.php">Je participe</a>
             </li>
             <li>
-                <a href="./modalites.html">Modalités</a>
+                <a href="./modalites.php">Modalités</a>
             </li>
         </ul>
     </nav>
@@ -89,10 +89,10 @@
 
     <footer>
         <div class="txtFooter">
-            <p><a href="./mentions.html">Mentions légales</a></p>
-            <p><a href="./contact.html">Formulaire de contact</a></p>
-            <p><a href="./modalites.html">Modalités du concours</a></p>
-            <p><a href="./sponsors.html">Sponsors</a></p>
+            <p><a href="./mentions.php">Mentions légales</a></p>
+            <p><a href="./contact.php">Formulaire de contact</a></p>
+            <p><a href="./modalites.php">Modalités du concours</a></p>
+            <p><a href="./sponsors.php">Sponsors</a></p>
         </div>
         <div>
             <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo Facebook" /></a>

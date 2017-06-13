@@ -1,5 +1,5 @@
 html {
-    background-image: url(./images-css/img-background.png);
+    background-image: url("./images-css/img-background.png");
 }
 
 main h2 {
@@ -11,26 +11,26 @@ main h2 {
 }
 
 .titreVert {
-    background-image: url(images-css/img-affiches-foreground.png);
+    background-image: url("./images-css/img-affiches-foreground.png");
 }
 
 .titreJaune {
-    background-image: url(images-css/img-clips-videos-foreground.png);
+    background-image: url("./images-css/img-clips-videos-foreground.png");
 }
 
 .titreRose {
-    background-image: url(images-css/img-clips-audio-background.png);
+    background-image: url("./images-css/img-clips-audio-background.png");
 }
 
 .titreBleu {
-    background-image: url(images-css/img-label-foreground.png);
+    background-image: url("./images-css/img-label-foreground.png");
 }
 
 
 /********** BODY *********/
 
 body {
-    background-image: url(./images-css/img-foreground.png);
+    background-image: url("./images-css/img-foreground.png");
     background-size: cover;
     width: 70%;
     min-width: 640px;
@@ -88,7 +88,7 @@ h1 {
 }
 
 h1::after {
-    content: url(./images-css/img-logo-titre-backgroung.png);
+    content: url("./images-css/img-logo-titre-backgroung.png");
     position: absolute;
     transform: scale(0.45);
     left: -100%;
@@ -98,7 +98,7 @@ h1::after {
 }
 
 h1::before {
-    content: url(./images-css/img-logo-animation.gif);
+    content: url("./images-css/img-logo-animation.gif");
     width: 200px;
     position: absolute;
     transform: scale(0.7);
@@ -195,7 +195,7 @@ footer img {
 }
 
 footer::after {
-    content: url(./images-css/img-famille-cabadix-animation.gif);
+    content: url("./images-css/img-famille-cabadix-animation.gif");
     position: absolute;
     transform: scale(0.6);
     left: -180px;
@@ -207,7 +207,7 @@ footer::after {
 
 #presentationSite {
     font-family: 'Open Sans Condensed', sans-serif;
-    background-image: url(./images-css/img-background-index.png);
+    background-image: url("./images-css/img-background-index.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -283,11 +283,11 @@ footer::after {
 }
 
 #liensIndex a:first-child {
-    background-image: url(./images-css/img-clips-audio-background.png);
+    background-image: url("./images-css/img-clips-audio-background.png");
 }
 
 #liensIndex a:nth-child(2) {
-    background-image: url(./images-css/img-clips-videos-foreground.png);
+    background-image: url("./images-css/img-clips-videos-foreground.png");
 }
 
 
@@ -307,17 +307,17 @@ footer::after {
 }
 
 #selecGalerie p:first-child {
-    background-image: url(images-css/img-affiches-foreground.png);
+    background-image: url("./images-css/img-affiches-foreground.png");
 }
 
 #selecGalerie p:nth-child(2) {
-    background-image: url(images-css/img-clips-videos-foreground.png);
+    background-image: url("./images-css/img-clips-videos-foreground.png");
     margin-left: 20px;
     margin-right: 20px;
 }
 
 #selecGalerie p:last-child {
-    background-image: url(images-css/img-clips-audio-background.png);
+    background-image: url("./images-css/img-clips-audio-background.png");
 }
 
 .naviGalerie img {
@@ -397,14 +397,14 @@ footer::after {
 }
 
 .formulaire input:not([type=submit]) {
-    background-image: url(images-css/img-formulaire-nom.png);
+    background-image: url("./images-css/img-formulaire-nom.png");
     background-size: contain;
     background-repeat: no-repeat;
     height: 55px;
 }
 
 .formulaire textarea {
-    background-image: url(images-css/img-formulaire-message.png);
+    background-image: url("./images-css/img-formulaire-message.png");
     background-size: contain;
     background-repeat: no-repeat;
     padding-top: 13px;
@@ -421,7 +421,7 @@ footer::after {
     box-sizing: border-box;
     border: none;
     background: none;
-    background-image: url(images-css/img-clips-videos-foreground.png);
+    background-image: url("./images-css/img-clips-videos-foreground.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -446,7 +446,7 @@ footer::after {
 
 #participation {
     width: 520px;
-    background-image: url(images-css/img-processus-publication.png);
+    background-image: url("./images-css/img-processus-publication.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -484,11 +484,11 @@ footer::after {
 }
 
 #participation .labelFile:nth-child(2) {
-    background-image: url(images-css/img-clips-audio-background.png);
+    background-image: url("./images-css/img-clips-audio-background.png");
 }
 
 #participation .labelFile:nth-child(5) {
-    background-image: url(images-css/img-label-foreground.png);
+    background-image: url("./images-css/img-label-foreground.png");
     margin-top: 10px;
 }
 
@@ -508,7 +508,7 @@ footer::after {
 #participation input[type=text] {
     border: none;
     background: none;
-    background-image: url(images-css/img-formulaire-nom.png);
+    background-image: url("./images-css/img-formulaire-nom.png");
     background-size: contain;
     background-repeat: no-repeat;
     height: 45px;
@@ -520,7 +520,7 @@ footer::after {
 }
 
 #participation textarea {
-    background-image: url(images-css/img-formulaire-message.png);
+    background-image: url("./images-css/img-formulaire-message.png");
     background-size: contain;
     background-repeat: no-repeat;
     padding-top: 13px;
@@ -535,7 +535,7 @@ footer::after {
 }
 
 #participation .inputSubmit {
-    background-image: url(images-css/img-clips-audio-background.png);
+    background-image: url("./images-css/img-clips-audio-background.png");
     display: inline-flex;
     margin-bottom: 20px;
 }

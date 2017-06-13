@@ -11,42 +11,42 @@
         <meta name="keywords" content="galerie, représentations, concours, lots, sacs plastique, pollution, affiches, vidéos, clips audio" />
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
     </head>
 
     <body>
         <header>
             <div class="reseauxSoc">
-                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="../images/img-facebook-icon.png" alt="Logo facebook" /></a>
-                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="../images/img-tweeter-icon.png" alt="Logo twitter" /></a>
-                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="../images/img-pinterest-icon.png" alt="Logo pinterest" /></a>
-                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="../images/img-instagram-icon.png" alt="Logo instagram" /></a>
-                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="Logo google+" /></a>
+                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo facebook" /></a>
+                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo twitter" /></a>
+                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo pinterest" /></a>
+                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="Logo instagram" /></a>
+                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo google+" /></a>
             </div>
             <h1>C'est dans le sac !</h1>
-            <div class="compte"> <a>Mon compte</a> <img src="../images/img-profil-photo.png" alt="Accès au compte" />
+            <div class="compte"> <a>Mon compte</a> <img src="./images/img-profil-photo.png" alt="Accès au compte" />
                 <div class="log">
-                    <a href="" title="Se connecter"><img src="../images/img-login.png" alt="Logo de connexion" /></a>
-                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" alt="Logo de déconnexion" /></a>
+                    <a href="" title="Se connecter"><img src="./images/img-login.png" alt="Logo de connexion" /></a>
+                    <a href="" title="Se déconnecter"><img src="./images/img-logout.png" alt="Logo de déconnexion" /></a>
                 </div>
             </div>
         </header>
         <nav>
             <ul>
                 <li>
-                    <a href="../index.html">Accueil</a>
+                    <a href="./index.php">Accueil</a>
                 </li>
                 <li>
                     <a href="./galerie.php">Galerie</a>
                 </li>
                 <li>
-                    <a href="../contact.html">Nous contacter</a>
+                    <a href="./contact.php">Nous contacter</a>
                 </li>
                 <li>
                     <a href="./participation.php">Je participe</a>
                 </li>
                 <li>
-                    <a href="../modalites.html">Modalités</a>
+                    <a href="./modalites.php">Modalités</a>
                 </li>
             </ul>
         </nav>
@@ -58,11 +58,11 @@
                 <p data-format="audio">Clips audio</p>
             </div>
             <div class="naviGalerie">
-                <img src="../images/img-page-precedente.png" alt="Flèche page précedente" class="boutonNavi" data-navi="reculer" />
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" />
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" />
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" />
-                <img src="../images/img-page-suivante.png" alt="Flèche page suivante" class="boutonNavi" data-navi="avancer" />
+                <img src="./images/img-page-precedente.png" alt="Flèche page précedente" class="boutonNavi" data-navi="reculer" />
+                <img src="./images/img-numero-page-droite.png" alt="Bouton de navigation 1" />
+                <img src="./images/img-numero-page-droite.png" alt="Bouton de navigation 2" />
+                <img src="./images/img-numero-page-droite.png" alt="Bouton de navigation 3" />
+                <img src="./images/img-page-suivante.png" alt="Flèche page suivante" class="boutonNavi" data-navi="avancer" />
             </div>
             <div id="galerie">
                 <ul id="imgGalerie">
@@ -95,18 +95,18 @@
                 ?>
                             <!-- ------------------------------------------------------------------ -->
                             <a href="./afficheImage.php">
-                                <img  alt="./vignettes/<?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="image" class="enfantGalerie"/>
+                                <img  alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="image" class="enfantGalerie"/>
                             </a> 
                         
             <!-- --------------------------- PHP ------------------------------------ --> 
             <?php       $compteur++;
                             
-                        }else if($ligne["DescOeuvre"] == "video"){
+                        }else if($ligne["Type"] == "video"){
                                        
              ?>
                                 <!-- ------------------------------------------------------------------ -->
                                 <a href="./afficheImage.php">
-                            <img alt="./vignettes/<?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="video" class="enfantGalerie"/>
+                            <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="video" class="enfantGalerie"/>
                         </a>
                                 <!-- Vidéo de démonstration :
                         Author: mskrzyp
@@ -120,7 +120,7 @@
             ?>
             <!-- ------------------------------------------------------------------ -->
                                     <a href="./afficheImage.php">
-                            <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
+                            <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
                         </a>    
                         
               
@@ -154,36 +154,36 @@
         ?>
 
             <!-- ------------------------------------------------------------------ -->
-                        <a href="../php/participation.php">                            
-                            <img src="../images/img-fin-galerie.png" alt="image de fin de galerie"/>
+                        <a href="./participation.php">                            
+                            <img src="./images/img-fin-galerie.png" alt="image de fin de galerie"/>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="naviGalerie"> 
-                <img src="../images/img-page-precedente.png" alt="Flèche page précedente" class="boutonNavi" data-navi="reculer"/> 
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> 
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> 
-                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> 
-                <img src="../images/img-page-suivante.png" alt="Flèche page suivante" class="boutonNavi" data-navi="avancer"/> 
+                <img src="./images/img-page-precedente.png" alt="Flèche page précedente" class="boutonNavi" data-navi="reculer"/> 
+                <img src="./images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> 
+                <img src="./images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> 
+                <img src="./images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> 
+                <img src="./images/img-page-suivante.png" alt="Flèche page suivante" class="boutonNavi" data-navi="avancer"/> 
             </div>
         </main>
         <footer>
             <div class="txtFooter">
-                <p><a href="../mentions.html">Mentions légales</a></p>
-                <p><a href="../contact.html">Formulaire de contact</a></p>
-                <p><a href="../modalites.html">Modalités du concours</a></p>
-                <p><a href="../sponsors.html">Sponsors</a></p>
+                <p><a href="./mentions.php">Mentions légales</a></p>
+                <p><a href="./contact.php">Formulaire de contact</a></p>
+                <p><a href="./modalites.php">Modalités du concours</a></p>
+                <p><a href="./sponsors.php">Sponsors</a></p>
             </div>
             <div>
-                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="../images/img-facebook-icon.png" alt="Logo Facebook" /></a>
-                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="../images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
-                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="../images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
-                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="../images/img-instagram-icon.png" alt="Logo Instagram" /></a>
-                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="Logo Google+" /></a>
+                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo Facebook" /></a>
+                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
+                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
+                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="Logo Instagram" /></a>
+                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo Google+" /></a>
             </div>
         </footer>
     </body>
-        <script type="text/javascript" src="../js/galerie.js"></script>
-        <script src="../js/jquery-3.2.1.js"></script>
+        <script type="text/javascript" src="./js/galerie.js"></script>
+        <script src="./js/jquery-3.2.1.js"></script>
     </html>

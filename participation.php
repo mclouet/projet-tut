@@ -12,27 +12,27 @@
         <meta name="keywords" content="participation, concours, lots, sacs plastique, pollution, affiches, vidéos, clips audio" />
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
     </head>
 
     <body>
         <header>
             <div class="reseauxSoc">
-                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="../images/img-facebook-icon.png" alt="Logo facebook" /></a>
-                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="../images/img-tweeter-icon.png" alt="Logo twitter" /></a>
-                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="../images/img-pinterest-icon.png" alt="Logo pinterest" /></a>
-                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="../images/img-instagram-icon.png" alt="Logo instagram" /></a>
-                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="Logo google+" /></a>
+                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo facebook" /></a>
+                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo twitter" /></a>
+                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo pinterest" /></a>
+                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="Logo instagram" /></a>
+                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo google+" /></a>
             </div>
 
             <h1>C'est dans le sac !</h1>
 
             <div class="compte">
                 <a>Mon compte</a>
-                <img src="../images/img-profil-photo.png" alt="Accès au compte" />
+                <img src="./images/img-profil-photo.png" alt="Accès au compte" />
                 <div class="log">
-                    <a href="" title="Se connecter"><img src="../images/img-login.png" alt="Logo de connexion" /></a>
-                    <a href="" title="Se déconnecter"><img src="../images/img-logout.png" alt="Logo de déconnexion" /></a>
+                    <a href="" title="Se connecter"><img src="./images/img-login.png" alt="Logo de connexion" /></a>
+                    <a href="" title="Se déconnecter"><img src="./images/img-logout.png" alt="Logo de déconnexion" /></a>
                 </div>
             </div>
         </header>
@@ -40,19 +40,19 @@
         <nav>
             <ul>
                 <li>
-                    <a href="../index.html">Accueil</a>
+                    <a href="./index.php">Accueil</a>
                 </li>
                 <li>
                     <a href="./galerie.php">Galerie</a>
                 </li>
                 <li>
-                    <a href="../contact.html">Nous contacter</a>
+                    <a href="./contact.php">Nous contacter</a>
                 </li>
                 <li>
                     <a href="./participation.php">Je participe</a>
                 </li>
                 <li>
-                    <a href="../modalites.html">Modalités</a>
+                    <a href="./modalites.php">Modalités</a>
                 </li>
             </ul>
         </nav>
@@ -83,11 +83,11 @@
                         <!-- 3 -->
                         <p class="liste">3. Partagez avec vos amis !</p>
                         <div class="reseauxSoc">
-                            <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="../images/img-facebook-icon.png" alt="Logo Facebook" /></a>
-                            <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="../images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
-                            <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="../images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
-                            <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="../images/img-instagram-icon.png" alt="Logo Instagram" /></a>
-                            <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="Logo Google+" /></a>
+                            <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo Facebook" /></a>
+                            <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
+                            <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
+                            <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="Logo Instagram" /></a>
+                            <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo Google+" /></a>
                         </div>
                         <!-- 4 -->
                         <label for="titre" class="liste">4. Donnez un titre à votre oeuvre !</label>
@@ -100,27 +100,27 @@
                     </div>
                 </form>
 
-                <div> <img src="../images/img-apercu-defaut.jpg" alt="Aperçu de l'image téléchargée" id="apercu" /> </div>
+                <div> <img src="./images/img-apercu-defaut.jpg" alt="Aperçu de l'image téléchargée" id="apercu" /> </div>
             </div>
         </main>
 
         <footer>
             <div class="txtFooter">
-                <p><a href="../mentions.html">Mentions légales</a></p>
-                <p><a href="../contact.html">Formulaire de contact</a></p>
-                <p><a href="../modalites.html">Modalités du concours</a></p>
-                <p><a href="../sponsors.html">Sponsors</a></p>
+                <p><a href="./mentions.php">Mentions légales</a></p>
+                <p><a href="./contact.php">Formulaire de contact</a></p>
+                <p><a href="./modalites.php">Modalités du concours</a></p>
+                <p><a href="./sponsors.php">Sponsors</a></p>
             </div>
             <div>
-                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="../images/img-facebook-icon.png" alt="Logo Facebook" /></a>
-                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="../images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
-                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="../images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
-                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="../images/img-instagram-icon.png" alt="Logo Instagram" /></a>
-                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="../images/img-googleplus-icon.png" alt="Logo Google+" /></a>
+                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo Facebook" /></a>
+                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
+                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
+                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="Logo Instagram" /></a>
+                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo Google+" /></a>
             </div>
         </footer>
 
-        <script type="text/javascript" src="../js/participation.js"></script>
+        <script type="text/javascript" src="./js/participation.js"></script>
     </body>
 
 
@@ -144,10 +144,10 @@
 
                                     if ($_FILES["monFichier"]["type"] == "image/jpeg" || $_FILES["monFichier"]["type"] == "image/pjpeg" || $_FILES["monFichier"]["type"] == "image/png") { // Si le format est .jpeg, .jpg ou .png
 
-                                        copy($_FILES["monFichier"]["tmp_name"], "./images/grande_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./images/
+                                        copy($_FILES["monFichier"]["tmp_name"], "./php/images/grande_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./images/
 
                                         require("convertirImage700x700.inc.php");
-                                        convertirImage700x700($_FILES["monFichier"]["tmp_name"], "./vignettes/vignette_".$_FILES["monFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                        convertirImage700x700($_FILES["monFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["monFichier"]["name"]); // Copie de la vignette dans ./vignettes/
 
                                         try {
                                             // Etape 1 : connexion au serveur de base de données
@@ -181,10 +181,10 @@
                                     if ($_FILES["monFichier"]["type"] == "video/mp4") { // Si le fichier est en .mp4
                                         if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
 
-                                            copy($_FILES["monFichier"]["tmp_name"], "./videos/vid_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./videos/
+                                            copy($_FILES["monFichier"]["tmp_name"], "./php/videos/vid_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./videos/
 
                                             require("convertirImage700x700.inc.php");
-                                            convertirImage700x700($_FILES["vignetteMonFichier"]["tmp_name"], "./vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                            convertirImage700x700($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
 
                                             try {
                                                 // Etape 1 : connexion au serveur de base de données
@@ -224,7 +224,7 @@
                                 } else if ($_POST["categorie"] == "audio") { // Si la catégorie choisie est clip AUDIO
 
                                     if ($_FILES["monFichier"]["type"] == "audio/mpeg" || $_FILES["monFichier"]["type"] == "audio/x-wav" || $_FILES["monFichier"]["type"] == "audio/wav") { // Si le format est .mpeg ou .wav
-                                        copy($_FILES["monFichier"]["tmp_name"], "./clips-audio/aud_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./clips-audio/
+                                        copy($_FILES["monFichier"]["tmp_name"], "./php/clips-audio/aud_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./clips-audio/
 
                                         try {
                                             // Etape 1 : connexion au serveur de base de données

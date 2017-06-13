@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Contactez-nous ! &#124; CDLS</title>
-    <meta name="description" content="Une question ou une réclamation ? N'hésitez pas à nous contacter en remplissant ce petit formulaire !" />
-    <meta name="keywords" content="contact, sponsors, concours, sacs plastique, pollution, lots, gains, affiches, vidéos, clips audio" />
+    <title>Sponsors &#124; CDLS</title>
+    <meta name="description" content="Rejoignez C'est dans le sac ! en tant que sponsor et proposez des lots" />
+    <meta name="keywords" content="sponsors, concours, sacs plastique, pollution, lots, gains, affiches, vidéos, clips audio" />
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         </div>
 
         <h1>C'est dans le sac !</h1>
-        
+
         <div class="compte">
             <a>Mon compte</a>
             <img src="./images/img-profil-photo.png" alt="Accès au compte" />
@@ -37,58 +37,53 @@
     <nav>
         <ul>
             <li>
-                <a href="./index.html">Accueil</a>
+                <a href="./index.php">Accueil</a>
             </li>
             <li>
-                <a href="./php/galerie.php">Galerie</a>
+                <a href="./galerie.php">Galerie</a>
             </li>
             <li>
-                <a href="./contact.html">Nous contacter</a>
+                <a href="./contact.php">Nous contacter</a>
             </li>
             <li>
-                <a href="./php/participation.php">Je participe</a>
+                <a href="./participation.php">Je participe</a>
             </li>
             <li>
-                <a href="./modalites.html">Modalités</a>
+                <a href="./modalites.php">Modalités</a>
             </li>
         </ul>
     </nav>
+    <main id="sponsors">
+        <h2 class="titreVert">Sponsors</h2>
+
+        <p>
+            Bienvenue sur le site C'est dans le sac !
+            <br/> Nous sommes un site concours pour la promotion de sacs respectueux de l'environnement, nous sommes à la recherches de sponsors pour porter notre projet.
+            <br/> En contrepartie d'une visibilité ou d'une annonce sur votre réseau, d'un soutient financier pour les lots ou si vous en avez à proposer, vous disposerez d'un espace sur le site et un lien direct vers votre site internet.
+            <br/> Afin de devenir partenaire, vous devez faire preuve ou avoir fais preuve d'intérêt envers le thème de la pollution, avoir un lot à proposer aux gagnants, un site internet (pour disposer d'un lien).
+            <br/> Des ajustements pourront être apportés à ses conditions dans la mesure du possible, une fois la collaboration mise en place. Pour déposer une demande pour devenir partenaire il vous faudra prendre contact avec Cabadix :
+
+            <ul>
+                <li>Adresse facebook : <a href="https://www.facebook.com/TrolleyBagsFR/" target="_blank">TrolleyBags</a>
+                </li>
+                <li>Adresse email : <a href="" target="_blank">service-cabadix@cabadix.com</a>
+                </li>
+            </ul>
+
+        </p>
 
 
-    <main>
-        <h2 class="titreVert">Contactez-nous !</h2>
+        <img src="./images/img-charte-cabadix.png" alt="Logo de Cabadix" />
+        <a href="https://packingsorted.fr/" target="_blank">packingsorted.fr</a>
 
-        <form method="post" action="" class="formulaire">
-            <div>
-                <label for="nom">Nom<span class="formObli">*</span></label>
-                <input id="nom" name="nom" type="text" placeholder="CABADIX" required="required" />
-            </div>
-            <div>
-                <label for="prenom">Prénom<span class="formObli">*</span></label>
-                <input id="prenom" name="prenom" type="text" placeholder="Cabadix" required="required" />
-            </div>
-            <div>
-                <label for="mail">Adresse e-mail<span class="formObli">*</span></label>
-                <input id="mail" name="mail" type="email" placeholder="cabadix@cabadix.com" required="required" />
-            </div>
-            <div>
-                <label for="tel">Téléphone</label>
-                <input id="tel" name="tel" type="tel" placeholder="0600660066" />
-            </div>
-            <div>
-                <label for="message">Message<span class="formObli">*</span></label>
-                <textarea name="message" id="message" placeholder="A bientôt !" rows="10" required="required"></textarea>
-            </div>
-            <input type="submit" value="Envoyer" class="inputSubmit" />
-        </form>
     </main>
 
     <footer>
         <div class="txtFooter">
-            <p><a href="./mentions.html">Mentions légales</a></p>
-            <p><a href="./contact.html">Formulaire de contact</a></p>
-            <p><a href="./modalites.html">Modalités du concours</a></p>
-            <p><a href="./sponsors.html">Sponsors</a></p>
+            <p><a href="./mentions.php">Mentions légales</a></p>
+            <p><a href="./contact.php">Formulaire de contact</a></p>
+            <p><a href="./modalites.php">Modalités du concours</a></p>
+            <p><a href="./sponsors.php">Sponsors</a></p>
         </div>
         <div>
             <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo Facebook" /></a>

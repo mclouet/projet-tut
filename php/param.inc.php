@@ -2,9 +2,9 @@
     if(!defined("MYHOST"))
         define("MYHOST","localhost");
     if(!defined("MYUSER"))
-        define("MYUSER","lea");
+        define("MYUSER","16mmi1pj06");
     if(!defined("MYPASS"))
-        define("MYPASS","mdp");
+        define("MYPASS","GoUT5i97");
     if(!defined("MYDB"))
-        define("MYDB","essai_ptut");
+        define("MYDB","16mmi1pj06");
 ?>

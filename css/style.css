@@ -198,8 +198,8 @@ footer::after {
     content: url(./images-css/img-famille-cabadix-animation.gif);
     position: absolute;
     transform: scale(0.6);
-    left: -150px;
-    top: 30px;
+    left: -180px;
+    top: 40px;
 }
 
 
@@ -237,28 +237,28 @@ footer::after {
 
 #baleine {
     right: 15%;
-    bottom: 71%;
+    bottom: 68%;
     width: 27%;
 }
 
 #usine {
     right: 8%;
-    bottom: 48%;
+    bottom: 46%;
     width: 30%;
 }
 
 #magicien {
     width: 30%;
     right: 30%;
-    bottom: 18%;
+    bottom: 16.5%;
 }
 
 @media (max-width: 1500px) {
     #magicien {
-        bottom: 19%;
+        bottom: 17%;
     }
     #baleine {
-        bottom: 70%;
+        bottom: 68%;
     }
 }
 

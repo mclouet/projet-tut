@@ -328,8 +328,7 @@ footer::after {
 #galerie {
     position: relative;
     border: solid green 3px;
-    width: 90%;
-    width: 640px;
+    width: 626px;
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
@@ -351,31 +350,18 @@ footer::after {
 }
 
 #imgGalerie img {
+    box-sizing: border-box;
     border: 16px solid transparent;
     border-image: url("./images-css/img-media-4-foreground.png") 65 45;
     display: inline-flex;
-    height: 160px;
+    height: 192px;
     margin: 10px;
-}
-
-#imgGalerie video {
-    border: 16px solid transparent;
-    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
-    display: inline-flex;
-    margin: 10px;
-    width: 25%;
-}
-
-#imgGalerie audio {
-    border: 16px solid transparent;
-    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
-    display: inline-block;
-    margin: 10px;
-    width: 25%;
 }
 
 #imgGalerie a {
     text-decoration: none;
+    padding: 0;
+    margin: 0;
 }
 
 

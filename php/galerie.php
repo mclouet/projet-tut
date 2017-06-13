@@ -66,7 +66,7 @@
             </div>
             <div id="galerie">
                 <ul id="imgGalerie">
-                    <li data-numero = "0">
+                    <li data-numero = "1">
         <!-- --------------------------- PHP ------------------------------------ -->
             <?php
                 
@@ -79,7 +79,7 @@
                     $pdo -> query("SET CHARACTER SET 'utf8'");
                     
                     $compteur = 0;
-                    $dataNum = 0;
+                    $dataNum = 2;
                     //ETAPE 2: Envoyer une requête SQL
                     $sql = "SELECT Vignette, Type, DescOeuvre FROM oeuvre";
 
@@ -118,7 +118,7 @@
                         $compteur++;                                                                                      
                         }else{
             ?>
-                                    <!-- ------------------------------------------------------------------ -->
+            <!-- ------------------------------------------------------------------ -->
                                     <a href="./afficheImage.php">
                             <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
                         </a>    
@@ -153,11 +153,20 @@
             }
         ?>
 
-                                        <!-- ------------------------------------------------------------------ -->
+            <!-- ------------------------------------------------------------------ -->
+                        <a href="../php/participation.php">                            
+                            <img src="../images/img-fin-galerie.png" alt="image de fin de galerie"/>
+                        </a>
                     </li>
                 </ul>
             </div>
-            <div class="naviGalerie"> <img src="../images/img-page-precedente.png" alt="Flèche page précedente" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> <img src="../images/img-page-suivante.png" alt="Flèche page suivante" /> </div>
+            <div class="naviGalerie"> 
+                <img src="../images/img-page-precedente.png" alt="Flèche page précedente" class="boutonNavi" data-navi="reculer"/> 
+                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> 
+                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> 
+                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> 
+                <img src="../images/img-page-suivante.png" alt="Flèche page suivante" class="boutonNavi" data-navi="avancer"/> 
+            </div>
         </main>
         <footer>
             <div class="txtFooter">

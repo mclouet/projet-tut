@@ -47,29 +47,37 @@ function trierGalerie(evt) {
 }
 
 function avancer(evt) {
-    var nbLi = ($("#imgGalerie li").length); // nombre d'enfants li de imgGalerie
+    var nbLi = ($("#imgGalerie li").length)-1; // nombre d'enfants li de imgGalerie
     
     if(compteurPage < nbLi){
         compteurPage++;
     }
     
-    var calcul = 100/nbLi;
     var ul = $("#imgGalerie");
-    alert(compteurPage);
     
     ul.css({
-        transform: "translateX(-25%)"
+        transform: "translateX("+(-636*compteurPage)+"px)"
     })
-    /*ul.css({
-        transform: "translateX("+(-calcul*compteurPage)+"%)"
-    })*/
 }
 
 function reculer(evt) {
-    var nbLi = ($("#imgGalerie li").length); // nombre d'enfants li de imgGalerie
+    var ulGalerie = $("#imgGalerie");
+    if(compteurPage > 0){
+        compteurPage--;
+    }
+    ulGalerie.css({
+        transform: "translateX("+-636*compteurPage+"px)"
+    })
+    
+    
+    
+    
+    /*var nbLi = ($("#imgGalerie li").length); // nombre d'enfants li de imgGalerie
     var calcul = 100/nbLi;
     var ul = $("#imgGalerie");
     var prevPage ;
+    
+    
     
     if(compteurPage > 0){
         prevPage = compteurPage - 1;
@@ -80,8 +88,10 @@ function reculer(evt) {
     }
     
     ul.css({
-        transform: "translateX("+(calcul*prevPage)+"%)"
+        transform: "translateX("+(636*prevPage)+"%)"
     })
+    
+    compteurPage = prevPage;*/
 }
  
 

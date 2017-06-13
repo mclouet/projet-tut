@@ -160,7 +160,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="naviGalerie"> <img src="../images/img-page-precedente.png" alt="Flèche page précedente" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> <img src="../images/img-page-suivante.png" alt="Flèche page suivante" /> </div>
+            <div class="naviGalerie"> 
+                <img src="../images/img-page-precedente.png" alt="Flèche page précedente" class="boutonNavi" data-navi="reculer"/> 
+                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 1" /> 
+                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 2" /> 
+                <img src="../images/img-numero-page-droite.png" alt="Bouton de navigation 3" /> 
+                <img src="../images/img-page-suivante.png" alt="Flèche page suivante" class="boutonNavi" data-navi="avancer"/> 
+            </div>
         </main>
         <footer>
             <div class="txtFooter">

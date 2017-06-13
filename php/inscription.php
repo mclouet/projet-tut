@@ -80,7 +80,7 @@
                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO
-                            $sql = "SELECT Pseudo FROM UTILISATEUR WHERE Pseudo = '".$_POST["pseudo"]."'";
+                            $sql = "SELECT Pseudo FROM UTILISATEUR WHERE Pseudo = '".$pseudo."'";
                             $statement = $pdo->query($sql);
 
                             // Etape 3 : traitement des données retournées
@@ -118,24 +118,34 @@
             $form = true;
         } // Fin condition si formulaire pas envoyé
     
-        if ($form) { // Si le formulaire doit être ré-affiché
-            if ($message) { // Si un message a été stocké
-    ?>
-    
-        <!-- ---------------------- FIN PHP ----------------- -->
         
-        <div id="message"><?php echo($message); ?></div>
-    
-        <!-- ---------------------- PHP ----------------- -->
-
-    <?php
-            }
     ?>
-    
+        
         <!-- ---------------------- FIN PHP ----------------- -->
 
         <main>
             <h2 class="titreBleu">Inscription</h2>
+            
+        <!-- ---------------------- PHP ----------------- -->
+
+            
+            <?php
+                if ($form) { // Si le formulaire doit être ré-affiché
+                    if ($message) { // Si un message a été stocké
+            ?>
+            
+            <!-- ---------------------- FIN PHP ----------------- -->
+        
+                <div id="message"><?php echo($message); ?></div>
+    
+            <!-- ---------------------- PHP ----------------- -->
+            
+            <?php
+                }
+            ?>
+            
+            <!-- ---------------------- FIN PHP ----------------- -->
+
 
             <form action="inscription.php" id="inscription" method="post" class="formulaire">
                 <div>
@@ -162,16 +172,18 @@
                     <input type="submit" value="Envoyer" class="inputSubmit" />
                 </div>
             </form>
-
-        </main>
-    
-    <!-- ---------------------- PHP ----------------- -->
+            
+            <!-- ---------------------- PHP ----------------- -->
     
     <?php
         }
     ?>
     
     <!-- ---------------------- FIN PHP ----------------- -->
+
+        </main>
+    
+    
 
 
         <footer>

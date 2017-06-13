@@ -86,6 +86,8 @@
                                 echo('<script language="javascript">');
                                 echo('alert("Le pseudo existe déjà")');
                                 echo('</script>');
+                                $message = "Le pseudo existe déjà";
+                                $form = true;
                             } else { // Si le pseudo n'existe pas
                                 $sql = "INSERT INTO UTILISATEUR(Pseudo, AdMail, MotDePasse, Admin) VALUES (:paramPseudo, :paramMail, :paramMdp, :paramAdmin)";
                                 $statement = $pdo->prepare($sql);
@@ -93,38 +95,48 @@
                                 echo('<script language="javascript">');
                                 echo('alert("Votre insciption a été prise en compte")');
                                 echo('</script>');
-                                // AJOUTER LOCATION VERS AUTRE PAGE
+                                $form = false;
                             }
                              
                             $pdo = null;
                          } catch(Exception $e) {
                              echo("Exception :".$e->getMessage());
                          }
-                        
-                        
+
                     } else { // Fin condition si l'email est valide
                         $message = "L'email n'est pas valide";
                         echo("EMAIL NON VALIDE");
+                        $form = true;
                     } // Fin condition si l'email n'est pas valide
                 } else { // Fin condition si le mot de passe contient au moins 6 caractères
                     $message = "Le mot de passe doit contenir au moins 6 caractères";
                     echo("MOT DE PASSE : AU MOINS 6 CARACTERES");
+                    $form = true;
                 } // Fin condition si le mot de passe ne contient pas au moins 6 caractères
             } else { // Fin condition si le mot de passe de vérification correspond au mot de passe
                 $message = "Les mots de passe saisis ne sont pas égaux";
                 echo("MOT DE PASSE ET VERIFICATION PAS OK");
+                $form = true;
             } // Fin condition si le mot de passe de vérification ne correspond pas au mot de passe
-        } // Fin condition si formulaire envoyé
+        } else { // Fin condition si formulaire envoyé
+            $form = true;
+        } // Fin condition si formulaire pas envoyé
     
+        if ($form) { // Si le formulaire doit être ré-affiché
+            if ($message) { // Si un message a été stocké
     ?>
-
+    
         <!-- ---------------------- FIN PHP ----------------- -->
+        
+        <div id="class"><?php echo($message); ?></div>
+    
+        <!-- ---------------------- PHP ----------------- -->
 
-
-
-
-
-
+    <?php
+            }
+    ?>
+    
+        <!-- ---------------------- FIN PHP ----------------- -->
 
         <main>
             <h2 class="titreBleu">Inscription</h2>
@@ -156,6 +168,15 @@
             </form>
 
         </main>
+    
+    <!-- ---------------------- PHP ----------------- -->
+    
+    <?php
+        }
+    ?>
+    
+    <!-- ---------------------- FIN PHP ----------------- -->
+
 
         <footer>
             <div class="txtFooter">

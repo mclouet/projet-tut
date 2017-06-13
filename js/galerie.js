@@ -1,6 +1,8 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", initialiser);
 document.addEventListener("DOMContentLoaded", lancer);
+var compteurPage = 0;
+
 
 function initialiser(evt) {
     var lesBoutonsTri = document.querySelectorAll("#selecGalerie>p"); //mise en place de l'écouteur sur les boutons de la galerie
@@ -11,7 +13,15 @@ function initialiser(evt) {
     }
     for (var unBoutonNavi of boutonsNavi) {
         unBoutonNavi.style.cursor = "pointer";
-        unBoutonNavi.addEventListener("click", naviguerGalerie);
+        
+        if(unBoutonNavi.dataset.navi == "avancer"){             
+            unBoutonNavi.addEventListener("click", avancer);
+        }else{
+            if(compteurPage > 0){
+               compteurPage++;
+               }
+            unBoutonNavi.addEventListener("click", reculer);
+        }
     }
 }
 
@@ -36,28 +46,42 @@ function trierGalerie(evt) {
     }
 }
 
-function naviguerGalerie(evt) {
-/*    var ulGalerie = document.getElementById("imgGalerie");
-    var liGalerie = document.querySelectorAll("#imgGalerie li");
+function avancer(evt) {
+    var nbLi = ($("#imgGalerie li").length); // nombre d'enfants li de imgGalerie
     
-    if(this.dataset.navi == "avancer"){
-        ulGalerie.transform = "translateX(636px);"
-    }else{
-        
+    if(compteurPage < nbLi){
+        compteurPage++;
     }
-    */
     
-    var ulGalerie = $("#imgGalerie");
-    var pourcentage = 100/(ulGalerie.length); //pourcentage que prend un li dans imgGalerie
-    var bouton = $(this);
+    var calcul = 100/nbLi;
+    var ul = $("#imgGalerie");
+    alert(compteurPage);
     
-    if (bouton.data("navi") == "avancer"){
-        ulGalerie.css({
-            transform: "translateX(-636px)"     
-        })
-    }else{
-         ulGalerie.css({
-            transform: "translateX(0px)"
-        })
-    }
+    ul.css({
+        transform: "translateX(-25%)"
+    })
+    /*ul.css({
+        transform: "translateX("+(-calcul*compteurPage)+"%)"
+    })*/
 }
+
+function reculer(evt) {
+    var nbLi = ($("#imgGalerie li").length); // nombre d'enfants li de imgGalerie
+    var calcul = 100/nbLi;
+    var ul = $("#imgGalerie");
+    var prevPage ;
+    
+    if(compteurPage > 0){
+        prevPage = compteurPage - 1;
+        alert(prevPage);
+    }else{
+        prevPage = compteurPage;
+        alert(prevPage);
+    }
+    
+    ul.css({
+        transform: "translateX("+(calcul*prevPage)+"%)"
+    })
+}
+ 
+

@@ -37,6 +37,9 @@
                 <li>
                     <a href="./participation.php">Je participe</a>
                 </li>
+                <li>
+                    <a href="./modalites.php">Modalités</a>
+                </li>
             </ul>
         </nav>
 

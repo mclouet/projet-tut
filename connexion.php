@@ -45,7 +45,6 @@
 
         <?php
             if(!isset($_SESSION["pseudoCo"])) { // Si la session n'existe pas = si l'utilisateur n'est pas connecté
-                echo("Vous n'êtes pas connecté");
                 
                 if (isset($_POST["pseudoCo"])) { // Si le formulaire a été envoyé
                     $pseudoCo = addslashes($_POST["pseudoCo"]);

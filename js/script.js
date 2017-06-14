@@ -1,7 +1,7 @@
 "use strict";
- 
+
 document.addEventListener("DOMContentLoaded", initialiser);
- 
+
 function initialiser(evt) {
     var couleurs = new Array("#eebd30", "#91dfd6", "#a1cd69", "#fe5d99", "#ffbad4");
     var nbCouleurs = couleurs.length;
@@ -21,11 +21,16 @@ function initialiser(evt) {
         unActif.removeEventListener("mouseenter", changerCouleur);
         unActif.removeEventListener("mouseleave", supprimerCouleur);
     }
+
+    if (document.querySelector(".descOeuvre")) {
+        var descOeuvre = document.querySelector(".descOeuvre");
+        descOeuvre.style.color = couleurs[laCouleur];
+    }
 }
- 
+
 function supprimerCouleur(evt) {
     var actif = document.getElementsByClassName("actif");
- 
+
     for (var unActif of actif) {
         if (this != unActif) {
             this.style.color = "#000000";
@@ -34,27 +39,15 @@ function supprimerCouleur(evt) {
 }
 
 
-}
-
 function changerCouleur(evt) {
     var couleurs = new Array("#eebd30", "#91dfd6", "#a1cd69", "#fe5d99", "#ffbad4");
     var nbCouleurs = couleurs.length;
     var laCouleur = Math.round(Math.random() * nbCouleurs);
-    var actif = document.getElementsByClassName("actif");
 
-    //for (var unActif of actif) {
-    //if (this != unActif) {
     this.style.color = couleurs[laCouleur];
-    //}
-    //}
 }
 
 function supprimerCouleur(evt) {
-    var actif = document.getElementsByClassName("actif");
-
-    //for (var unActif of actif) {
-    //if (this != unActif) {
     this.style.color = "#000000";
-    //}
-    //}
+
 }

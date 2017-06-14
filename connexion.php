@@ -99,8 +99,8 @@
 
                 } // Fin condition si le formulaire a été envoyé
             } else {// Si la session existe = si l'utilisateur est connecté
-                session_destroy();
-                echo("Vous êtes maintenant déconnecté");
+                //session_destroy();
+                //echo("Vous êtes maintenant déconnecté");
                 header("Location: ./index.php");
             }
         ?>

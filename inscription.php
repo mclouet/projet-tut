@@ -79,7 +79,8 @@
                                 $statement->execute(array(":paramPseudo" => $pseudo, ":paramMail" => $email, ":paramMdp" => md5($motDePasse), ":paramAdmin" => "0"));
                                 $message = "Votre inscription a été prise en compte";
                                 $form = false;
-                                header("Location: ./index.php");
+                                header("Location: ./connexion.php");
+                                // POPUP VOTRE INSCRIPTION A ETE PRISE EN COMPTE
                             }
                              
                             $pdo = null;

@@ -51,7 +51,7 @@
             //ETAPE 2: Envoyer une requête SQL
             if(isset ($_GET["idImg"])){ //si l'idOeuvre a été passée par l'URL
                 $idOeuvre = $_GET["idImg"];
-                $sql = "SELECT IdOeuvre, Titre, Vignette, Type, DescOeuvre FROM oeuvre WHERE IdOeuvre='".$idOeuvre."'";
+                $sql = "SELECT IdOeuvre, Titre, GdeOeuvre, Type, DescOeuvre FROM oeuvre WHERE IdOeuvre='".$idOeuvre."'";
 
                 $statement = $pdo->prepare($sql);
                 $statement->execute();
@@ -60,36 +60,49 @@
                 $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                 
         ?> 
-            <h2 class="titreDesc">
+                <h2 class="titreDesc titreRose"><?php echo($ligne["Titre"]); ?></h2>
+            
         <?php
-                echo($ligne["Titre"]);
-                
+                if($ligne["Type"] == "affiche"){
         ?>
-            </h2>
-
-           <!-- <div id="image">
-                <img src="./php/images/grande_<?php ?>" alt="" class="grandeOeuvre" />
-            </div>
-
-            <div id="video">
-                <video controls preload="metadata" data-format="video" class="grandeOeuvre">
-                    <source src="./php/videos/<?php echo($nomFichier); ?>" type="video/mp4" />
-                </video>
-            </div>
-
-            <div id="audio">
-                <audio src="./php/clips-audio/<?php echo($nomAudio); ?>" controls preload="metadata" data-format="audio" class="grandeOeuvre"></audio>
-            </div>
--->
-            <?php
-                } else { //si idImg n'existe pas
-                         header("Location: ./galerie.php");
-                }            
-            ?>
+                    <div>
+                        <img src="./php/images/<?php echo($ligne["GdeOeuvre"]) ?>" alt="Image <?php $ligne["Titre"] ?>" class="grandeOeuvre" />
+                    </div>
+            
+            
+            
+            
+        <?php
+                }else if($ligne["Type"] == "video"){
+        ?>
+                    <div>
+                        <video controls preload="metadata" data-format="video" class="grandeOeuvre">
+                            <source src="./php/videos/<?php echo($ligne["GdeOeuvre"]) ?>" type="video/mp4" />
+                        </video>
+                    </div>
+            
+        
+            
+        <?php
+                }else{
+        ?>
+                    <div>
+                        <audio src="./php/clips-audio/<?php echo($ligne["GdeOeuvre"]) ?>" controls preload="metadata" data-format="audio" class="grandeOeuvre">
+                        </audio>
+                    </div>
+            
+            
+        <?php
+                } //fin if type
+            }else { //si idImg n'existe pas
+                     header("Location: ./galerie.php");
+            }            
+        ?>
 
             <p class="descOeuvre">
-                Description de l'oeuvre par l'auteur
-                <br />
+                <?php
+                echo($ligne["DescOeuvre"]);
+                ?>
             </p>
         </main>
 
@@ -109,5 +122,5 @@
             </div>
         </footer>
     </body>
-
+    <script type="text/javascript" src="./js/script.js"></script>
     </html>

@@ -76,10 +76,11 @@
                             } else { // Si le pseudo n'existe pas
                                 $sql = "INSERT INTO UTILISATEUR(Pseudo, AdMail, MotDePasse, Admin) VALUES (:paramPseudo, :paramMail, :paramMdp, :paramAdmin)";
                                 $statement = $pdo->prepare($sql);
-                                $statement->execute(array(":paramPseudo" => $pseudo, ":paramMail" => $email, ":paramMdp" => $motDePasse, ":paramAdmin" => "0"));
+                                $statement->execute(array(":paramPseudo" => $pseudo, ":paramMail" => $email, ":paramMdp" => md5($motDePasse), ":paramAdmin" => "0"));
                                 $message = "Votre inscription a été prise en compte";
                                 $form = false;
-                                header("Location: ./index.php");
+                                header("Location: ./connexion.php");
+                                // POPUP VOTRE INSCRIPTION A ETE PRISE EN COMPTE
                             }
                              
                             $pdo = null;
@@ -187,6 +188,7 @@
             </div>
         </footer>
     <script type="text/javascript" src="./js/inscription.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
 </body>
 
 </html>

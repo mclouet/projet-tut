@@ -19,7 +19,7 @@
 ?>
 
             <div class="compte">
-                <a>Mon compte</a>
+                <a href="./compte.php">Mon compte</a>
                 <img src="./images/img-profil-photo.png" />
                 <div class="log">
                     <a href="./connexion.php" title="Se déconnecter">

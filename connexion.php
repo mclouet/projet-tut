@@ -66,14 +66,14 @@
                         // Etape 3 : traitement des données retournées
                         $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                         
-                        if ($motDePasseCo == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
+                        if (md5($motDePasseCo) == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
                             echo("Vos mot de passe et pseudo existent dans la BDD");
 //                            $form = false;
                             $_SESSION["pseudoCo"] = $pseudoCo;
+                            header("Location: ./index.php");
                         }
-                        
+                        echo("La connexion a échoué");
                         $pdo = null;
-                        header("Location: ./index.php");
                     } catch(Exception $e) {
                         echo("Exception :".$e->getMessage());
                     }
@@ -127,6 +127,8 @@
                     <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="logo Google+" /></a>
                 </div>
             </footer>
+        
+        <script type="text/javascript" src="./js/script.js"></script>
     </body>
 
     </html>

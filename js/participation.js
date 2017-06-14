@@ -115,7 +115,7 @@ function previewFile() {
 
 function supprimerApercu() {
     var apercu = document.getElementById("apercu");
-    apercu.src = "../images/img-apercu-defaut.jpg";
+    apercu.src = "./images/img-apercu-defaut.jpg";
 
 }
 

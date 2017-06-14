@@ -50,9 +50,15 @@
 
             //ETAPE 2: Envoyer une requête SQL
             if(isset ($_GET["idImg"])){ //si l'idOeuvre a été passée par l'URL
+                
                 $idOeuvre = $_GET["idImg"];
-                $sql = "SELECT IdOeuvre, Titre, GdeOeuvre, Type, DescOeuvre FROM oeuvre WHERE IdOeuvre='".$idOeuvre."'";
-
+                
+                $sql = "SELECT u.Pseudo, u.Biographie, o.GdeOeuvre, o.DescOeuvre, o.Note, o.Titre, o.Type 
+	               FROM OEUVRE o
+	               INNER JOIN UTILISATEUR u
+    	               ON u.Pseudo = o.Pseudo
+                    WHERE o.IdOeuvre='".$idOeuvre."'";
+                
                 $statement = $pdo->prepare($sql);
                 $statement->execute();
 
@@ -61,16 +67,15 @@
                 
         ?> 
                 <h2 class="titreDesc titreRose"><?php echo($ligne["Titre"]); ?></h2>
-            
+                
+                <p id="nomAuteur">Réalisé par <?php echo($ligne["Pseudo"]) ?></p>
         <?php
                 if($ligne["Type"] == "affiche"){
+                    
         ?>
                     <div>
                         <img src="./php/images/<?php echo($ligne["GdeOeuvre"]) ?>" alt="Image <?php $ligne["Titre"] ?>" class="grandeOeuvre" />
-                    </div>
-            
-            
-            
+                    </div>         
             
         <?php
                 }else if($ligne["Type"] == "video"){
@@ -80,9 +85,6 @@
                             <source src="./php/videos/<?php echo($ligne["GdeOeuvre"]) ?>" type="video/mp4" />
                         </video>
                     </div>
-            
-        
-            
         <?php
                 }else{
         ?>
@@ -98,12 +100,14 @@
                      header("Location: ./galerie.php");
             }            
         ?>
-
-            <p class="descOeuvre">
-                <?php
-                echo($ligne["DescOeuvre"]);
-                ?>
-            </p>
+            <div>
+                <h3>Description par l'auteur</h3>
+                <p class="descOeuvre">
+                    <?php
+                    echo($ligne["DescOeuvre"]);
+                    ?>
+                </p>
+            </div>
         </main>
 
         <footer>

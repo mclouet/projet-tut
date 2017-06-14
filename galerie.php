@@ -81,7 +81,7 @@
                     //Boucle sur chaque oeuvre (depuis la BDD)
                     while($ligne != false){
                         
-                        if($ligne["Type"] == "affiche"){
+                        if($ligne["Type"] == "affiche"){ //si le document est de type affiche
                 ?>
                             <!-- ------------------------------------------------------------------ -->
                             <a href="./afficheImage.php?idImg=<?php echo($ligne["IdOeuvre"]) ?>">
@@ -91,13 +91,13 @@
             <!-- --------------------------- PHP ------------------------------------ --> 
             <?php       $compteur++;
                             
-                        }else if($ligne["Type"] == "video"){
+                        }else if($ligne["Type"] == "video"){ //si le doc est de type vidéo
                                        
              ?>
                                 <!-- ------------------------------------------------------------------ -->
-                                <a href="./afficheImage.php">
-                            <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="video" class="enfantGalerie"/>
-                        </a>
+                            <a href="./afficheImage.php?idImg=<?php echo($ligne["IdOeuvre"]) ?>">
+                                <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="video" class="enfantGalerie"/>
+                            </a>
                                 <!-- Vidéo de démonstration :
                         Author: mskrzyp
                         Author webpage: https://vimeo.com/mskrzyp125 
@@ -106,12 +106,12 @@
                                                                                                                                      
             <!-- --------------------------- PHP ------------------------------------ -->                     <?php
                         $compteur++;                                                                                      
-                        }else{
+                        }else{ // si le doc est un audio
             ?>
             <!-- ------------------------------------------------------------------ -->
-                                    <a href="./afficheImage.php?">
-                            <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
-                        </a>    
+                            <a href="./afficheImage.php?idImg=<?php echo($ligne["IdOeuvre"]) ?>">
+                                <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
+                            </a>    
                         
               
             <!-- --------------------------- PHP ------------------------------------ --> 

@@ -57,64 +57,56 @@
         </nav>
 
         <main>
+        <?php
+           //ETAPE 1: connexion à la base de données
+            require("param.inc.php");
+            $pdo = new PDO("mysql:host=".MYHOST.";dbname=".MYDB,MYUSER,MYPASS);
+            $pdo -> query("SET NAMES utf8");
+            $pdo -> query("SET CHARACTER SET 'utf8'");  
+
+            //ETAPE 2: Envoyer une requête SQL
+            if(isset ($_GET["idImg"])){ //si l'idOeuvre a été passée par l'URL
+                $idOeuvre = $_GET["idImg"];
+                $sql = "SELECT IdOeuvre, Titre, Vignette, Type, DescOeuvre FROM oeuvre WHERE IdOeuvre='".$idOeuvre."'";
+
+                $statement = $pdo->prepare($sql);
+                $statement->execute();
+
+            //ETAPE 3: Traiter données retournées
+                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                
+        ?> 
             <h2 class="titreDesc">
-                <?php
-                    if (isset ($_GET["image"])) {
-                         echo($_GET["image"]);
-                    } else if (isset ($_GET["video"])) {
-                        echo($_GET["video"]);
-                    } else if (isset ($_GET["audio"])) {
-                        echo($_GET["audio"]);
-                    }
-                ?> 
+        <?php
+                echo($ligne["Titre"]);
+                
+        ?>
             </h2>
 
+           <!-- <div id="image">
+                <img src="./php/images/grande_<?php ?>" alt="" class="grandeOeuvre" />
+            </div>
+
+            <div id="video">
+                <video controls preload="metadata" data-format="video" class="grandeOeuvre">
+                    <source src="./php/videos/<?php echo($nomFichier); ?>" type="video/mp4" />
+                </video>
+            </div>
+
+            <div id="audio">
+                <audio src="./php/clips-audio/<?php echo($nomAudio); ?>" controls preload="metadata" data-format="audio" class="grandeOeuvre"></audio>
+            </div>
+-->
             <?php
-                if (isset ($_GET["image"])) {
-                    $nomImage = $_GET["image"] ;
+                } else { //si idImg n'existe pas
+                         header("Location: ./galerie.php");
+                }            
             ?>
 
-                <div id="image">
-                    <img src="./php/images/grande_<?php echo ($nomImage); ?>" alt="<?php echo ($nomImage); ?>" class="grandeOeuvre" />
-                </div>
-
-                <?php
-                } else if (isset ($_GET["video"])) {
-                    $nomVideo = $_GET["video"];
-            ?>
-
-                    <div id="video">
-                        <video controls preload="metadata" data-format="video" class="grandeOeuvre">
-                            <source src="./php/videos/<?php echo($nomFichier); ?>" type="video/mp4" />
-                        </video>
-                    </div>
-
-                    <?php
-                } else if (isset ($_GET["audio"])) {
-                    $nomAudio = $_GET["audio"];
-            ?>
-
-                        <div id="audio">
-                            <audio src="./php/clips-audio/<?php echo($nomAudio); ?>" controls preload="metadata" data-format="audio" class="grandeOeuvre"></audio>
-                        </div>
-
-                        <?php
-                     }
-            ?>
-
-                            <p class="descOeuvre">
-                                Description de l'oeuvre par l'auteur
-                                <br />
-                                <?php
-                    if (isset ($_GET["image"])) {
-                         echo($_GET["image"]);
-                    } else if (isset ($_GET["video"])) {
-                        echo($_GET["video"]);
-                    } else if (isset ($_GET["audio"])) {
-                        echo($_GET["audio"]);
-                    }
-                ?>
-                            </p>
+            <p class="descOeuvre">
+                Description de l'oeuvre par l'auteur
+                <br />
+            </p>
         </main>
 
         <footer>

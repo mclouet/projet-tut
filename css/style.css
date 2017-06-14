@@ -26,6 +26,14 @@ main h2 {
     background-image: url("./images-css/img-label-foreground.png");
 }
 
+.gras {
+    font-weight: 700;
+}
+
+.actif {
+    color: #eebd30;
+}
+
 
 /********** BODY *********/
 
@@ -75,8 +83,12 @@ h1 {
     z-index: 1;
 }
 
-.compte>a:first-child {
+.compte>a {
     font-size: 20pt;
+}
+
+.compte a {
+    text-decoration: none;
 }
 
 .compte img:nth-child(2) {
@@ -172,6 +184,10 @@ footer p {
 footer p>a {
     text-decoration: none;
     color: #000000
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 footer div:nth-child(2) {
@@ -365,7 +381,7 @@ footer::after {
 }
 
 
-/*************** CONTACT ET INSCRIPTION ***************/
+/*************** CONTACT ET INSCRIPTION ET CONNEXION (FORMULAIRES) ***************/
 
 .formulaire label {
     display: inline-block;
@@ -432,6 +448,14 @@ footer::after {
 
 .formObli {
     color: red;
+}
+
+.lienInscription {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.lienInscription a {
+    color: #fe5d99;
 }
 
 
@@ -598,10 +622,6 @@ h3 {
     display: inline-block;
     /* OU INLINE-flex ? */
     margin: 10px;
-}
-
-.modalites {
-    font-weight: 700;
 }
 
 

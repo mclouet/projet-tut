@@ -1,5 +1,6 @@
 <?php
     header("Content-type: text/html");
+    require("config.inc.php");
 ?>
     <!DOCTYPE html>
 
@@ -18,26 +19,9 @@
     </head>
 
     <body>
-        <header>
-            <div class="reseauxSoc">
-                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo facebook" /></a>
-                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo twitter" /></a>
-                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo pinterest" /></a>
-                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="Logo instagram" /></a>
-                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo google+" /></a>
-            </div>
-
-            <h1>C'est dans le sac !</h1>
-
-            <div class="compte">
-                <a>Mon compte</a>
-                <img src="./images/img-profil-photo.png" alt="Accès au compte" />
-                <div class="log">
-                    <a href="" title="Se connecter"><img src="./images/img-login.png" alt="Logo de connexion" /></a>
-                    <a href="" title="Se déconnecter"><img src="./images/img-logout.png" alt="Logo de déconnexion" /></a>
-                </div>
-            </div>
-        </header>
+        <?php
+            require("entete.inc.php");
+        ?>
 
         <nav>
             <ul>

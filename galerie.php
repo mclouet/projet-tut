@@ -71,7 +71,7 @@
                     $compteur = 0;
                     $dataNum = 2;
                     //ETAPE 2: Envoyer une requête SQL
-                    $sql = "SELECT Vignette, Type, DescOeuvre FROM oeuvre";
+                    $sql = "SELECT IdOeuvre, Vignette, Type, DescOeuvre FROM oeuvre";
 
                     $statement = $pdo->prepare($sql);
                     $statement->execute();
@@ -84,7 +84,7 @@
                         if($ligne["Type"] == "affiche"){
                 ?>
                             <!-- ------------------------------------------------------------------ -->
-                            <a href="./afficheImage.php">
+                            <a href="./afficheImage.php?idImg=<?php echo($ligne["IdOeuvre"]) ?>">
                                 <img  alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="image" class="enfantGalerie"/>
                             </a> 
                         
@@ -109,7 +109,7 @@
                         }else{
             ?>
             <!-- ------------------------------------------------------------------ -->
-                                    <a href="./afficheImage.php">
+                                    <a href="./afficheImage.php?">
                             <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
                         </a>    
                         

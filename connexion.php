@@ -64,7 +64,7 @@
 
         <?php
             if(!isset($_SESSION["pseudoCo"])) { // Si la session n'existe pas = si l'utilisateur n'est pas connecté
-                echo("salut");
+                echo("Vous n'êtes pas connecté");
                 
                 if (isset($_POST["pseudoCo"])) { // Si le formulaire a été envoyé
                     $pseudoCo = addslashes($_POST["pseudoCo"]);
@@ -86,7 +86,7 @@
                         $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                         
                         if ($motDePasseCo == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
-                            echo("hey cool");
+                            echo("Vos mot de passe et pseudo existent dans la BDD");
                             $form = false;
                             $_SESSION["pseudoCo"] = $pseudoCo;
                         }
@@ -100,7 +100,7 @@
                 } // Fin condition si le formulaire a été envoyé
             } else {// Si la session existe = si l'utilisateur est connecté
                 session_destroy();
-                echo("d'accord");
+                echo("Vous êtes maintenant déconnecté");
                 header("Location: ./index.php");
             }
         ?>

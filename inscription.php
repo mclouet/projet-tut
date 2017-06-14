@@ -74,6 +74,8 @@
                                 $message = "Le pseudo existe déjà";
                                 $form = true;
                             } else { // Si le pseudo n'existe pas
+                                //$pseudoHash = 
+                                echo(hash("tiger192,3", $pseudoCo, bool $raw_output = false));
                                 $sql = "INSERT INTO UTILISATEUR(Pseudo, AdMail, MotDePasse, Admin) VALUES (:paramPseudo, :paramMail, :paramMdp, :paramAdmin)";
                                 $statement = $pdo->prepare($sql);
                                 $statement->execute(array(":paramPseudo" => $pseudo, ":paramMail" => $email, ":paramMdp" => $motDePasse, ":paramAdmin" => "0"));

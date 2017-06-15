@@ -386,7 +386,7 @@ footer::after {
     vertical-align: middle;
 }
 
-.formulaire input:not([type=submit]),
+.formulaire input:not([type=submit]):not([type=radio]),
 .formulaire textarea {
     width: 375px;
     vertical-align: middle;
@@ -451,6 +451,21 @@ footer::after {
 
 .lienInscription a {
     color: #fe5d99;
+}
+
+.radioContact {
+    display: inline-block;
+    margin-left: 125px;
+    margin-top: 15px;
+}
+
+.contact input[type=radio]+label {
+    text-align: left;
+}
+
+.contact input[type=radio] {
+    height: auto;
+    background: none;
 }
 
 
@@ -577,6 +592,7 @@ footer::after {
 
 
 /*************** AFFICHE IMAGE ***************/
+
 .grandeOeuvre {
     border: 20px solid transparent;
     border-image: url("./images-css/img-media-4-foreground.png") 70 45;
@@ -592,17 +608,18 @@ footer::after {
     margin-bottom: 30px;
 }
 
-h3{
+h3 {
     text-align: center;
     font-size: 18pt;
     margin: 0;
 }
 
-#nomAuteur{
+#nomAuteur {
     text-align: right;
     margin-right: 15%;
     font-family: 'Open Sans Condensed', sans-serif;
 }
+
 
 /*************** MODALITES ***************/
 

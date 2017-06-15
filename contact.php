@@ -46,7 +46,15 @@
     <main>
         <h2 class="titreVert">Contactez-nous !</h2>
 
-        <form method="post" action="" class="formulaire">
+        <form method="post" action="" class="formulaire contact">
+            <div class="radioContact">
+                <input type="radio" name="contact" value="participation" id="radioParticipation" />
+                <label for="radioParticipation">Participation</label>
+                <input type="radio" name="contact" value="sponsor" id="radioSponsor" />
+                <label for="radioSponsor">Devenir sponsor</label>
+                <input type="radio" name="contact" value="autre" id="radioAutre" />
+                <label for="radioAutre">Autre</label>
+            </div>
             <div>
                 <label for="nom">Nom<span class="formObli">*</span></label>
                 <input id="nom" name="nom" type="text" placeholder="CABADIX" required="required" />

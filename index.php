@@ -41,9 +41,10 @@
         </ul>
     </nav>
     <main class="illustrationsIndex">
-        <h2 class="titreVert">Bonjour et bienvenue !</h2>
+        <h2 class="titreVert">Concours Cabadix</h2>
         <div id="presentationSite">
             <p>
+                Bonjour et bienvenue !
                 Ici, nous avons à coeur la protection de la planète et nous organisons un concours pour lutter contre un fléau encore trop présent : les sacs plastiques.
                 <br/>Vous pourrez libérer votre créativité au travers d'affiches, de clips audio et de vidéos.
                 <br/>Les 10 gagnants se verront remettre des lots, dont des sacs CABADIX !

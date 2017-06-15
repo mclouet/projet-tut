@@ -44,6 +44,9 @@
         </nav>
 
         <main>
+            
+            <a href="galerie.php"><img src="./css/images-css/img-fleche-precedent.png" alt="Flèche page précedente" id="retour"/></a>
+            
         <?php
            //ETAPE 1: connexion à la base de données
             require("param.inc.php");

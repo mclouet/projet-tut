@@ -95,20 +95,18 @@
 
             <!-- ---------------------- PHP ----------------- -->
 
-            <?php
+<?php
     
     // Configuration avant l'envoi du mail
-    $destinataire = "marie.clouet.etu@univ-lemans.fr"; // Destinataire de l'email
-//    $destinataire = "marie.clouet.etu@univ-lemans.fr" . ", "; // notez la virgule
-//    $copie = "oui"; // Copie envoyée à l'utilisateur
-//    $formAction = ""; // Pas d'action de formulaire
+    $destinataire = "marie.clouet.etu@univ-lemans.fr" . ", "; // Destinataire de l'email
+    
+    // POPUP
     $messageEnvoye = "Votre message nous est bien parvenu !"; // Message de confirmation si l'email a bien été envoyé
     $messageNonEnvoye = "L'envoi de l'email a échoué. Vous pouvez réessayer !"; // Message de confirmation si l'email n'a pas été envoyé
     
     if (isset($_POST["nom"]) and isset($_POST["contact"])) { // Si le formulaire a été envoyé et qu'un bouton radio est coché
 
         if(preg_match('#^(([a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+\.?)*[a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+)@(([a-z0-9-_]+\.?)*[a-z0-9-_]+)\.[a-z]{2,}$#i',$_POST["mail"])) { // Si l'email est valide
-            echo 'l\'email est valide';
 
             if ($_POST["contact"] == "participation") { // Si le bouton radio coché est "Participation"
                 $objet = "Contact participation &#124; CDLS";
@@ -130,54 +128,16 @@
             }
 
             // Stockage du message
-            $message = $coordonnees."\r\n".$_POST["message"];
+            $message = $coordonnees."\r\nMessage :\r\n".$_POST["message"];
 
             // Remplacement de certains caractères spéciaux
-//                $message = str_replace("&#039;","'",$message);
-//                $message = str_replace("&#8217;","'",$message);
-//                $message = str_replace("&quot;",'"',$message);
-//                $message = str_replace('<br>','',$message);
-//                $message = str_replace('<br />','',$message);
-//                $message = str_replace("&lt;","<",$message);
-//                $message = str_replace("&gt;",">",$message);
-//                $message = str_replace("&amp;","&",$message);
+            $objet = str_replace("&#124;","|",$objet);
 
             // Envoi du message
-            echo $message;
-            echo 'objet : '.$objet;
-            if(mail($destinataire, $objet, $message)) {
-                echo 'BRAVO C\'EST ENVOYE';
-            }
-
-
-
-//    // Le message
-//    $message = "Line 1\r\nLine 2\r\nLine 3";
-//    // Plusieurs destinataires
-//    $to = "xxxxxxxx@univ-lemans.fr" . ", "; // notez la virgule
-//    $to .= "xxxxxxxx@gmail.xxx";
-//    // Envoi du mail
-//    mail($to, 'Mon Sujet', $message);
-
-//    $headers  = 'MIME-Version: 1.0' . "\r\n";
-//    $headers .= 'From:'.$nom.' <'.$email.'>' . "\r\n" .
-//    'Reply-To:'.$email. "\r\n" .
-//    'Content-Type: text/plain; charset="utf-8"; DelSp="Yes"; format=flowed '."\r\n" .
-//    'Content-Disposition: inline'. "\r\n" .
-//    'Content-Transfer-Encoding: 7bit'." \r\n" .
-//    'X-Mailer:PHP/'.phpversion();
-//
-//    // envoyer une copie au visiteur ?
-//    if ($copie == 'oui')
-//    {
-//    $cible = $destinataire.';'.$email;
-//    }
-//    else
-//    {
-//    $cible = $destinataire;
-//    };
+            mail($destinataire, $objet, $message);
 
         } else { // Si l'email n'est pas valide
+            //POPUP
             echo('<script language="javascript">');
             echo('alert("Votre email n\'est pas valide. Veuillez la ressaisir")');
             echo('</script>');

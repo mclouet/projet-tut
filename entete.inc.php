@@ -43,5 +43,5 @@
 
 <?php
     }
-?>
-    </header>
+?> 
+</header>

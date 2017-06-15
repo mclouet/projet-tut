@@ -30,9 +30,20 @@
         }
 
         //gestion Popup connexion
+        $('<div id="popupCo"></div>').prependTo("main"); //création d'une div dans laquelle on mettra les messages
+        
         var boutonLogIn = $("#logIn");
-        boutonLogIn.click(preparerDialog);
-
+        boutonLogIn.click(afficherDialog);
+        
+        var popupCo = $("#popupCo");
+        
+        popupCo.dialog({
+            autoOpen: false,
+            modal: true,
+            title: "Connexion",
+            width: 500,
+            height: 300
+        })
         
     }
 
@@ -60,21 +71,9 @@
 
     }
     
-    function preparerDialog(evt){
-        $("<div></div>").prependTo("main");
-        var popup = $("#dialog");
-        
-        popup.dialog({
-            modal: true,
-            title: "Connexion",
-            position: 'center',
-            resizable: false
+    function afficherDialog(evt){
+        $("#popupCo").load('./connexion.php', function(){
+            $("#popupCo").dialog("open");
         })
-        
-        function afficherDialog(){
-            popup.load('./connexion.php',function(){
-                popup.dialog("open");
-            })
-        }
     }
 }())

@@ -24,6 +24,7 @@ function initialiser(evt) {
     }
     
     inputImage.addEventListener("change", previewFile);
+//    inputImage.addEventListener("change", verifierFichier);
 }
 
 function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur d'ajouter une vignette pour vidéo ou clip audio
@@ -133,10 +134,7 @@ function supprimerApercu() { // Aperçu par défaut
 
 }
 
-//function reset() { // Supprimer les fichiers uploadés lors d'un clic sur un bouton radio
-//    var inputFile = document.getElementById("monFichier");
-//    var inputVig = document.getElementById("vignetteMonFichier");
-//    
-//    inputFile.reset();
-//    inputVig.reset();
+//function verifierFichier() {
+//    var formData = new FormData();
+//    formData.append("vignette", file);
 //}

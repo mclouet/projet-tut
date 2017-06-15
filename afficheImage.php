@@ -43,10 +43,7 @@
             </ul>
         </nav>
 
-        <main>
-            
-            <a href="galerie.php"><img src="./css/images-css/img-fleche-precedent.png" alt="Flèche page précedente" id="retour"/></a>
-            
+        <main>        
         <?php
            //ETAPE 1: connexion à la base de données
             require("param.inc.php");
@@ -73,8 +70,13 @@
                 
         ?> 
                 <h2 class="titreDesc titreRose"><?php echo($ligne["Titre"]); ?></h2>
-                
-                <p id="nomAuteur">Réalisé par <?php echo($ligne["Pseudo"]) ?></p>
+            
+                <div class="retour">
+                    <a href="./galerie.php">
+                        <img src="./css/images-css/img-fleche-precedent.png" alt="Flèche page précedente"/>
+                    </a>                
+                    <p id="nomAuteur">Réalisé par <?php echo($ligne["Pseudo"]) ?></p>
+                </div>
         <?php
                 if($ligne["Type"] == "affiche"){
                     

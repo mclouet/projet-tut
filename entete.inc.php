@@ -35,13 +35,13 @@
 
                 <div class="compte">
                     <div class="log">
-                        <a href="./connexion.php" title="Se connecter">
-                            <img src="./images/img-login.png" />
+                        <a title="Se connecter" id="logIn">
+                            <img src="./images/img-login.png"/>
                         </a>
                     </div>
                 </div>
 
 <?php
     }
-?>
-    </header>
+?> 
+</header>

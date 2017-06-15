@@ -179,6 +179,7 @@
     </footer>
     
     <script type="text/javascript" src="./js/script.js"></script>
+    <script src="./js/jquery-3.2.1.js"></script>
 </body>
 
 </html>

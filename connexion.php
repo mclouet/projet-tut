@@ -43,7 +43,9 @@
 
         <!-- ---------------------- PHP ----------------- -->
 
-        <?php
+        <?php        
+        $classConnecte = "";
+        
             if(!isset($_SESSION["pseudoCo"])) { // Si la session n'existe pas = si l'utilisateur n'est pas connecté
                 
                 if (isset($_POST["pseudoCo"])) { // Si le formulaire a été envoyé
@@ -66,12 +68,13 @@
                         $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                         
                         if (md5($motDePasseCo) == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
-                            echo("Vos mot de passe et pseudo existent dans la BDD");
+                            /*echo("Vos mot de passe et pseudo existent dans la BDD");*/
+                            $classConnecte = "visible";
 //                            $form = false;
                             $_SESSION["pseudoCo"] = $pseudoCo;
-                            header("Location: ./index.php");
+                            /*header("Location: ./index.php");*/
                         }
-                        echo("La connexion a échoué");
+                       /* echo("La connexion a échoué");*/
                         $pdo = null;
                     } catch(Exception $e) {
                         echo("Exception :".$e->getMessage());
@@ -81,7 +84,7 @@
             } else {// Si la session existe = si l'utilisateur est connecté
                 session_destroy();
                 //echo("Vous êtes maintenant déconnecté");
-                header("Location: ./index.php");
+               /* header("Location: ./index.php");*/
             }
         ?>
 
@@ -108,7 +111,13 @@
                 </form>
                 
                 <p class="lienInscription">Pas encore de compte ? <a href="./inscription.php">Inscrivez-vous !</a></p>
-
+                <div class="flou <?php echo($classConnecte) ?>">
+                    <div class="popup <?php echo($classConnecte) ?>">
+                        <h3>Connexion</h3>
+                        <p>Vous êtes bien connecté</p>
+                        <a href="./index.php">Retourner à l'accueil</a>
+                    </div>
+                </div>
             </main>
 
             <footer>
@@ -126,8 +135,9 @@
                     <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="logo Google+" /></a>
                 </div>
             </footer>
-        
+        <script src="./js/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="./js/script.js"></script>
+        
     </body>
 
     </html>

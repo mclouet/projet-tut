@@ -714,3 +714,38 @@ h3 {
     display: block;
     text-align: left;
 }
+
+
+
+/********************** POPUPS *********************/
+.popup{
+    height: 350px;
+    width: 550px;
+    position: absolute;
+    display: none;
+    top: 33.3333333333333333333333333333%;
+    left: 30%;
+    padding: 25px; 
+    box-sizing: border-box;
+    background-image: url(images-css/img-popup-fond.png); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 8000;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.popup.visible, .flou.visible{
+    display: block;
+}
+
+.flou{
+    background-color: rgba(221, 221, 221, 0.5);
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+}

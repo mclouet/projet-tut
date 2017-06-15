@@ -46,7 +46,8 @@
     <!-- ---------------------- PHP ----------------- -->
 
     <?php
-    
+        $form = "";
+        $message = "";
         if (isset($_POST["pseudo"]) and $_POST["pseudo"] != "") { // Si le formulaire a été envoyé
             if ($_POST["motDePasse"] == $_POST["verifMdp"]) { // Si le mot de passe de vérification correspond au mot de passe
                 if (strlen($_POST["motDePasse"]) >= 6) { // Si le mot de passe contient au moins 6 caractères
@@ -189,6 +190,8 @@
         </footer>
     <script type="text/javascript" src="./js/inscription.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
+    <script src="./js/jquery-3.2.1.js"></script>
+    <script src="./jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 </body>
 
 </html>

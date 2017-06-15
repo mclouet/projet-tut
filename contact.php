@@ -98,9 +98,8 @@
             <?php
     
     // Configuration avant l'envoi du mail
-    //$destinataire = "marie.clouet.etu@univ-lemans.fr"; // Destinataire de l'email
-    $destinataire = "marie.clouet.etu@univ-lemans.fr" . ", "; // notez la virgule
-    $to .= "clouet.marie@gmail.com";
+    $destinataire = "marie.clouet.etu@univ-lemans.fr"; // Destinataire de l'email
+//    $destinataire = "marie.clouet.etu@univ-lemans.fr" . ", "; // notez la virgule
 //    $copie = "oui"; // Copie envoyée à l'utilisateur
 //    $formAction = ""; // Pas d'action de formulaire
     $messageEnvoye = "Votre message nous est bien parvenu !"; // Message de confirmation si l'email a bien été envoyé

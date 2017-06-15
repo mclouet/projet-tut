@@ -6,7 +6,7 @@ function initialiser(evt) {
     var btnRadioVideo = document.getElementById("radioVideo");
     var btnRadioAudio = document.getElementById("radioAudio");
     var btnRadioAffiche = document.getElementById("radioAffiche");
-    var inputMonFichier = document.getElementById("monFichier");
+//    var inputMonFichier = document.getElementById("monFichier");
 
     btnRadioAffiche.addEventListener("click", supprimerBtnIco);
     btnRadioVideo.addEventListener("click", afficherBtnIco);
@@ -15,7 +15,16 @@ function initialiser(evt) {
     btnRadioVideo.addEventListener("click", arreter);
     btnRadioAudio.addEventListener("click", arreter);
 
-    inputMonFichier.addEventListener("change", previewFile);
+//    inputMonFichier.addEventListener("change", previewFile);
+    
+    if (document.querySelector("#vignetteMonFichier")) {
+        var inputImage = document.querySelector("#vignetteMonFichier");
+    } else {
+        var inputImage = document.querySelector("#monFichier");
+    }
+    
+    inputImage.addEventListener("change", previewFile);
+//    inputImage.addEventListener("change", verifierFichier);
 }
 
 function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur d'ajouter une vignette pour vidéo ou clip audio
@@ -51,7 +60,9 @@ function afficherBtnIco(evt) { // Afficher un bouton permettant à l'utilisateur
 
     inputMonFichier.removeEventListener("change", previewFile);
 
-    supprimerApercu();
+    btnVideo.addEventListener("click", supprimerApercu);
+    btnAudio.addEventListener("click", supprimerApercu);
+    //supprimerApercu();
 }
 
 function arreter(evt) {
@@ -76,24 +87,28 @@ function supprimerBtnIco(evt) { // Supprimer le bouton permettant à l'utilisate
         btnAjoutIco.remove();
         labelAjoutIco.remove();
         background.style.width = "520px";
-        // A REVOIR : remettre écouteur de clic après avoir cliqué sur affiche
         btnVid.addEventListener("click", afficherBtnIco);
         btnAud.addEventListener("click", afficherBtnIco);
         btnVid.addEventListener("click", arreter);
         btnAud.addEventListener("click", arreter);
-        supprimerApercu();
+        
+        //supprimerApercu();
+        btnVid.addEventListener("click", supprimerApercu);
+        btnAud.addEventListener("click", supprimerApercu);
     }
 }
 
-function previewFile() {
+function previewFile() { // Aperçu de la vignette
     var btnRadioAffiche = document.getElementById("radioAffiche");
 
-    if (document.querySelector("#vignetteMonFichier")) {
-        var file = document.querySelector("#vignetteMonFichier").files[0];
-        btnRadioAffiche.addEventListener("click", supprimerBtnIco);
-    } else {
-        var file = document.querySelector("#monFichier").files[0];
-    }
+//    if (document.querySelector("#vignetteMonFichier")) {
+//        var file = document.querySelector("#vignetteMonFichier").files[0];
+//        btnRadioAffiche.addEventListener("click", supprimerBtnIco);
+//    } else {
+//        var file = document.querySelector("#monFichier").files[0];
+//    }
+    
+    var file = this.files[0];
 
     var preview = document.querySelector("#apercu");
     var reader = new FileReader();
@@ -113,16 +128,13 @@ function previewFile() {
     }
 }
 
-function supprimerApercu() {
+function supprimerApercu() { // Aperçu par défaut
     var apercu = document.getElementById("apercu");
     apercu.src = "./images/img-apercu-defaut.jpg";
 
 }
 
-//function reset() { // Supprimer les fichiers uploadés lors d'un clic sur un bouton radio
-//    var inputFile = document.getElementById("monFichier");
-//    var inputVig = document.getElementById("vignetteMonFichier");
-//    
-//    inputFile.reset();
-//    inputVig.reset();
+//function verifierFichier() {
+//    var formData = new FormData();
+//    formData.append("vignette", file);
 //}

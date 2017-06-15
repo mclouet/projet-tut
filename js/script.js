@@ -28,22 +28,6 @@
             var descOeuvre = document.querySelector(".descOeuvre");
             descOeuvre.style.color = couleurs[laCouleur];
         }
-
-        //gestion Popup connexion
-        $('<div id="popupCo"></div>').prependTo("main"); //création d'une div dans laquelle on mettra les messages
-        
-        var boutonLogIn = $("#logIn");
-        boutonLogIn.click(afficherDialog);
-        
-        var popupCo = $("#popupCo");
-        
-        popupCo.dialog({
-            autoOpen: false,
-            modal: true,
-            title: "Connexion",
-            width: 500,
-            height: 300
-        })
         
     }
 
@@ -69,11 +53,5 @@
     function supprimerCouleur(evt) {
         this.style.color = "#000000";
 
-    }
-    
-    function afficherDialog(evt){
-        $("#popupCo").load('./connexion.php', function(){
-            $("#popupCo").dialog("open");
-        })
     }
 }())

@@ -128,8 +128,7 @@
                 <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo Google+" /></a>
             </div>
         </footer>
-        
-        <script type="text/javascript" src="./js/script.js"></script>
     </body>
+    <script src="./js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
     </html>

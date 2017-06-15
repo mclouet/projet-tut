@@ -602,10 +602,11 @@ footer::after {
 
 .descOeuvre {
     font-family: 'Open Sans Condensed', sans-serif;
-    text-align: middle;
     font-size: 15pt;
     display: inline-flex;
     margin-bottom: 30px;
+    width: 70%;
+    justify-content: center;
 }
 
 h3 {

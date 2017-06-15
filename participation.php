@@ -132,8 +132,8 @@
 
                                         copy($_FILES["monFichier"]["tmp_name"], "./php/images/grande_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./images/
 
-                                        require("convertirImage700x700.inc.php");
-                                        convertirImage700x700($_FILES["monFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["monFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                        require("convertirImage200x200.inc.php");
+                                        convertirImage200x200($_FILES["monFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["monFichier"]["name"]); // Copie de la vignette dans ./vignettes/
 
                                         try {
                                             // Etape 1 : connexion au serveur de base de données
@@ -169,8 +169,8 @@
 
                                             copy($_FILES["monFichier"]["tmp_name"], "./php/videos/vid_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./videos/
 
-                                            require("convertirImage700x700.inc.php");
-                                            convertirImage700x700($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                            require("convertirImage200x200.inc.php");
+                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
 
                                             try {
                                                 // Etape 1 : connexion au serveur de base de données
@@ -214,8 +214,8 @@
                                             
                                             copy($_FILES["monFichier"]["tmp_name"], "./php/clips-audio/aud_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./clips-audio/
 
-                                            require("convertirImage700x700.inc.php");
-                                            convertirImage700x700($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                            require("convertirImage200x200.inc.php");
+                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
 
                                             try {
                                                 // Etape 1 : connexion au serveur de base de données

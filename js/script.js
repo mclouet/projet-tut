@@ -28,8 +28,24 @@
             var descOeuvre = document.querySelector(".descOeuvre");
             descOeuvre.style.color = couleurs[laCouleur];
         }
+        
+        //écouteur sur le bouton pour fermer les popups d'erreur
+        $(".fermer").click(fermerPopup);
     }
 
+    function fermerPopup(evt){        
+        var divMessage = $(".popup.visible");
+        var divFlou = $(".flou.visible");
+        
+        divFlou.css({
+            display: "none"
+        })
+        
+        divMessage.css({
+            display: "none"
+        })
+    }
+    
     function supprimerCouleur(evt) {
         var actif = document.getElementsByClassName("actif");
 

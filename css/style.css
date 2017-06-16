@@ -465,6 +465,9 @@ footer::after {
     background: none;
 }
 
+input:focus{
+    outline: transparent;
+}
 
 /*************** COMPTE ***************/
 
@@ -831,16 +834,65 @@ h3 {
     left: 30%;
     padding: 25px;
     box-sizing: border-box;
-    background-image: url(images-css/img-popup-fond.png);
+    background-image: url("images-css/img-popup-fond.png"); 
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 8000;
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.popup.visible,
-.flou.visible {
+.popup.visible, .flou.visible{
+    display: inline;
+    flex-wrap: wrap;
+}
+
+.popup.visible h3{
+    width: 100%;
+}
+
+.popup.visible a{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    display: inline-flex;
+    width: 150px;
+    height: 40px;
+    justify-content: space-around;
+}
+
+.popup.visible a:first-of-type{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.popup.visible a:last-of-type{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+}
+
+.fermer{
+    width: 120px;
+    height: 40px;
     display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    background-color: transparent;
+    background-image: url("./images-css/img-affiches-foreground.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    font-family: 'Amatic SC', cursive;
+    font-size: 20pt;
 }
 
 .flou {

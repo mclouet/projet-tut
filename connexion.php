@@ -70,10 +70,8 @@
                         if (md5($motDePasseCo) == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
                             /*echo("Vos mot de passe et pseudo existent dans la BDD");*/
                             $classConnecte = "visible";
-//                            $form = false;
                             $_SESSION["pseudoCo"] = $pseudoCo;
                             $_SESSION["motDePasseCo"] = $motDePasseCo;
-                            /*header("Location: ./index.php");*/
                         }
                        /* echo("La connexion a échoué");*/
                         $pdo = null;
@@ -82,11 +80,22 @@
                     }
 
                 } // Fin condition si le formulaire a été envoyé
-            } else {// Si la session existe = si l'utilisateur est connecté
-                session_destroy();
+            } else {// Si la session existe = si l'utilisateur est connecté              
+                
                 //echo("Vous êtes maintenant déconnecté");
-               /* header("Location: ./index.php");*/
-            }
+                ?>
+                <div class="flou <?php echo($classConnecte)?>">
+                     <div class="popup <?php echo($classConnecte) ?>">
+                        <h3>Déconnexion</h3>
+                        <p>Vous êtes maintenant déconnecté</p>
+                        <a href="./index.php" class="titreRose">Retourner à l'accueil</a>
+                    </div>
+                </div>
+        
+        
+        <?php
+            session_destroy();
+            } //fin else
         ?>
 
 
@@ -116,7 +125,7 @@
                     <div class="popup <?php echo($classConnecte) ?>">
                         <h3>Connexion</h3>
                         <p>Vous êtes bien connecté</p>
-                        <a href="./index.php">Retourner à l'accueil</a>
+                        <a href="./index.php" class="titreRose">Retourner à l'accueil</a>
                     </div>
                 </div>
             </main>

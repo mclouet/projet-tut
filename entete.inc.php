@@ -19,8 +19,9 @@
 ?>
 
             <div class="compte">
-                <a href="./compte.php">Mon compte</a>
-                <img src="./images/img-profil-photo.png" />
+                <a href="./compte.php">Mon compte
+                    <img src="./images/img-profil-photo.png" />
+                </a>
                 <div class="log">
                     <a href="./connexion.php" title="Se déconnecter">
                         <img src="./images/img-logout.png" />
@@ -35,7 +36,7 @@
 
                 <div class="compte">
                     <div class="log">
-                        <a title="Se connecter" id="logIn">
+                        <a href="./connexion.php" title="Se connecter" id="logIn">
                             <img src="./images/img-login.png"/>
                         </a>
                     </div>

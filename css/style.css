@@ -79,15 +79,12 @@ h1 {
     z-index: 1;
 }
 
-.compte>a {
+.compte a {
+    text-decoration: none;
     font-size: 20pt;
 }
 
-.compte a {
-    text-decoration: none;
-}
-
-.compte img:nth-child(2) {
+.compte img {
     width: 50px;
 }
 
@@ -469,6 +466,113 @@ footer::after {
 }
 
 
+/*************** COMPTE ***************/
+
+#monCompte label {
+    font-size: 13pt;
+}
+
+
+/* Biographie */
+
+#monCompte>div:first-child {
+    width: auto;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: middle;
+}
+
+#monCompte>div:first-child label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#monCompte textarea {
+    resize: none;
+    background-image: url(images-css/img-background-biographie.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 10px;
+    border: none;
+}
+
+
+/* Mot de passe et email */
+
+#monCompte>div:nth-child(2) {
+    width: 525px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.formulaireCompte {
+    width: 550px;
+}
+
+.formulaireCompte label {
+    display: inline-block;
+    width: 160px;
+    text-align: right;
+}
+
+.formulaireCompte input:not([type=submit]) {
+    width: 285px;
+    height: 35px;
+    padding: 5px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    margin: 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    background-image: url(images-css/img-background-compte.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.formulaireCompte:nth-child(2) {
+    margin-top: 25px;
+}
+
+
+/* Oeuvres */
+
+#monCompte>div:last-child {
+    margin-top: 15px;
+}
+
+#monCompte>div:last-child .oeuvreCompte {
+    max-width: 200px;
+    border: 16px solid transparent;
+    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
+    box-sizing: border-box;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+#monCompte>div:last-child div {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#monCompte>div:last-child div>img {
+    width: 35px;
+}
+
+#monCompte h3 {
+    font-size: 15pt;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-top: 55px;
+}
+
+
 /*************** PARTICIPATION ***************/
 
 #divParticipation {
@@ -716,29 +820,30 @@ h3 {
 }
 
 
-
 /********************** POPUPS *********************/
-.popup{
+
+.popup {
     height: 350px;
     width: 550px;
     position: absolute;
     display: none;
     top: 33.3333333333333333333333333333%;
     left: 30%;
-    padding: 25px; 
+    padding: 25px;
     box-sizing: border-box;
-    background-image: url(images-css/img-popup-fond.png); 
+    background-image: url(images-css/img-popup-fond.png);
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 8000;
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.popup.visible, .flou.visible{
+.popup.visible,
+.flou.visible {
     display: block;
 }
 
-.flou{
+.flou {
     background-color: rgba(221, 221, 221, 0.5);
     z-index: 100;
     width: 100vw;

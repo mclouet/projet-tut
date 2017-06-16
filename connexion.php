@@ -72,6 +72,7 @@
                             $classConnecte = "visible";
 //                            $form = false;
                             $_SESSION["pseudoCo"] = $pseudoCo;
+                            $_SESSION["motDePasseCo"] = $motDePasseCo;
                             /*header("Location: ./index.php");*/
                         }
                        /* echo("La connexion a échoué");*/

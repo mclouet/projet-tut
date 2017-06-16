@@ -18,7 +18,7 @@
 
     <body>
 
-        <?php
+    <?php
         require("entete.inc.php");
     ?>
 
@@ -77,8 +77,13 @@
 //                    } catch(Exception $e) {
 //                        echo("Exception :".$e->getMessage());
 //                    }
+                
+                    if(isset($_SESSION["pseudoCo"])) { // Si l'utilisateur est connecté
+                        $pseudoCo = addslashes($_POST["pseudoCo"]);
+                        $motDePasseCo = addslashes($_POST["motDePasseCo"]);
+                        
             
-?>
+                ?>
 
                     <div id="monCompte">
                         <div>
@@ -86,7 +91,33 @@
                             <form action="compte.php" id="formBio" method="post" class="">
                                 <div>
                                     <label for="newBio">Nouvelle biographie</label>
-                                    <textarea name="newBio" rows="7" cols="35" id="newBio" required="required"></textarea>
+                                    <textarea name="newBio" rows="7" cols="35" id="newBio" required="required">
+                                        <?php
+                                            // Afficher la biographie actuelle de l'utilisateur
+                                            try {
+                                                // Etape 1 : connexion au serveur de base de données
+                                                require("param.inc.php");
+                                                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                                $pdo->query("SET NAMES utf8");
+                                                $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                                // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER BIOGRAPHIE
+                                                $sql = "SELECT Biographie FROM UTILISATEUR WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+                                                $statement = $pdo->query($sql);
+
+                                                // Etape 3 : traitement des données retournées
+                                                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+
+                                                if ($ligne != false) {
+                                                    echo $ligne["Biographie"];
+                                                }
+                                                
+                                                $pdo = null;
+                                            } catch(Exception $e) {
+                                                echo("Exception :".$e->getMessage());
+                                            }
+                                        ?>
+                                    </textarea>
                                 </div>
                                 <div>
                                     <input type="submit" value="Mettre à jour" class="inputSubmit" />
@@ -139,16 +170,165 @@
                         <h3 class="titreRose">Mes oeuvres</h3>
 
                         <div>
-                            <img src="./images/img-apercu-defaut.jpg" alt="" class="oeuvreCompte" />
-                            <img src="./images/img-apercu-defaut.jpg" alt="" class="oeuvreCompte" />
-                            <img src="./images/img-apercu-defaut.jpg" alt="" class="oeuvreCompte" />
+                            <img src="./images/img-apercu-defaut.jpg" alt="Affiche de ..." class="oeuvreCompte" />
+                            <img src="./images/img-apercu-defaut.jpg" alt="Vidéo de ..." class="oeuvreCompte" />
+                            <img src="./images/img-apercu-defaut.jpg" alt="Clip audio de ..." class="oeuvreCompte" />
                             <div>
-                                <img src="./images/img-bouton-supprimer.png" alt="" />
-                                <img src="./images/img-bouton-supprimer.png" alt="" />
-                                <img src="./images/img-bouton-supprimer.png" alt="" />
+                                <img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de l'affiche" />
+                                <img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de la vidéo" />
+                                <img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression du clip audio" />
                             </div>
                         </div>
                     </div>
+
+                <?php
+                        if(isset($_POST["newBio"])) { // Si l'utilisateur modifie sa biographie : traitement textarea
+                            
+                            $biographie = addslashes($_POST["newBio"]);
+                            try {
+                                // Etape 1 : connexion au serveur de base de données
+                                require("param.inc.php");
+                                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                $pdo->query("SET NAMES utf8");
+                                $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                // Etape 2 : envoi de la requête SQL au serveur AJOUTER BIOGRAPHIE
+                                $sql = "UPDATE UTILISATEUR SET Biographie = '".$biographie."' WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+                                $statement = $pdo->query($sql);
+
+                                $pdo = null;
+                                
+                                echo 'Biographie bien modifiée'; // POPUP
+                            } catch(Exception $e) {
+                                echo("Exception :".$e->getMessage());
+                            }
+                           
+                            
+                        } else if(isset($_POST["oldMdp"])) { // Si l'utilisateur modifie son mot de passe : traitement form 1
+
+                            if($_POST["newMdp"] == $_POST["newMdpVerif"]) { // Si le mot de passe et le mot de passe de vérification sont identiques
+                                
+                                if (strlen($_POST["newMdp"]) >= 6) { // Si le mot de passe contient au moins 6 caractères
+                                
+                                    // Etape 1 : connexion au serveur de base de données
+                                    require("param.inc.php");
+                                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                    $pdo->query("SET NAMES utf8");
+                                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO ET MOT DE PASSE
+                                    $sql = "SELECT Pseudo, MotDePasse FROM UTILISATEUR WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+                                    $statement = $pdo->query($sql);
+
+                                    // Etape 3 : traitement des données retournées
+                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                    if ($ligne != false) {
+                                        $utilisateur = $ligne["Pseudo"];
+                                        $mdpUtilisateur = $ligne["MotDePasse"];
+
+                                        if(md5($_POST["oldMdp"]) == $mdpUtilisateur) { // Si le mot de passe entré est bon et qu'il correspond à celui de l'utilisateur connecté
+                                            
+                                                $motDePasse = addslashes($_POST["newMdp"]);
+                                                $mdp = md5($motDePasse);
+                                                try {
+                                                    // Etape 1 : connexion au serveur de base de données
+                                                    require("param.inc.php");
+                                                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                                    $pdo->query("SET NAMES utf8");
+                                                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                                    // Etape 2 : envoi de la requête SQL au serveur AJOUTER NOUVEAU MOT DE PASSE
+                                                    $sql = "UPDATE UTILISATEUR SET MotDePasse = '".$mdp."' WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+                                                    $statement = $pdo->query($sql);
+
+                                                    $pdo = null;
+                                                    echo 'Mot de passe bien modifié'; // POPUP
+                                                } catch(Exception $e) {
+                                                    echo("Exception :".$e->getMessage());
+                                                }
+
+                                        } else { // Si l'ancien mot de passe entré n'est pas bon
+                                            echo 'mauvais ancien mot de passe'; // POPUP
+                                        }
+                                    }
+
+                                    if($pdo != null) {
+                                        $pdo = null;
+                                    }
+                                
+                                } else { // Si le mot de passe contient moins de 6 caractères
+                                            echo 'mdp trop court'; // POPUP
+                                }
+                            } else { // Si le mot de passe et le mot de passe de vérification sont différents
+                                echo 'mdp et mdp verif différents'; // POPUP
+                            } // Fin condition mot de passe et vérification
+                            
+                            
+                        } else if(isset($_POST["oldMail"])) { // Si l'utilisateur modifie son adresse email : traitement form 2
+                            
+                            if($_POST["newMail"] == $_POST["newMailVerif"]) { // Si les champs nouvelle adresse et vérification sont identiques
+                                if(preg_match('#^(([a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+\.?)*[a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+)@(([a-z0-9-_]+\.?)*[a-z0-9-_]+)\.[a-z]{2,}$#i',$_POST["newMail"])) { // Si la nouvelle adresse entrée est au bon format
+                                    // Etape 1 : connexion au serveur de base de données
+                                    require("param.inc.php");
+                                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                    $pdo->query("SET NAMES utf8");
+                                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO ET MAIL
+                                    $sql = "SELECT Pseudo, AdMail FROM UTILISATEUR WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+                                    $statement = $pdo->query($sql);
+
+                                    // Etape 3 : traitement des données retournées
+                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+
+                                    if($ligne != false) {
+                                        $utilisateur = $ligne["Pseudo"];
+                                        $mailUtilisateur = $ligne["AdMail"];
+
+                                        if($_POST["oldMail"] == $mailUtilisateur) { // Si l'adresse email entrée est bonne et qu'elle correspond à celle de l'utilisateur connecté
+                                            $mail = addslashes($_POST["newMail"]);
+                                            
+                                            try {
+                                                // Etape 1 : connexion au serveur de base de données
+                                                require("param.inc.php");
+                                                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                                $pdo->query("SET NAMES utf8");
+                                                $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                                // Etape 2 : envoi de la requête SQL au serveur AJOUTER NOUVELLE ADRESSE EMAIL
+                                                $sql = "UPDATE UTILISATEUR SET AdMail = '".$mail."' WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+                                                $statement = $pdo->query($sql);
+
+                                                $pdo = null;
+                                                echo 'Adresse email bien modifiée'; // POPUP
+                                            } catch(Exception $e) {
+                                                echo("Exception :".$e->getMessage());
+                                            }
+                                            
+                                        } else { // Si l'ancienne adresse email entrée n'est pas bonne
+                                            echo 'mauvaise ancienne adresse email'; // POPUP
+                                        } // Fin condition ancienne adresse email entrée
+                                    }
+
+                                    if($pdo != null) {
+                                        $pdo = null;
+                                    }
+                                    
+                                } else { // Si la nouvelle adresse email entrée n'est pas au bon format
+                                    echo 'mauvais format de mail'; // POPUP
+                                } // Fin condition format adresse email
+                            } else { // Si les champs nouvelle adresse et vérification sont différents
+                                echo 'Champs mail et vérification différents';
+                            } // Fin condition nouvelle adresse et vérification
+                            
+                            
+                        } // Fin condition si l'utilisateur modifie l'un des champs (bio, mdp, mail)
+                        
+                        
+                    } else { // Si l'utilisateur n'est pas connecté
+                        header("Location: connexion.php");
+                    }
+                ?>
 
             </main>
 

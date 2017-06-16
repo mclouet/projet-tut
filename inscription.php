@@ -48,6 +48,7 @@
     <?php
         $form = "";
         $message = "";
+        $classInscrit = "";
         if (isset($_POST["pseudo"]) and $_POST["pseudo"] != "") { // Si le formulaire a été envoyé
             if ($_POST["motDePasse"] == $_POST["verifMdp"]) { // Si le mot de passe de vérification correspond au mot de passe
                 if (strlen($_POST["motDePasse"]) >= 6) { // Si le mot de passe contient au moins 6 caractères
@@ -78,10 +79,23 @@
                                 $sql = "INSERT INTO UTILISATEUR(Pseudo, AdMail, MotDePasse, Admin) VALUES (:paramPseudo, :paramMail, :paramMdp, :paramAdmin)";
                                 $statement = $pdo->prepare($sql);
                                 $statement->execute(array(":paramPseudo" => $pseudo, ":paramMail" => $email, ":paramMdp" => md5($motDePasse), ":paramAdmin" => "0"));
-                                $message = "Votre inscription a été prise en compte";
+                                $message = "Votre inscription a bien été enregistrée !";
                                 $form = false;
-                                header("Location: ./connexion.php");
+                                /*header("Location: ./connexion.php");*/
+                                $classInscrit = "visible";
                                 // POPUP VOTRE INSCRIPTION A ETE PRISE EN COMPTE
+                                ?>
+    
+                                <div class="flou <?php echo($classInscrit) ?>">
+                                    <div class="popup <?php echo($classInscrit) ?>">
+                                        <h3>Bravo !</h3>
+                                        <p><?php echo($message) ?>
+                                        </br>Connectez vous et rendez vous sur la page "Je Participe !"</p>
+                                        <a href="./connexion.php">Se connecter !</a>
+                                    </div>
+                                </div>        
+
+                                <?php
                             }
                              
                             $pdo = null;
@@ -92,14 +106,53 @@
                     } else { // Fin condition si l'email est valide
                         $message = "L'email n'est pas valide";
                         $form = true;
+                        
+                      ?>
+
+                        <div class="flou visible">
+                            <div class="popup visible">
+                                <h3>Erreur</h3>
+                                <p><?php echo($message) ?></p>
+                                <button class="fermer">Fermer</button>
+                            </div>
+                        </div>        
+
+                        <?php
+                        
                     } // Fin condition si l'email n'est pas valide
                 } else { // Fin condition si le mot de passe contient au moins 6 caractères
                     $message = "Le mot de passe doit contenir au moins 6 caractères";
                     $form = true;
+                    
+                      ?>
+
+                        <div class="flou visible">
+                            <div class="popup visible">
+                                <h3>Erreur</h3>
+                                <p><?php echo($message) ?></p>
+                                <button class="fermer">Fermer</button>
+                            </div>
+                        </div>        
+
+                        <?php
+                    
                 } // Fin condition si le mot de passe ne contient pas au moins 6 caractères
             } else { // Fin condition si le mot de passe de vérification correspond au mot de passe
                 $message = "Les mots de passe saisis ne sont pas égaux";
                 $form = true;
+                
+                  ?>
+
+                    <div class="flou visible">
+                        <div class="popup visible">
+                            <h3>Erreur</h3>
+                            <p><?php echo($message) ?></p>
+                            <button class="fermer">Fermer</button>
+                        </div>
+                    </div>        
+
+                <?php
+                      
             } // Fin condition si le mot de passe de vérification ne correspond pas au mot de passe
         } else { // Fin condition si formulaire envoyé
             $form = true;
@@ -147,7 +200,7 @@
 
                 <div>
                     <label for="motDePasse">Mot de passe</label>
-                    <input type="password" name="motDePasse" id="motDePasse" required="required" pattern=".{6,}" />
+                    <input type="password" name="motDePasse" id="motDePasse" required="required" pattern=".{6,}" title="Le mot de passe doit faire au moins 6 caractères"/>
                 </div>
 
                 <div>
@@ -167,12 +220,7 @@
     ?>
     
     <!-- ---------------------- FIN PHP ----------------- -->
-
         </main>
-    
-    
-
-
         <footer>
             <div class="txtFooter">
                 <p><a href="./mentions.php">Mentions légales</a></p>
@@ -191,7 +239,6 @@
     <script type="text/javascript" src="./js/inscription.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
     <script src="./js/jquery-3.2.1.js"></script>
-    <script src="./jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 </body>
 
 </html>

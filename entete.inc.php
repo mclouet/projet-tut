@@ -35,7 +35,7 @@
 
                 <div class="compte">
                     <div class="log">
-                        <a title="Se connecter" id="logIn">
+                        <a title="Se connecter" id="logIn" href="./connexion.php">
                             <img src="./images/img-login.png"/>
                         </a>
                     </div>

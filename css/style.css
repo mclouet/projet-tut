@@ -468,6 +468,10 @@ footer::after {
     background: none;
 }
 
+input:focus{
+    outline: transparent;
+}
+
 
 /*************** PARTICIPATION ***************/
 
@@ -736,6 +740,32 @@ h3 {
 
 .popup.visible, .flou.visible{
     display: block;
+}
+
+.popup.visible a{
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    display: block;
+    width: 100%;
+}
+
+.popup.visible a:nth-child(3){
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.popup.visible a:nth-child(4){
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .flou{

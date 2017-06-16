@@ -79,21 +79,21 @@
                     }
 
                 } // Fin condition si le formulaire a été envoyé
-            } else {// Si la session existe = si l'utilisateur est connecté
-                session_destroy();
-                //echo("Vous êtes maintenant déconnecté");
+            } else {// Si la session existe = si l'utilisateur est connecté              
                 
+                //echo("Vous êtes maintenant déconnecté");
                 ?>
                 <div class="flou <?php echo($classConnecte)?>">
                      <div class="popup <?php echo($classConnecte) ?>">
                         <h3>Déconnexion</h3>
                         <p>Vous êtes maintenant déconnecté</p>
-                        <a href="./index.php">Retourner à l'accueil</a>
+                        <a href="./index.php" class="titreRose">Retourner à l'accueil</a>
                     </div>
                 </div>
         
         
         <?php
+            session_destroy();
             } //fin else
         ?>
 
@@ -124,7 +124,7 @@
                     <div class="popup <?php echo($classConnecte) ?>">
                         <h3>Connexion</h3>
                         <p>Vous êtes bien connecté</p>
-                        <a href="./index.php">Retourner à l'accueil</a>
+                        <a href="./index.php" class="titreRose">Retourner à l'accueil</a>
                     </div>
                 </div>
             </main>

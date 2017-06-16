@@ -91,7 +91,7 @@
                                         <h3>Bravo !</h3>
                                         <p><?php echo($message) ?>
                                         </br>Connectez vous et rendez vous sur la page "Je Participe !"</p>
-                                        <a href="./connexion.php">Se connecter !</a>
+                                        <a href="./connexion.php" class="titreRose">Se connecter !</a>
                                     </div>
                                 </div>        
 

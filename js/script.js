@@ -31,6 +31,7 @@
         
         //écouteur sur le bouton pour fermer les popups d'erreur
         $(".fermer").click(fermerPopup);
+        $(".btnConfirm").click(fermerPopup);
     }
 
     function fermerPopup(evt){        

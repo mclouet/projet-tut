@@ -48,41 +48,10 @@
 
                 <?php
             //echo 'pseudo : '.$_SESSION["pseudoCo"].' mdp : '.$_SESSION["motDePasseCo"];
-            
-            
-//            try {
-//                        // Etape 1 : connexion au serveur de base de données
-//                        require("param.inc.php");
-//                        $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
-//                        $pdo->query("SET NAMES utf8");
-//                        $pdo->query("SET CHARACTER SET 'utf8'");
-//
-//                        // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO ET MOT DE PASSE
-//                        $sql = "SELECT Pseudo, MotDePasse FROM UTILISATEUR WHERE Pseudo = '".$pseudoCo."'";
-//                        $statement = $pdo->query($sql);
-//
-//                        // Etape 3 : traitement des données retournées
-//                        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-//                        
-//                        if (md5($motDePasseCo) == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
-//                            /*echo("Vos mot de passe et pseudo existent dans la BDD");*/
-//                            $classConnecte = "visible";
-////                            $form = false;
-//                            $_SESSION["pseudoCo"] = $pseudoCo;
-//                            $_SESSION["motDePasseCo"] = $motDePasseCo;
-//                            /*header("Location: ./index.php");*/
-//                        }
-//                       /* echo("La connexion a échoué");*/
-//                        $pdo = null;
-//                    } catch(Exception $e) {
-//                        echo("Exception :".$e->getMessage());
-//                    }
                 
                     if(isset($_SESSION["pseudoCo"])) { // Si l'utilisateur est connecté
                         $pseudoCo = addslashes($_POST["pseudoCo"]);
                         $motDePasseCo = addslashes($_POST["motDePasseCo"]);
-                        
-            
                 ?>
 
                     <div id="monCompte">
@@ -173,11 +142,11 @@
                             <img src="./images/img-apercu-defaut.jpg" alt="Affiche de ..." class="oeuvreCompte" />
                             <img src="./images/img-apercu-defaut.jpg" alt="Vidéo de ..." class="oeuvreCompte" />
                             <img src="./images/img-apercu-defaut.jpg" alt="Clip audio de ..." class="oeuvreCompte" />
-                            <div>
-                                <img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de l'affiche" />
-                                <img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de la vidéo" />
-                                <img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression du clip audio" />
-                            </div>
+                            <form action="compte.php" method="post">
+                                <button type="submit" name="supprAffiche"><img src="./images//img-bouton-supprimer.png" alt="Bouton de suppression de l'affiche" /></button>
+                                <button type="submit" name="supprVideo"><img src="./images//img-bouton-supprimer.png" alt="Bouton de suppression de la vidéo" /></button>
+                                <button type="submit" name="supprAudio"><img src="./images//img-bouton-supprimer.png" alt="Bouton de suppression du clip audio" /></button>
+                            </form>
                         </div>
                     </div>
 
@@ -322,7 +291,128 @@
                             } // Fin condition nouvelle adresse et vérification
                             
                             
-                        } // Fin condition si l'utilisateur modifie l'un des champs (bio, mdp, mail)
+                        } else if(isset($_POST["supprAffiche"])) { // Si l'utilisateur supprime une affiche
+                            
+                ?>
+                
+<!--
+                        <div class="flou visible">
+                            <div class="popup visible">
+                                <h3>Confirmation</h3>
+                                <p>Voulez-vous vraiment supprimer votre affiche ?</p>
+                                <form action="compte.php" method="post">
+                                    <input type="button" value="Non" name="nonAffiche" class="btnConfirm"/>
+                                    <input type="button" value="Oui" name="ouiAffiche" class="btnConfirm"/>
+                                </form>
+                            </div>
+                        </div> 
+-->
+                
+                <?php
+//                            if(isset($_POST["nonAffiche"])) { // Si l'utilisateur clique sur non
+//                                header("Location: ./compte.php");
+//                            } else if(isset($_POST["ouiAffiche"])) { // Si l'utilisateur clique sur oui
+                                try {
+                                    // Etape 1 : connexion au serveur de base de données
+                                    require("param.inc.php");
+                                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                    $pdo->query("SET NAMES utf8");
+                                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO ET MAIL
+                                    $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND TYPE = 'affiche'";
+                                    $statement = $pdo->query($sql);
+                                    
+                                    // Etape 3 : traitement des données retournées
+                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                } catch(Exception $e) {
+                                    echo("Exception :".$e->getMessage());
+                                }
+                                
+                                $pdo = null;
+                ?>
+                
+                
+                        <div class="flou visible">
+                            <div class="popup visible">
+                                <h3>Suppression</h3>
+                                <p>Votre affiche a bien été supprimée</p>
+                                <button class="fermer">Fermer</button>
+                            </div>
+                        </div>
+                
+                <?php
+                            
+                            
+//                            }
+                            
+                        } else if(isset($_POST["supprVideo"])) { // Si l'utilisateur supprime une vidéo
+                            try {
+                                // Etape 1 : connexion au serveur de base de données
+                                require("param.inc.php");
+                                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                $pdo->query("SET NAMES utf8");
+                                $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO ET MAIL
+                                $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND TYPE = 'video'";
+                                $statement = $pdo->query($sql);
+
+                                // Etape 3 : traitement des données retournées
+                                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                            } catch(Exception $e) {
+                                echo("Exception :".$e->getMessage());
+                            }
+                                
+                                $pdo = null;
+                            
+                ?>
+                
+                
+                        <div class="flou visible">
+                            <div class="popup visible">
+                                <h3>Suppression</h3>
+                                <p>Votre vidéo a bien été supprimée</p>
+                                <button class="fermer">Fermer</button>
+                            </div>
+                        </div>
+                
+                <?php
+                            
+                        } else if(isset($_POST["supprAudio"])) { // Si l'utilisateur supprime un clip audio
+                            try {
+                                // Etape 1 : connexion au serveur de base de données
+                                require("param.inc.php");
+                                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                $pdo->query("SET NAMES utf8");
+                                $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO ET MAIL
+                                $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND TYPE = 'audio'";
+                                $statement = $pdo->query($sql);
+
+                                // Etape 3 : traitement des données retournées
+                                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                            } catch(Exception $e) {
+                                echo("Exception :".$e->getMessage());
+                            }
+                                
+                                $pdo = null;
+                            
+                ?>
+                
+                
+                        <div class="flou visible">
+                            <div class="popup visible">
+                                <h3>Suppression</h3>
+                                <p>Votre clip audio a bien été supprimé</p>
+                                <button class="fermer">Fermer</button>
+                            </div>
+                        </div>
+                
+                <?php
+                                
+                        } // Fin condition si l'utilisateur modifie l'un des champs (bio, mdp, mail, supprimer affiche, vidéo, audio)
                         
                         
                     } else { // Si l'utilisateur n'est pas connecté
@@ -353,6 +443,7 @@
 
             <script type="text/javascript" src="./js/inscription.js"></script>
             <script type="text/javascript" src="./js/script.js"></script>
+            <script src="./js/jquery-3.2.1.js"></script>
     </body>
 
     </html>

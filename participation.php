@@ -155,6 +155,7 @@
                                     $pdo->query("SET NAMES utf8");
                                     $pdo->query("SET CHARACTER SET 'utf8'");
 
+                                    // TEST SI NOM FICHIER EXISTE DEJA OU PAS
                                     // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER NOMS FICHIERS
                                     $sql = "SELECT GdeOeuvre FROM OEUVRE";
                                     $statement = $pdo->query($sql);
@@ -162,6 +163,7 @@
                                     // Etape 3 : traitement des données retournées
                                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                                     $stop = false;
+                                    $fileName = $_FILES["monFichier"]["name"];
                                     while($ligne != false and $stop == false) { // Début tant que
                                         $token1 = strtok($ligne["GdeOeuvre"], "_");
                                         $nomFichier = strtok("_");
@@ -169,32 +171,55 @@
                                         if($nomFichier == $_FILES["monFichier"]["name"]) { // Si le nom du fichier existe déjà
                                             $fileName = "a-".$_FILES["monFichier"]["name"];
                                             $stop = true;
-                                        } else { // Si le nom du fichier n'existe pas encore
-                                            $fileName = $_FILES["monFichier"]["name"];
                                         } // Fin condition existence nom fichier
 
                                         $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                                     } // Fin tant que
+                                    
+                                    
+                                    // TEST SI NOM VIGNETTE EXISTE DEJA OU PAS
+                                    if(isset($_FILES["vignetteMonFichier"])) { // Si une vignette est téléchargée
+                                        // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER NOMS VIGNETTES
+                                        $sql = "SELECT Vignette FROM OEUVRE";
+                                        $statement = $pdo->query($sql);
+
+                                        // Etape 3 : traitement des données retournées
+                                        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                        $stop = false;
+                                        $vigName = $_FILES["vignetteMonFichier"]["name"];
+                                        while($ligne != false and $stop == false) { // Début tant que
+                                            $token1 = strtok($ligne["Vignette"], "_");
+                                            $nomVignette = strtok("_");
+
+                                            if($nomVignette == $_FILES["vignetteMonFichier"]["name"]) { // Si le nom de la vignette existe déjà
+                                                $vigName = "a-".$_FILES["vignetteMonFichier"]["name"];
+                                                $stop = true;
+                                            } // Fin condition existence nom vignette
+
+                                            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                        } // Fin tant que
+                                    } // Fin condition si une vignette est téléchargée
 
                                 } catch(Exception $e) {
                                     echo("Exception :".$e->getMessage());
                                 }
 
                                 $pdo = null;
-                                
-                                
+                                                    
                                 
                                 
                                 // TEST TEST TEST TEST TEST TEST TEST TEST
+                                
+                                
                         
                                 if ($_POST["categorie"] == "affiche") { // Si la catégorie choisie est IMAGE
 
                                     if ($_FILES["monFichier"]["type"] == "image/jpeg" || $_FILES["monFichier"]["type"] == "image/pjpeg" || $_FILES["monFichier"]["type"] == "image/png") { // Si le format est .jpeg, .jpg ou .png
-
-                                        copy($_FILES["monFichier"]["tmp_name"], "./php/images/grande_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./images/
+                                        
+                                        copy($_FILES["monFichier"]["tmp_name"], "./php/images/grande_".$fileName); // Copie du fichier dans ./images/
 
                                         require("convertirImage200x200.inc.php");
-                                        convertirImage200x200($_FILES["monFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["monFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                        convertirImage200x200($_FILES["monFichier"]["tmp_name"], "./php/vignettes/vignette_".$fileName); // Copie de la vignette dans ./vignettes/
 
                                         try {
                                             // Etape 1 : connexion au serveur de base de données
@@ -206,7 +231,7 @@
                                             // Etape 2 : envoi de la requête SQL au serveur INSERER IMAGE
                                             $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                             $statement = $pdo->prepare($sql);
-                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["monFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
+                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$fileName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
         ?>
                                                <!-- div popup fichier enregistré-->
                                                     <div class="flou visible">
@@ -250,10 +275,10 @@
                                     if ($_FILES["monFichier"]["type"] == "video/mp4") { // Si le fichier est en .mp4
                                         if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
 
-                                            copy($_FILES["monFichier"]["tmp_name"], "./php/videos/vid_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./videos/
+                                            copy($_FILES["monFichier"]["tmp_name"], "./php/videos/vid_".$fileName); // Copie du fichier dans ./videos/
 
                                             require("convertirImage200x200.inc.php");
-                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$vigName); // Copie de la vignette dans ./vignettes/
 
                                             try {
                                                 // Etape 1 : connexion au serveur de base de données
@@ -329,10 +354,10 @@
                                     if ($_FILES["monFichier"]["type"] == "audio/mpeg" || $_FILES["monFichier"]["type"] == "audio/x-wav" || $_FILES["monFichier"]["type"] == "audio/wav") { // Si le format est .mpeg ou .wav
                                         if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
                                             
-                                            copy($_FILES["monFichier"]["tmp_name"], "./php/clips-audio/aud_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./clips-audio/
+                                            copy($_FILES["monFichier"]["tmp_name"], "./php/clips-audio/aud_".$fileName); // Copie du fichier dans ./clips-audio/
 
                                             require("convertirImage200x200.inc.php");
-                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$vigName); // Copie de la vignette dans ./vignettes/
 
                                             try {
                                                 // Etape 1 : connexion au serveur de base de données

@@ -165,8 +165,8 @@
                                     $stop = false;
                                     $fileName = $_FILES["monFichier"]["name"];
                                     while($ligne != false and $stop == false) { // Début tant que
-                                        $token1 = strtok($ligne["GdeOeuvre"], "_");
-                                        $nomFichier = strtok("_");
+                                        $token1 = strtok($ligne["GdeOeuvre"], "_"); // Séparer préfixe ajouté du nom du fichier
+                                        $nomFichier = strtok(";"); // Car aucun ; dans un nom de fichier
 
                                         if($nomFichier == $_FILES["monFichier"]["name"]) { // Si le nom du fichier existe déjà
                                             $fileName = "a-".$_FILES["monFichier"]["name"];
@@ -188,8 +188,8 @@
                                         $stop = false;
                                         $vigName = $_FILES["vignetteMonFichier"]["name"];
                                         while($ligne != false and $stop == false) { // Début tant que
-                                            $token1 = strtok($ligne["Vignette"], "_");
-                                            $nomVignette = strtok("_");
+                                            $token1 = strtok($ligne["Vignette"], "_"); // Séparer préfixe ajouté du nom du fichier
+                                            $nomVignette = strtok(";"); // Car aucun ; dans un nom de fichier
 
                                             if($nomVignette == $_FILES["vignetteMonFichier"]["name"]) { // Si le nom de la vignette existe déjà
                                                 $vigName = "a-".$_FILES["vignetteMonFichier"]["name"];
@@ -231,7 +231,7 @@
                                             // Etape 2 : envoi de la requête SQL au serveur INSERER IMAGE
                                             $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                             $statement = $pdo->prepare($sql);
-                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$fileName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
+                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$fileName, ":paramVig" => "vignette_".$fileName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
         ?>
                                                <!-- div popup fichier enregistré-->
                                                     <div class="flou visible">
@@ -291,7 +291,7 @@
                                                 $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramVid, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
 
                                                 $statement = $pdo->prepare($sql);
-                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "vid_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => $_SESSION["pseudoCo"]));
+                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "vid_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => $_SESSION["pseudoCo"]));
                                                 
         ?>
                                                 <!-- div popup fichier enregistré -->
@@ -370,7 +370,7 @@
                                                 $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
 
                                                 $statement = $pdo->prepare($sql);
-                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => $_SESSION["pseudoCo"]));
+                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => $_SESSION["pseudoCo"]));
                                                 
         ?>
                                                 <!-- div popup fichier enregistré -->

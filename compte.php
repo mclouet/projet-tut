@@ -371,7 +371,7 @@
                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
-                            $sql = "SELECT Titre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'affiche'";
+                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'affiche'";
                             $statement = $pdo->query($sql);     
                             // Etape 3 : traitement des données retournées
                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
@@ -389,6 +389,9 @@
                 
                 <?php
                             } else { // Si l'auteur a une affiche à supprimer
+                                unlink("./php/images/".$ligne["GdeOeuvre"]);
+                                unlink("./php/vignettes/".$ligne["Vignette"]);
+                                
                                 // Etape 1 : connexion au serveur de base de données
                                 require("param.inc.php");
                                 $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
@@ -415,6 +418,7 @@
                 
                 <?php
                             } // Fin condition si l'auteur a une affiche à supprimer
+                            
                                                         
                         } else if(isset($_POST["supprVideo"])) { // Si l'utilisateur supprime une vidéo
                             
@@ -425,7 +429,7 @@
                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
-                            $sql = "SELECT Titre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'video'";
+                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'video'";
                             $statement = $pdo->query($sql);     
                             // Etape 3 : traitement des données retournées
                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
@@ -444,6 +448,8 @@
                 
                 <?php
                             } else { // Si l'auteur a une vidéo à supprimer
+                                unlink("./php/videos/".$ligne["GdeOeuvre"]);
+                                unlink("./php/vignettes/".$ligne["Vignette"]);
                                 
                                 try {
                                     // Etape 1 : connexion au serveur de base de données
@@ -475,6 +481,7 @@
                 
                 <?php
                                 } // Fin condition si l'auteur a une vidéo à supprimer
+                                
                             
                         } else if(isset($_POST["supprAudio"])) { // Si l'utilisateur supprime un clip audio
                             
@@ -485,7 +492,7 @@
                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
-                            $sql = "SELECT Titre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'audio'";
+                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'audio'";
                             $statement = $pdo->query($sql);     
                             // Etape 3 : traitement des données retournées
                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
@@ -503,6 +510,9 @@
                 
                 <?php
                             } else { // Si l'auteur a un clip audio à supprimer
+                                unlink("./php/clips-audio/".$ligne["GdeOeuvre"]);
+                                unlink("./php/vignettes/".$ligne["Vignette"]);
+                                
                                 try {
                                     // Etape 1 : connexion au serveur de base de données
                                     require("param.inc.php");
@@ -520,7 +530,7 @@
                                     echo("Exception :".$e->getMessage());
                                 }
                                 
-                            $pdo = null;
+                                $pdo = null;
                 ?>
                 
                         <div class="flou visible">
@@ -533,6 +543,7 @@
                 
                 <?php
                             } // Fin condition si l'auteur a un clip audio à supprimer
+                            
                                 
                         } // Fin condition si l'utilisateur modifie l'un des champs (bio, mdp, mail, supprimer affiche, vidéo, audio)
                         

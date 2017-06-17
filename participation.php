@@ -144,6 +144,50 @@
         
     <?php
                             }  else { // Si taille fichier ok
+                                
+                                // TEST TEST TEST TEST TEST TEST TEST TEST
+                                
+                                
+                                try {
+                                    // Etape 1 : connexion au serveur de base de données
+                                    require("param.inc.php");
+                                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
+                                    $pdo->query("SET NAMES utf8");
+                                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER NOM FICHIER
+                                    $sql = "SELECT GdeOeuvre FROM OEUVRE";
+                                    $statement = $pdo->query($sql);
+                                    echo 'requete : '.$sql;
+
+                                    // Etape 3 : traitement des données retournées
+                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                    $stop = false;
+                                    while($ligne != false and $stop == false) {
+                                        $token1 = strtok($ligne["GdeOeuvre"], "_");
+                                        $nomFichier = strtok("_");
+                                        echo $nomFichier;
+                                        if($nomFichier == $_FILES["monFichier"]["name"]) {
+                                            echo 'le fichier existe déjà';
+                                            $fileName = "a-".$_FILES["monFichier"]["name"];
+                                            echo $fileName;
+                                            $stop = true;
+                                        }
+
+                                        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                    }
+
+
+                                } catch(Exception $e) {
+                                    echo("Exception :".$e->getMessage());
+                                }
+
+                                $pdo = null;
+                                
+                                
+                                
+                                
+                                // TEST TEST TEST TEST TEST TEST TEST TEST
                         
                                 if ($_POST["categorie"] == "affiche") { // Si la catégorie choisie est IMAGE
 

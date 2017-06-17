@@ -630,7 +630,7 @@ input:focus{
     width: 100px;
 }
 
-#participation .labelFile:nth-child(2) {
+#participation .parentInputFile label:first-of-type {
     background-image: url("./images-css/img-clips-audio-background.png");
 }
 

@@ -74,7 +74,7 @@
                         <!-- 2 -->
                         <p class="liste">2. Importez votre travail</p>
                         <div class="parentInputFile">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="31457280" />
+<!--                            <input type="hidden" name="MAX_FILE_SIZE" value="31457280" />-->
                             <!-- 31457280 octets = 30Mo -->
                             <label for="monFichier" class="labelFile">Fichier</label>
                             <input name="monFichier" type="file" id="monFichier" />
@@ -121,28 +121,105 @@
         
         <!-- ----------------- PHP ---------------- -->
 
-    <?php        
+    <?php
                     if (isset($_FILES["monFichier"])) {
                         
                         if ($_FILES["monFichier"]["name"] != ".htaccess") { // Si le fichier est différent de .htaccess
                             
-//                            $taille_max = 31457280;
-//                            $taille_fichier = filesize($_FILES["monFichier"]["tmp_name"]);
-//                            
-//                            if ($taille_fichier > $taille_max) { // Si fichier trop lourd
-//                                echo('<script language="javascript">');
-//                                echo('alert("Votre fichier est trop lourd (30Mo)")');
-//                                echo('</script>');
-//                            } else { // Si taille fichier ok
+                            $taille_max = 31457280; // 31457280 octets = 30Mo
+                            $taille_fichier = filesize($_FILES["monFichier"]["tmp_name"]);
+
+                            if ($taille_fichier > $taille_max) { // Si fichier trop lourd
+                                
+    ?>
+        
+                                    <!-- div popup fichier trop lourd -->
+                                       <div class="flou visible">
+                                            <div class="popup visible">
+                                                <h3>Erreur</h3>
+                                                <p>Votre fichier est trop lourd.</p>
+                                                <button class="fermer">Fermer</button>
+                                            </div>
+                                       </div>
+        
+    <?php
+                            }  else { // Si taille fichier ok
+                                
+                                // TEST TEST TEST TEST TEST TEST TEST TEST
+                                
+                                
+                                try {
+                                    // Etape 1 : connexion au serveur de base de données
+                                    require("param.inc.php");
+                                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
+                                    $pdo->query("SET NAMES utf8");
+                                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                    // TEST SI NOM FICHIER EXISTE DEJA OU PAS
+                                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER NOMS FICHIERS
+                                    $sql = "SELECT GdeOeuvre FROM OEUVRE";
+                                    $statement = $pdo->query($sql);
+
+                                    // Etape 3 : traitement des données retournées
+                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                    $stop = false;
+                                    $fileName = $_FILES["monFichier"]["name"];
+                                    while($ligne != false and $stop == false) { // Début tant que
+                                        $token1 = strtok($ligne["GdeOeuvre"], "_"); // Séparer préfixe ajouté du nom du fichier
+                                        $nomFichier = strtok(";"); // Car aucun ; dans un nom de fichier
+
+                                        if($nomFichier == $_FILES["monFichier"]["name"]) { // Si le nom du fichier existe déjà
+                                            $fileName = "a-".$_FILES["monFichier"]["name"];
+                                            $stop = true;
+                                        } // Fin condition existence nom fichier
+
+                                        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                    } // Fin tant que
+                                    
+                                    
+                                    // TEST SI NOM VIGNETTE EXISTE DEJA OU PAS
+                                    if(isset($_FILES["vignetteMonFichier"])) { // Si une vignette est téléchargée
+                                        // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER NOMS VIGNETTES
+                                        $sql = "SELECT Vignette FROM OEUVRE";
+                                        $statement = $pdo->query($sql);
+
+                                        // Etape 3 : traitement des données retournées
+                                        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                        $stop = false;
+                                        $vigName = $_FILES["vignetteMonFichier"]["name"];
+                                        while($ligne != false and $stop == false) { // Début tant que
+                                            $token1 = strtok($ligne["Vignette"], "_"); // Séparer préfixe ajouté du nom du fichier
+                                            $nomVignette = strtok(";"); // Car aucun ; dans un nom de fichier
+
+                                            if($nomVignette == $_FILES["vignetteMonFichier"]["name"]) { // Si le nom de la vignette existe déjà
+                                                $vigName = "a-".$_FILES["vignetteMonFichier"]["name"];
+                                                $stop = true;
+                                            } // Fin condition existence nom vignette
+
+                                            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                        } // Fin tant que
+                                    } // Fin condition si une vignette est téléchargée
+
+                                } catch(Exception $e) {
+                                    echo("Exception :".$e->getMessage());
+                                }
+
+                                $pdo = null;
+                                                    
+                                
+                                
+                                // TEST TEST TEST TEST TEST TEST TEST TEST
+                                
+                                
                         
                                 if ($_POST["categorie"] == "affiche") { // Si la catégorie choisie est IMAGE
 
                                     if ($_FILES["monFichier"]["type"] == "image/jpeg" || $_FILES["monFichier"]["type"] == "image/pjpeg" || $_FILES["monFichier"]["type"] == "image/png") { // Si le format est .jpeg, .jpg ou .png
-
-                                        copy($_FILES["monFichier"]["tmp_name"], "./php/images/grande_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./images/
+                                        
+                                        copy($_FILES["monFichier"]["tmp_name"], "./php/images/grande_".$fileName); // Copie du fichier dans ./images/
 
                                         require("convertirImage200x200.inc.php");
-                                        convertirImage200x200($_FILES["monFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["monFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                        convertirImage200x200($_FILES["monFichier"]["tmp_name"], "./php/vignettes/vignette_".$fileName); // Copie de la vignette dans ./vignettes/
 
                                         try {
                                             // Etape 1 : connexion au serveur de base de données
@@ -154,8 +231,8 @@
                                             // Etape 2 : envoi de la requête SQL au serveur INSERER IMAGE
                                             $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                             $statement = $pdo->prepare($sql);
-                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["monFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
-                                                ?>
+                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$fileName, ":paramVig" => "vignette_".$fileName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
+        ?>
                                                <!-- div popup fichier enregistré-->
                                                     <div class="flou visible">
                                                         <div class="popup visible">
@@ -166,7 +243,7 @@
                                                             <button class="fermer">Fermer</button>
                                                         </div>
                                                     </div>        
-                                                <?php
+        <?php
                                            /* echo('<script language="javascript">');
                                             echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');
                                             echo('</script>');*/
@@ -177,8 +254,8 @@
                                         }
 
                                     } else { // Si le format est différent de ceux attendus
-                                        ?>
-                                            <!--div popup mauvais format-->
+        ?>
+                                            <!-- div popup mauvais format -->
                                            <div class="flou visible">
                                                 <div class="popup visible">
                                                     <h3>Erreur</h3>
@@ -186,7 +263,7 @@
                                                     <button class="fermer">Fermer</button>
                                                 </div>
                                            </div>
-                                        <?php
+        <?php
                                         
                                         /*echo('<script language="javascript">');
                                         echo('alert("Les formats acceptés sont .jpeg, .jpg et .png.")');
@@ -198,10 +275,10 @@
                                     if ($_FILES["monFichier"]["type"] == "video/mp4") { // Si le fichier est en .mp4
                                         if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
 
-                                            copy($_FILES["monFichier"]["tmp_name"], "./php/videos/vid_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./videos/
+                                            copy($_FILES["monFichier"]["tmp_name"], "./php/videos/vid_".$fileName); // Copie du fichier dans ./videos/
 
                                             require("convertirImage200x200.inc.php");
-                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$vigName); // Copie de la vignette dans ./vignettes/
 
                                             try {
                                                 // Etape 1 : connexion au serveur de base de données
@@ -214,10 +291,10 @@
                                                 $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramVid, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
 
                                                 $statement = $pdo->prepare($sql);
-                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "vid_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => $_SESSION["pseudoCo"]));
+                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "vid_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => $_SESSION["pseudoCo"]));
                                                 
-                                                ?>
-                                                <!--div popup fichier enregistré-->
+        ?>
+                                                <!-- div popup fichier enregistré -->
                                                    <div class="flou visible">
                                                         <div class="popup visible">
                                                             <h3>Félicitations !</h3>
@@ -227,7 +304,7 @@
                                                             <button class="fermer">Fermer</button>
                                                         </div>
                                                    </div>
-                                                <?php
+        <?php
                                                 
                                                 /*echo('<script language="javascript">');
                                                 echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');
@@ -239,8 +316,8 @@
                                             }
 
                                         } else { // Si aucune vignette n'a été choisie
-                                            ?>
-                                            <!--div popup pas de vignette choisie-->
+        ?>
+                                            <!-- div popup pas de vignette choisie -->
                                                <div class="flou visible">
                                                     <div class="popup visible">
                                                         <h3>Erreur</h3>
@@ -248,7 +325,7 @@
                                                         <button class="fermer">Fermer</button>
                                                     </div>
                                                </div>
-                                            <?php                                           
+        <?php                                           
                                             
                                             /*echo('<script language="javascript">');
                                             echo('alert("Vous devez choisir une vignette au format .jpeg, .jpg ou .png.")');
@@ -257,8 +334,8 @@
 
                                     } else { // Si le format est différent de celui attendu
                                         echo($_FILES["monFichier"]["type"]);
-                                         ?>
-                                        <!--div popup mauvais format-->
+        ?>
+                                        <!-- div popup mauvais format -->
                                            <div class="flou visible">
                                                 <div class="popup visible">
                                                     <h3>Erreur</h3>
@@ -266,7 +343,7 @@
                                                     <button class="fermer">Fermer</button>
                                                 </div>
                                            </div>
-                                        <?php
+        <?php
                                       /*  echo('<script language="javascript">');
                                         echo('alert("Le format accepté est .mp4.")');
                                         echo('</script>');*/
@@ -277,10 +354,10 @@
                                     if ($_FILES["monFichier"]["type"] == "audio/mpeg" || $_FILES["monFichier"]["type"] == "audio/x-wav" || $_FILES["monFichier"]["type"] == "audio/wav") { // Si le format est .mpeg ou .wav
                                         if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
                                             
-                                            copy($_FILES["monFichier"]["tmp_name"], "./php/clips-audio/aud_".$_FILES["monFichier"]["name"]); // Copie du fichier dans ./clips-audio/
+                                            copy($_FILES["monFichier"]["tmp_name"], "./php/clips-audio/aud_".$fileName); // Copie du fichier dans ./clips-audio/
 
                                             require("convertirImage200x200.inc.php");
-                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$_FILES["vignetteMonFichier"]["name"]); // Copie de la vignette dans ./vignettes/
+                                            convertirImage200x200($_FILES["vignetteMonFichier"]["tmp_name"], "./php/vignettes/vignette_".$vigName); // Copie de la vignette dans ./vignettes/
 
                                             try {
                                                 // Etape 1 : connexion au serveur de base de données
@@ -293,10 +370,10 @@
                                                 $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
 
                                                 $statement = $pdo->prepare($sql);
-                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$_FILES["monFichier"]["name"], ":paramVig" => "vignette_".$_FILES["vignetteMonFichier"]["name"], ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => $_SESSION["pseudoCo"]));
+                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => $_SESSION["pseudoCo"]));
                                                 
-                                                ?>
-                                                <!--div popup fichier enregistré-->
+        ?>
+                                                <!-- div popup fichier enregistré -->
                                                    <div class="flou visible">
                                                         <div class="popup visible">
                                                             <h3>Félicitations !</h3>
@@ -306,7 +383,7 @@
                                                             <button class="fermer">Fermer</button>
                                                         </div>
                                                    </div>
-                                                <?php
+        <?php
                                                 
                                                 /*echo('<script language="javascript">');
                                                 echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');
@@ -318,8 +395,8 @@
                                             }
                                             
                                         } else { // Si aucune vignette n'a été choisie
-                                           ?>
-                                            <!--div popup pas de vignette choisie-->
+        ?>
+                                            <!-- div popup pas de vignette choisie -->
                                                <div class="flou visible">
                                                     <div class="popup visible">
                                                         <h3>Erreur</h3>
@@ -327,7 +404,7 @@
                                                         <button class="fermer">Fermer</button>
                                                     </div>
                                                </div>
-                                            <?php
+        <?php
                                             
                                             /* echo('<script language="javascript">');
                                             echo('alert("Vous devez choisir une vignette au format .jpeg, .jpg ou .png.")');
@@ -335,8 +412,8 @@
                                         } // Fin condition vignette
 
                                     } else { // Si le format est différent de ceux attendus
-                                        ?>
-                                        <!--div popup mauvais format-->
+        ?>
+                                        <!-- div popup mauvais format -->
                                            <div class="flou visible">
                                                 <div class="popup visible">
                                                     <h3>Erreur</h3>
@@ -344,7 +421,7 @@
                                                     <button class="fermer">Fermer</button>
                                                 </div>
                                            </div>
-                                        <?php
+        <?php
                                         
                                         /*echo('<script language="javascript">');
                                         echo('alert("Les formats acceptés sont .mp3 et .wav.")');
@@ -352,8 +429,8 @@
                                     } // Fin condition format clip audio
 
                                 } else { // Si aucune catégorie n'est choisie
-                                    ?>
-                                    <!--div popup pas de catégorie choisie-->
+        ?>
+                                    <!-- div popup pas de catégorie choisie -->
                                        <div class="flou visible">
                                             <div class="popup visible">
                                                 <h3>Erreur</h3>
@@ -361,21 +438,15 @@
                                                 <button class="fermer">Fermer</button>
                                             </div>
                                        </div>
-                                    <?php
-                                    
-                                    
-                                    
-                                    /*echo('<script language="javascript">');
-                                    echo('alert("Veuillez choisir une catégorie.")');
-                                    echo('</script>');*/
+        <?php
                                 } // Fin condition aucune catégorie choisie
                                 
-//                            } // Fin condition taille fichier
+                            } // Fin condition taille fichier
                         
                         } // Fin condition fichier différent de .htaccess
                     } // Fin condition fichier isset
         
-                ?>
+        ?>
 
         <!-- ---------------------- FIN PHP ----------------- -->
 

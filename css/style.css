@@ -465,9 +465,10 @@ footer::after {
     background: none;
 }
 
-input:focus{
+input:focus {
     outline: transparent;
 }
+
 
 /*************** COMPTE ***************/
 
@@ -840,23 +841,24 @@ h3 {
     left: 30%;
     padding: 25px;
     box-sizing: border-box;
-    background-image: url("images-css/img-popup-fond.png"); 
+    background-image: url("images-css/img-popup-fond.png");
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 8000;
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.popup.visible, .flou.visible{
+.popup.visible,
+.flou.visible {
     display: inline;
     flex-wrap: wrap;
 }
 
-.popup.visible h3{
+.popup.visible h3 {
     width: 100%;
 }
 
-.popup.visible a{
+.popup.visible a {
     text-decoration: none;
     font-weight: bold;
     color: black;
@@ -866,7 +868,7 @@ h3 {
     justify-content: space-around;
 }
 
-.popup.visible a:first-of-type{
+.popup.visible a:first-of-type {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -874,7 +876,7 @@ h3 {
     box-sizing: border-box;
 }
 
-.popup.visible a:last-of-type{
+.popup.visible a:last-of-type {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -885,7 +887,7 @@ h3 {
     margin-left: 20px;
 }
 
-.fermer{
+.fermer {
     width: 120px;
     height: 40px;
     display: block;
@@ -911,4 +913,54 @@ h3 {
     display: none;
     top: 0;
     left: 0;
+}
+
+
+/********************** ADMINISTRATION *********************/
+
+#preventionAdmin {
+    max-width: calc(100% - 500px);
+    display: inline-block;
+    vertical-align: top;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 15pt;
+    text-align: justify;
+}
+
+#tableUser {
+    width: 400px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.utilisateursAdmin {
+    display: inline-block;
+    width: 300px;
+    vertical-align: middle;
+    text-align: right;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.utilisateursAdmin+form {
+    display: inline-block;
+}
+
+.utilisateursAdmin+form button {
+    border: none;
+    background: none;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.utilisateursAdmin+form button img {
+    width: 35px;
+}
+
+.oeuvreAdministration {
+    max-width: 200px;
+    border: 16px solid transparent;
+    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
+    box-sizing: border-box;
+    margin-right: 15px;
+    margin-left: 15px;
 }

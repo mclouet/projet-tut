@@ -23,7 +23,7 @@
         $pdo->query("SET CHARACTER SET 'utf8'");
 
         // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER LES UTILISATEURS
-        $sql = "SELECT Pseudo, MotDePasse, Admin FROM UTILISATEUR";
+        $sql = "SELECT Pseudo, Admin FROM UTILISATEUR";
         $statement = $pdo->query($sql);
 
         // Etape 3 : traitement des données retournées
@@ -34,7 +34,7 @@
         while($ligne != false and $stop == false) { // Traitement sur tous les utilisateurs admin
             if($ligne["Pseudo"] == $_SESSION["pseudoCo"] and $ligne["Admin"] == "1") { // Si l'utilisateur est un admin
                 echo 'l\'utilisateur est un admin !';
-                if($ligne["Pseudo"] == "Cabadix") { // Si l'utilisateur est le commanditaire
+                if($_SESSION["pseudoCo"] == "Cabadix") { // Si l'utilisateur est le commanditaire
                     $chef = true;
                 } // Fin condition si l'utilisateur est le commanditaire
                 $stop = true;
@@ -103,13 +103,64 @@
             <h2 class="titreJaune">Administration</h2>
             
 <?php
-            // GERER SUPPRESSION OEUVRES
+            // GERER SUPPRESSION OEUVRES NON NON NON COPIER SLIDER GALERIE ET AJOUTER BTN SUPPRESSION OU JUSTE AJOUTER BTN DANS GALERIE ET IF UTILISATEUR ADMIN ALORS PEUT SUPPRIMER
+            // Etape 1 : connexion au serveur de base de données
+            require("param.inc.php");
+            $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
+            $pdo->query("SET NAMES utf8");
+            $pdo->query("SET CHARACTER SET 'utf8'");
+
+            // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER LES OEUVRES
+            $sql = "SELECT Pseudo, Titre, Vignette, Type FROM OEUVRE";
+            $statement = $pdo->query($sql);
+
+            // Etape 3 : traitement des données retournées
+            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+
+            while($ligne != false) { 
+                $titre = $ligne["Titre"];
+                $vignette = "./php/vignettes/".$ligne["Vignette"];
+                $auteur = $ligne["Pseudo"];
+                if($ligne["Type"] == "affiche") { // Si l'oeuvre est une affiche
+?>
+            
+                    <a title="Affiche &#124; Titre : <?php echo($titre); ?> &#124; Auteur : <?php echo($auteur); ?>">
+                        <img src="<?php echo($vignette); ?>" alt="Affiche de <?php echo($auteur); ?>" class="oeuvreAdministration" />
+                    </a>
+            
+<?php
+                } else if($ligne["Type"] == "video") { // Si l'oeuvre est une vidéo
+?>
+            
+                    <a title="Vidéo &#124; Titre : <?php echo($titre); ?> &#124; Auteur : <?php echo($auteur); ?>">
+                        <img src="<?php echo($vignette); ?>" alt="Vidéo de <?php echo($auteur); ?>" class="oeuvreAdministration" />
+                    </a>
+            
+<?php                    
+                } else if($ligne["Type"] == "audio") { // Si l'oeuvre est un clip audio
+?>
+            
+                    <a title="Clip audio &#124; Titre : <?php echo($titre); ?> &#124; Auteur : <?php echo($auteur); ?>">
+                        <img src="<?php echo($vignette); ?>" alt="Clip audio de <?php echo($auteur); ?>" class="oeuvreAdministration" />
+                    </a>
+            
+<?php                    
+                } // Fin condition type oeuvre
+                
+                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+            } // Fin boucle
+            
             
             
             if($chef) { // Si l'utilisateur est le commanditaire, afficher la liste des utilisateurs, possibilité de modifier droits admin
 ?>
             
             <h3>Liste des utilisateurs du site</h3>
+            
+            <p id="preventionAdmin">
+                En tant que commanditaire du site C'est dans le sac !, vous pouvez ajouter ou supprimer les droits d'administration aux différents utilisateurs du site.</br>
+                Attention toutefois ! Un administrateur a la possibilité de supprimer n'importe quelle œuvre à partir du moment où il la juge contraire au règlement du concours.
+            </p>
             
 <?php
                 // Etape 1 : connexion au serveur de base de données
@@ -125,13 +176,39 @@
                 // Etape 3 : traitement des données retournées
                 $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                 
+                $cpt = 0;
+?>
+     
+        <div id="tableUser">
+            
+<?php
                 while($ligne != false) {
-                    echo $ligne["Pseudo"];
+                    $cpt++;
+                    $srcBtn = "./images/img-bouton-supprimer.png"; // A SUPPRIMER
+                    if($ligne["Admin"] == "0") {
+                        $admin = "Non";
+                        // $srcBtn = le lien vers le bouton +
+                    } else {
+                        $admin = "Oui";
+                        // $srcBtn = le lien vers le bouton -
+                    }
+?>
+     
+            <p class="utilisateursAdmin" data-user="<?php echo($cpt) ?>"><?php echo($ligne["Pseudo"]); ?> &#124; Admin : <?php echo($admin); ?></p>
+            <form action="administration.php" method="post">
+                <button type="submit" name="admin" data-admin="<?php echo($cpt) ?>"><img src="<?php echo($srcBtn); ?>" alt="Bouton de modifications des droits d'administration" /></button>
+            </form>
+            
+<?php
+                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                 }
-                
+?>
+     
+        </div>
+            
+<?php
                 $pdo = null;
             }
-            
 ?>
             
         </main>

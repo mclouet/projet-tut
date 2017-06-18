@@ -213,9 +213,9 @@
                                 <img src="<?php echo($audioUtilisateur); ?>" alt="Clip audio de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" />
                             </a>
                             <form action="compte.php" method="post">
-                                <button type="submit" name="supprAffiche"><img src="./images//img-bouton-supprimer.png" alt="Bouton de suppression de l'affiche" /></button>
-                                <button type="submit" name="supprVideo"><img src="./images//img-bouton-supprimer.png" alt="Bouton de suppression de la vidéo" /></button>
-                                <button type="submit" name="supprAudio"><img src="./images//img-bouton-supprimer.png" alt="Bouton de suppression du clip audio" /></button>
+                                <button type="submit" name="supprAffiche"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de l'affiche" /></button>
+                                <button type="submit" name="supprVideo"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de la vidéo" /></button>
+                                <button type="submit" name="supprAudio"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression du clip audio" /></button>
                             </form>
                         </div>
                     </div>

@@ -200,15 +200,31 @@
             </form>
             
 <?php
+                    
+                    // COMMENT ASSOCIER LE BOUTON AU <p></p> ET DONC A L'UTILISATEUR ET A LA VALEUR DE ADMIN ?
+//                    $user.$cpt = array("pseudo".$cpt => $ligne["Pseudo"], "adminON".$cpt => $admin); // Tableau contenant le pseudo et les droits de l'utilisateur
+//                    $tous = array();
+//                    $tous = array_merge($tous, $user.$cpt);
                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                }
+                } // Fin boucle
 ?>
      
         </div>
             
 <?php
                 $pdo = null;
-            }
+                
+                
+                
+                if(isset($_POST["admin"])) { // Si le commanditaire clique sur l'un des boutons ajout / suppression droits admin
+//                    $utilisateur = $tous["pseudo5"];
+//                    echo 'utilisateur '.$utilisateur;
+//                    $sql = "UPDATE UTILISATEUR SET Admin ='1' WHERE Pseudo ='".$utilisateur."'";
+//                    echo 'sql : '.$sql;
+                    
+                } // Fin condition si le commanditaire clique sur l'un des boutons ajout / suppression droits admin
+                
+            } // Fin condition si l'utilisateur est le commanditaire
 ?>
             
         </main>

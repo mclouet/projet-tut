@@ -102,6 +102,38 @@
         <main>
             <h2 class="titreJaune">Administration</h2>
             
+<?php
+            // GERER SUPPRESSION OEUVRES
+            
+            
+            if($chef) { // Si l'utilisateur est le commanditaire, afficher la liste des utilisateurs, possibilité de modifier droits admin
+?>
+            
+            <h3>Liste des utilisateurs du site</h3>
+            
+<?php
+                // Etape 1 : connexion au serveur de base de données
+                require("param.inc.php");
+                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
+                $pdo->query("SET NAMES utf8");
+                $pdo->query("SET CHARACTER SET 'utf8'");
+
+                // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER LES UTILISATEURS
+                $sql = "SELECT Pseudo, Admin FROM UTILISATEUR";
+                $statement = $pdo->query($sql);
+
+                // Etape 3 : traitement des données retournées
+                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                
+                while($ligne != false) {
+                    echo $ligne["Pseudo"];
+                }
+                
+                $pdo = null;
+            }
+            
+?>
+            
         </main>
 
         <footer>

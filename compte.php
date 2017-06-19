@@ -89,7 +89,7 @@
                             <!-- Modifier la biographie -->
                             <form action="compte.php" id="formBio" method="post" class="">
                                 <div>
-                                    <label for="newBio">Nouvelle biographie</label>
+                                    <label class="titreBleu" for="newBio">Nouvelle biographie</label>
                                     <textarea name="newBio" rows="7" cols="35" id="newBio" required="required">
                                     </textarea>
                                 </div>
@@ -141,7 +141,7 @@
                             </form>
                         </div>
 
-                        <h3 class="titreRose">Mes oeuvres</h3>
+                        <h3 id="titreMoncompteOeuvres" class="titreRose">Mes oeuvres</h3>
 
                         <div>
                             

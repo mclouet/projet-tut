@@ -161,7 +161,7 @@
                                 $afficheUtilisateur = "./php/vignettes/".$ligne["Vignette"];
                                 $titreAffiche = $ligne["Titre"];
                             } else { // Si l'auteur n'a pas déposé d'affiche
-                                $afficheUtilisateur = "./images/img-apercu-defaut.jpg";
+                                $afficheUtilisateur = "./images/img-apercu-defaut-carre.png";
                                 $titreAffiche = "Vous n'avez pas encore déposé d'affiche";
                             }
                             
@@ -176,7 +176,7 @@
                                 $videoUtilisateur = "./php/vignettes/".$ligne["Vignette"];
                                 $titreVideo = $ligne["Titre"];
                             } else { // Si l'auteur n'a pas déposé d'affiche
-                                $videoUtilisateur = "./images/img-apercu-defaut.jpg";
+                                $videoUtilisateur = "./images/img-apercu-defaut-carre.png";
                                 $titreVideo = "Vous n'avez pas encore déposé de vidéo";
                             }
                             
@@ -191,7 +191,7 @@
                                 $audioUtilisateur = "./php/vignettes/".$ligne["Vignette"];
                                 $titreAudio = $ligne["Titre"];
                             } else { // Si l'auteur n'a pas déposé d'affiche
-                                $audioUtilisateur = "./images/img-apercu-defaut.jpg";
+                                $audioUtilisateur = "./images/img-apercu-defaut-carre.png";
                                 $titreAudio = "Vous n'avez pas encore déposé de clip audio";
                             }
                             

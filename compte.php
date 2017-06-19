@@ -50,42 +50,47 @@
             //echo 'pseudo : '.$_SESSION["pseudoCo"].' mdp : '.$_SESSION["motDePasseCo"];
                 
                     if(isset($_SESSION["pseudoCo"])) { // Si l'utilisateur est connecté
-                        $pseudoCo = addslashes($_POST["pseudoCo"]);
-                        $motDePasseCo = addslashes($_POST["motDePasseCo"]);
+                        /*$pseudoCo = addslashes($_POST["pseudoCo"]);
+                        $motDePasseCo = addslashes($_POST["motDePasseCo"]);*/
                 ?>
 
                     <div id="monCompte">
                         <div>
+                            <div id="bio">
+                            <h3 class="titreBleu">Biographie</h3>
+                            <p>
+                            <?php
+                                // Afficher la biographie actuelle de l'utilisateur
+                                try {
+                                    // Etape 1 : connexion au serveur de base de données
+                                    require("param.inc.php");
+                                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                    $pdo->query("SET NAMES utf8");
+                                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER BIOGRAPHIE
+                                    $sql = "SELECT Biographie FROM UTILISATEUR WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+                                    $statement = $pdo->query($sql);
+
+                                    // Etape 3 : traitement des données retournées
+                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+
+                                    if ($ligne != false) {
+                                        echo $ligne["Biographie"];
+                                    }
+
+                                    $pdo = null;
+                                } catch(Exception $e) {
+                                    echo("Exception :".$e->getMessage());
+                                }
+                            ?>
+                            </p>
+                        </div>
                             <!-- Modifier la biographie -->
                             <form action="compte.php" id="formBio" method="post" class="">
                                 <div>
                                     <label for="newBio">Nouvelle biographie</label>
                                     <textarea name="newBio" rows="7" cols="35" id="newBio" required="required">
-                                        <?php
-                                            // Afficher la biographie actuelle de l'utilisateur
-                                            try {
-                                                // Etape 1 : connexion au serveur de base de données
-                                                require("param.inc.php");
-                                                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
-                                                $pdo->query("SET NAMES utf8");
-                                                $pdo->query("SET CHARACTER SET 'utf8'");
-
-                                                // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER BIOGRAPHIE
-                                                $sql = "SELECT Biographie FROM UTILISATEUR WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
-                                                $statement = $pdo->query($sql);
-
-                                                // Etape 3 : traitement des données retournées
-                                                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-
-                                                if ($ligne != false) {
-                                                    echo $ligne["Biographie"];
-                                                }
-                                                
-                                                $pdo = null;
-                                            } catch(Exception $e) {
-                                                echo("Exception :".$e->getMessage());
-                                            }
-                                        ?>
                                     </textarea>
                                 </div>
                                 <div>
@@ -237,7 +242,11 @@
 
                                 $pdo = null;
                                 
-                                echo 'Biographie bien modifiée'; // POPUP
+                                // POPUP
+                            ?>
+                
+                
+                            <?php
                             } catch(Exception $e) {
                                 echo("Exception :".$e->getMessage());
                             }

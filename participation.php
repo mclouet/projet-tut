@@ -205,11 +205,6 @@
                                 }
 
                                 $pdo = null;
-                                                    
-                                
-                                
-                                // TEST TEST TEST TEST TEST TEST TEST TEST
-                                
                                 
                         
                                 if ($_POST["categorie"] == "affiche") { // Si la catégorie choisie est IMAGE
@@ -236,13 +231,13 @@
                                                <!-- div popup fichier enregistré-->
                                                     <div class="flou visible">
                                                         <div class="popup visible">
-                                                            <h3>Bravo !</h3>
-                                                            <p>Votre fichier a bien été enregistré.
-                                                            </br>Rendez-vous dans la galerie pour consulter les oeuvres !</p>
-                                                            <a href="./galerie.php" class="titreRose">Galerie</a>
+                                                            <h3>Félicitations !</h3>
+                                                            <p>Votre fichier a bien été enregistré, rendez-vous dans la galerie pour consulter les oeuvres !</p>
+                                                            <a href="/galerie.php" class="titreRose">Galerie</a>
+                                                            <a href="./index.php" class="titreJaune">Retour à l'accueil</a>
                                                             <button class="fermer">Fermer</button>
                                                         </div>
-                                                    </div>        
+                                                   </div>      
         <?php
                                            /* echo('<script language="javascript">');
                                             echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');

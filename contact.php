@@ -100,9 +100,8 @@
     // Configuration avant l'envoi du mail
     $destinataire = "marie.clouet.etu@univ-lemans.fr" . ", "; // Destinataire de l'email
     
-    // POPUP
-    $messageEnvoye = "Votre message nous est bien parvenu !"; // Message de confirmation si l'email a bien été envoyé
-    $messageNonEnvoye = "L'envoi de l'email a échoué. Vous pouvez réessayer !"; // Message de confirmation si l'email n'a pas été envoyé
+    //variables popup
+        $classMessage = "";
     
     if (isset($_POST["nom"]) and isset($_POST["contact"])) { // Si le formulaire a été envoyé et qu'un bouton radio est coché
 
@@ -134,25 +133,36 @@
             $objet = str_replace("&#124;","|",$objet);
 
             // Envoi du message
-            mail($destinataire, $objet, $message);
-
+            if(mail($destinataire, $objet, $message)){
+                $classMessage = "visible";
+                $message = "Votre message a bien été envoyé !";
+            }
+            
         } else { // Si l'email n'est pas valide
             //POPUP
-            echo('<script language="javascript">');
-            echo('alert("Votre email n\'est pas valide. Veuillez la ressaisir")');
-            echo('</script>');
-            echo("Pas envoyé parce qu'email non valide ".$messageNonEnvoye);
+            $classMessage = "visible";
+            $message = "Votre email n\'est pas valide. Veuillez la ressaisir";
+            
         } // Fin condition email
 
     } else if (isset($_POST["nom"]) and !isset($_POST["contact"])) { // Si aucune bouton radio n'est coché
-        echo 'aucun radio de coché';
+        $classMessage = "visible";
+        $message = "Veuillez choisir un objet";
     } // Fin condition si le formulaire est envoyé
     
 ?>
 
                 <!-- ---------------------- FIN PHP ----------------- -->
-
-                <script type="text/javascript" src="./js/script.js"></script>
+            
+            <div class="flou <?php echo($classMessage) ?>">
+                <div class="popup <?php echo($classMessage) ?>">
+                    <h3>Connexion</h3>
+                    <p><?php echo($message) ?></p>
+                    <button class="fermer">Fermer</button>
+                </div>
+            </div>
+        <script type="text/javascript" src="./js/script.js"></script>
+        <script src="./js/jquery-3.2.1.js"></script>
     </body>
 
     </html>

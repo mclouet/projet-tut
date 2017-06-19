@@ -256,7 +256,7 @@
                                                         <div class="popup visible">
                                                             <h3>Félicitations !</h3>
                                                             <p>Votre fichier a bien été enregistré, rendez-vous dans la galerie pour consulter les oeuvres !</p>
-                                                            <a href="/galerie.php" class="titreRose">Galerie</a>
+                                                            <a href="./galerie.php" class="titreRose">Galerie</a>
                                                             <a href="./index.php" class="titreJaune">Retour à l'accueil</a>
                                                             <button class="fermer">Fermer</button>
                                                         </div>
@@ -345,7 +345,7 @@
             <div class="popup visible">
                 <h3>Félicitations !</h3>
                 <p>Votre fichier a bien été enregistré, rendez-vous dans la galerie pour consulter les oeuvres !</p>
-                <a href="/galerie.php" class="titreRose">Galerie</a>
+                <a href="./galerie.php" class="titreRose">Galerie</a>
                 <a href="./index.php" class="titreJaune">Retour à l'accueil</a>
                 <button class="fermer">Fermer</button>
             </div>
@@ -452,7 +452,7 @@
             <div class="popup visible">
                 <h3>Félicitations !</h3>
                 <p>Votre fichier a bien été enregistré, rendez-vous dans la galerie pour consulter les oeuvres !</p>
-                <a href="/galerie.php" class="titreRose">Galerie</a>
+                <a href="./galerie.php" class="titreRose">Galerie</a>
                 <a href="./index.php" class="titreJaune">Retour à l'accueil</a>
                 <button class="fermer">Fermer</button>
             </div>

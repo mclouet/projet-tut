@@ -52,6 +52,10 @@
                     if(isset($_SESSION["pseudoCo"])) { // Si l'utilisateur est connecté
                         /*$pseudoCo = addslashes($_POST["pseudoCo"]);
                         $motDePasseCo = addslashes($_POST["motDePasseCo"]);*/
+                        
+                        $titrePopup ="";
+                        $messageModif = "";
+                        $conditionPopup = "";
                 ?>
 
                     <div id="monCompte">
@@ -243,10 +247,10 @@
                                 $pdo = null;
                                 
                                 // POPUP
-                            ?>
-                
-                
-                            <?php
+                                $titrePopup ="Mise à jour";
+                                $messageModif = "Votre biographie a été mise à jour !";
+                                $conditionPopup = "visible";
+                                    
                             } catch(Exception $e) {
                                 echo("Exception :".$e->getMessage());
                             }
@@ -290,13 +294,19 @@
                                                     $statement = $pdo->query($sql);
 
                                                     $pdo = null;
-                                                    echo 'Mot de passe bien modifié'; // POPUP
+                                                    
+                                                    $titrePopup ="Mise à jour";
+                                                    $messageModif = "Votre mot de passe a bien été modifié";
+                                                    $conditionPopup = "visible";
+                                                    
                                                 } catch(Exception $e) {
                                                     echo("Exception :".$e->getMessage());
                                                 }
 
                                         } else { // Si l'ancien mot de passe entré n'est pas bon
-                                            echo 'mauvais ancien mot de passe'; // POPUP
+                                            $titrePopup ="Erreur";
+                                            $messageModif = "L'ancien mot de passe saisi est incorrect";
+                                            $conditionPopup = "visible";
                                         }
                                     }
 
@@ -305,10 +315,14 @@
                                     }
                                 
                                 } else { // Si le mot de passe contient moins de 6 caractères
-                                            echo 'mdp trop court'; // POPUP
+                                    $titrePopup ="Erreur";
+                                    $messageModif = "Le nouveau mot de passe contient moins de 6 caractères";
+                                    $conditionPopup = "visible";
                                 }
                             } else { // Si le mot de passe et le mot de passe de vérification sont différents
-                                echo 'mdp et mdp verif différents'; // POPUP
+                                    $titrePopup ="Erreur";
+                                    $messageModif = "Les deux mots de passes ne sont pas identiques";
+                                    $conditionPopup = "visible";
                             } // Fin condition mot de passe et vérification
                             
                             
@@ -348,13 +362,19 @@
                                                 $statement = $pdo->query($sql);
 
                                                 $pdo = null;
-                                                echo 'Adresse email bien modifiée'; // POPUP
+                                                
+                                                $titrePopup ="Mise à jour";
+                                                $messageModif = "Votre mot de passe a été mise à jour !";
+                                                $conditionPopup = "visible";
+                                                
                                             } catch(Exception $e) {
                                                 echo("Exception :".$e->getMessage());
                                             }
                                             
                                         } else { // Si l'ancienne adresse email entrée n'est pas bonne
-                                            echo 'mauvaise ancienne adresse email'; // POPUP
+                                            $titrePopup ="Erreur";
+                                            $messageModif = "";
+                                            $conditionPopup = "visible";
                                         } // Fin condition ancienne adresse email entrée
                                     }
 
@@ -363,10 +383,14 @@
                                     }
                                     
                                 } else { // Si la nouvelle adresse email entrée n'est pas au bon format
-                                    echo 'mauvais format de mail'; // POPUP
+                                    $titrePopup ="Erreur";
+                                    $messageModif = "La nouvelle adresse email n'est pas valide";
+                                    $conditionPopup = "visible";
                                 } // Fin condition format adresse email
                             } else { // Si les champs nouvelle adresse et vérification sont différents
-                                echo 'Champs mail et vérification différents';
+                                    $titrePopup ="Erreur";
+                                    $messageModif = "Les deux adresses email sont différentes";
+                                    $conditionPopup = "visible";
                             } // Fin condition nouvelle adresse et vérification
                             
                             
@@ -386,17 +410,10 @@
                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                             
                             if($ligne == false) { // Si l'auteur n'a pas d'affiche à supprimer
-                ?>
-                
-                        <div class="flou visible">
-                            <div class="popup visible">
-                                <h3>Suppression</h3>
-                                <p>Il n'y a pas d'affiche à supprimer</p>
-                                <button class="fermer">Fermer</button>
-                            </div>
-                        </div>
-                
-                <?php
+                                $titrePopup ="Erreur";
+                                $messageModif = "Il n'y a pas d'affiche à supprimer";
+                                $conditionPopup = "visible";
+                                
                             } else { // Si l'auteur a une affiche à supprimer
                                 unlink("./php/images/".$ligne["GdeOeuvre"]);
                                 unlink("./php/vignettes/".$ligne["Vignette"]);
@@ -415,17 +432,11 @@
                                 $ligne = $statement->fetch(PDO::FETCH_ASSOC);
 
                                 $pdo = null;
-                ?>
-                
-                        <div class="flou visible">
-                            <div class="popup visible">
-                                <h3>Suppression</h3>
-                                <p>Votre affiche a bien été supprimée</p>
-                                <button class="fermer">Fermer</button>
-                            </div>
-                        </div>
-                
-                <?php
+                                
+                                $titrePopup ="Suppression";
+                                $messageModif = "Votre affiche a bien été suppprimée";
+                                $conditionPopup = "visible";
+                                
                             } // Fin condition si l'auteur a une affiche à supprimer
                             
                                                         
@@ -444,18 +455,11 @@
                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                             
                             if($ligne == false) { // Si l'auteur n'a pas de vidéo à supprimer
-                                
-                ?>
-                
-                        <div class="flou visible">
-                                <div class="popup visible">
-                                    <h3>Suppression</h3>
-                                    <p>Il n'y a pas de vidéo à supprimer</p>
-                                    <button class="fermer">Fermer</button>
-                                </div>
-                        </div>
-                
-                <?php
+                            
+                                $titrePopup ="Erreur";
+                                $messageModif = "Il n'y a pas de vidéo à supprimer";
+                                $conditionPopup = "visible";
+                            
                             } else { // Si l'auteur a une vidéo à supprimer
                                 unlink("./php/videos/".$ligne["GdeOeuvre"]);
                                 unlink("./php/vignettes/".$ligne["Vignette"]);
@@ -478,17 +482,11 @@
                                 }
 
                                 $pdo = null;
-                ?>
-                
-                        <div class="flou visible">
-                            <div class="popup visible">
-                                <h3>Suppression</h3>
-                                <p>Votre vidéo a bien été supprimée</p>
-                                <button class="fermer">Fermer</button>
-                            </div>
-                        </div>
-                
-                <?php
+                                
+                                $titrePopup ="Suppression";
+                                $messageModif = "La vidéo a bien été supprimée";
+                                $conditionPopup = "visible";
+        
                                 } // Fin condition si l'auteur a une vidéo à supprimer
                                 
                             
@@ -507,17 +505,12 @@
                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                             
                             if($ligne == false) { // Si l'auteur n'a pas de clip audio à supprimer
-                ?>
-                
-                        <div class="flou visible">
-                                <div class="popup visible">
-                                    <h3>Suppression</h3>
-                                    <p>Il n'y a pas de clip audio à supprimer</p>
-                                    <button class="fermer">Fermer</button>
-                                </div>
-                        </div>
-                
-                <?php
+                                
+                                $titrePopup ="Erreur";
+                                $messageModif = "Il n'y a pas de clip audio à supprimer";
+                                $conditionPopup = "visible";
+                                
+                                
                             } else { // Si l'auteur a un clip audio à supprimer
                                 unlink("./php/clips-audio/".$ligne["GdeOeuvre"]);
                                 unlink("./php/vignettes/".$ligne["Vignette"]);
@@ -540,22 +533,24 @@
                                 }
                                 
                                 $pdo = null;
-                ?>
-                
-                        <div class="flou visible">
-                            <div class="popup visible">
-                                <h3>Suppression</h3>
-                                <p>Votre clip audio a bien été supprimé</p>
+                                
+                                $titrePopup ="Suppression";
+                                $messageModif = "Votre clip audio a bien été supprimé";
+                                $conditionPopup = "visible";
+                                
+                            } // Fin condition si l'auteur a un clip audio à supprimer
+               
+                        }// Fin condition si l'utilisateur modifie l'un des champs (bio, mdp, mail, supprimer affiche, vidéo, audio)
+                         
+                ?>           
+                          <div class="flou <?php echo($conditionPopup) ?>">
+                            <div class="popup <? echo($conditionPopup) ?>">
+                                <h3><?php echo($titrePopup)?></h3>
+                                <p><?php echo($messagePopup) ?></p>
                                 <button class="fermer">Fermer</button>
                             </div>
-                        </div>
-                
+                        </div> 
                 <?php
-                            } // Fin condition si l'auteur a un clip audio à supprimer
-                            
-                                
-                        } // Fin condition si l'utilisateur modifie l'un des champs (bio, mdp, mail, supprimer affiche, vidéo, audio)
-                        
                         
                     } else { // Si l'utilisateur n'est pas connecté
                         header("Location: connexion.php");

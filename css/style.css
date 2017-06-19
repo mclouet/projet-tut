@@ -486,6 +486,7 @@ input:focus {
 }
 
 #bio{
+    padding: 5px;
     border: 16px solid transparent;
     border-image: url("./images-css/img-media-4-foreground.png") 65 45;
     box-sizing: border-box;
@@ -542,7 +543,7 @@ input:focus {
     display: inline-block;
     width: 160px;
     text-align: right;
-    font-size: 13pt;
+    font-size: 12pt;
     font-family: 'Open Sans Condensed', sans-serif;
 }
 

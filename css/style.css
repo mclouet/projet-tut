@@ -482,17 +482,33 @@ input:focus {
 /*************** COMPTE ***************/
 
 #monCompte label {
-    font-size: 13pt;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 
 /* Biographie */
+#formBio{
+    font-size: 15pt;
+}
 
-#bio {
-    margin-top: 0;
-    display: inline-block;
+#bio{
+    padding: 5px;
+    border: 16px solid transparent;
+    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-wrap: wrap;
     margin-bottom: 30px;
     font-family: 'Open Sans Condensed', sans-serif;
+}
+#bio>h3{
+    margin-top: 10px;
+    width: 100%;
+    font-family: 'Amatic SC', cursive;
 }
 
 #monCompte>div:first-child {
@@ -535,6 +551,8 @@ input:focus {
     display: inline-block;
     width: 160px;
     text-align: right;
+    font-size: 12pt;
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 .formulaireCompte input:not([type=submit]) {
@@ -597,6 +615,9 @@ input:focus {
     background-position: center;
     padding: 5px;
     box-sizing: border-box;
+}
+
+#titreMoncompteOeuvres{
     margin-top: 55px;
 }
 

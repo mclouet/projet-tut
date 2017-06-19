@@ -809,7 +809,7 @@ h3 {
     font-family: 'Open Sans Condensed', sans-serif;
     text-align: justify;
     width: 90%;
-    display: inline-flex;
+    display: inline-block;
     margin: 10px;
 }
 

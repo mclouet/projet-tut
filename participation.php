@@ -29,6 +29,7 @@
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="icon" type="image/png" href="./images/img-favicon.png">
     </head>
 
     <body>
@@ -82,11 +83,10 @@
                         <!-- 3 -->
                         <p class="liste">3. Partagez avec vos amis !</p>
                         <div class="reseauxSoc">
-                            <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo Facebook" /></a>
-                            <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
-                            <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
-                            <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="Logo Instagram" /></a>
-                            <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo Google+" /></a>
+                            <a href="http://www.facebook.com/sharer.php?u=https://projets.iut-laval.univ-lemans.fr/16mmi1pj06/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo Facebook" /></a>
+                            <a href="https://twitter.com/intent/tweet/?url=https://projets.iut-laval.univ-lemans.fr/16mmi1pj06/" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
+                            <a href="https://pinterest.com/pin/create/button/?url=https://projets.iut-laval.univ-lemans.fr/16mmi1pj06/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
+                            <a href="https://plus.google.com/share?url=https://projets.iut-laval.univ-lemans.fr/16mmi1pj06/" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo Google+" /></a>
                         </div>
                         <!-- 4 -->
                         <label for="titre" class="liste">4. Donnez un titre à votre oeuvre !</label>
@@ -102,26 +102,13 @@
                 <div> <img src="./images/img-apercu-defaut.jpg" alt="Aperçu de l'image téléchargée" id="apercu" /> </div>
             </div>
         </main>
-
-        <footer>
-            <div class="txtFooter">
-                <p><a href="./mentions.php">Mentions légales</a></p>
-                <p><a href="./contact.php">Formulaire de contact</a></p>
-                <p><a href="./modalites.php">Modalités du concours</a></p>
-                <p><a href="./sponsors.php">Sponsors</a></p>
-            </div>
-            <div>
-                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo Facebook" /></a>
-                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
-                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
-                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="Logo Instagram" /></a>
-                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo Google+" /></a>
-            </div>
-        </footer>
         
         <!-- ----------------- PHP ---------------- -->
 
     <?php
+        
+            require("pied.inc.php");
+        
                     if (isset($_FILES["monFichier"])) {
                         
                         if ($_FILES["monFichier"]["name"] != ".htaccess") { // Si le fichier est différent de .htaccess

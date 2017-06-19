@@ -14,6 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="icon" type="image/png" href="./images/img-favicon.png">
     </head>
 
     <body>
@@ -156,21 +157,11 @@
                 <img src="./images/img-page-suivante.png" alt="Flèche page suivante" class="boutonNavi" data-navi="avancer"/> 
             </div>
         </main>
-        <footer>
-            <div class="txtFooter">
-                <p><a href="./mentions.php">Mentions légales</a></p>
-                <p><a href="./contact.php">Formulaire de contact</a></p>
-                <p><a href="./modalites.php">Modalités du concours</a></p>
-                <p><a href="./sponsors.php">Sponsors</a></p>
-            </div>
-            <div>
-                <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="Logo Facebook" /></a>
-                <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="Logo Twitter" /></a>
-                <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="Logo Pinterest" /></a>
-                <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="Logo Instagram" /></a>
-                <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo Google+" /></a>
-            </div>
-        </footer>
+        
+        <?php
+            require("pied.inc.php");
+        ?>
+        
     </body>
         <script type="text/javascript" src="./js/galerie.js"></script>
         <script src="./js/jquery-3.2.1.js"></script>

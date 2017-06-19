@@ -82,6 +82,7 @@ h1 {
 .compte a {
     text-decoration: none;
     font-size: 20pt;
+    color: #000000;
 }
 
 .compte img {
@@ -158,6 +159,10 @@ footer {
     position: relative;
 }
 
+footer a {
+    text-decoration: none;
+}
+
 footer div:first-child {
     width: 75%;
     margin-top: auto;
@@ -166,7 +171,7 @@ footer div:first-child {
     justify-content: space-around;
 }
 
-footer p {
+.txtFooter {
     display: inline-flex;
     padding: 5px;
     word-wrap: break-word;
@@ -174,12 +179,12 @@ footer p {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
-footer p>a {
-    text-decoration: none;
-    color: #000000
+.txtFooter a {
+    color: #000000;
+    margin: 5px;
 }
 
-footer a:hover {
+.txtFooter a:hover {
     text-decoration: underline;
 }
 
@@ -383,7 +388,7 @@ footer::after {
     vertical-align: middle;
 }
 
-.formulaire input:not([type=submit]):not([type=radio]),
+.formulaire input:not([type=submit]):not([type=radio]):not([type=checkbox]),
 .formulaire textarea {
     width: 375px;
     vertical-align: middle;
@@ -404,7 +409,7 @@ footer::after {
     transform: rotate(-1deg);
 }
 
-.formulaire input:not([type=submit]) {
+.formulaire input:not([type=submit]):not([type=checkbox]) {
     background-image: url("./images-css/img-formulaire-nom.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -450,6 +455,10 @@ footer::after {
     color: #fe5d99;
 }
 
+#accepterModalite+label {
+    width: auto;
+}
+
 .radioContact {
     display: inline-block;
     margin-left: 125px;
@@ -476,16 +485,15 @@ input:focus {
     font-size: 13pt;
 }
 
+
 /* Biographie */
 
-#bio{
+#bio {
     margin-top: 0;
     display: inline-block;
     margin-bottom: 30px;
     font-family: 'Open Sans Condensed', sans-serif;
-    
 }
-
 
 #monCompte>div:first-child {
     vertical-align: middle;
@@ -801,7 +809,7 @@ h3 {
     font-family: 'Open Sans Condensed', sans-serif;
     text-align: justify;
     width: 90%;
-    display: inline-flex;
+    display: inline-block;
     margin: 10px;
 }
 

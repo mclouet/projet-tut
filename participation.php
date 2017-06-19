@@ -250,18 +250,22 @@
                                             $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                             $statement = $pdo->prepare($sql);
                                             $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$fileName, ":paramVig" => "vignette_".$fileName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
-    ?>
-        <!-- div popup fichier enregistré-->
-        <div class="flou visible">
-            <div class="popup visible">
-                <h3>Bravo !</h3>
-                <p>Votre fichier a bien été enregistré.
-                </br>Rendez-vous dans la galerie pour consulter les oeuvres !</p>
-                <a href="./galerie.php" class="titreRose">Galerie</a>
-                <button class="fermer">Fermer</button>
-            </div>
-        </div>        
-    <?php
+        ?>
+                                               <!-- div popup fichier enregistré-->
+                                                    <div class="flou visible">
+                                                        <div class="popup visible">
+                                                            <h3>Félicitations !</h3>
+                                                            <p>Votre fichier a bien été enregistré, rendez-vous dans la galerie pour consulter les oeuvres !</p>
+                                                            <a href="/galerie.php" class="titreRose">Galerie</a>
+                                                            <a href="./index.php" class="titreJaune">Retour à l'accueil</a>
+                                                            <button class="fermer">Fermer</button>
+                                                        </div>
+                                                   </div>      
+        <?php
+                                           /* echo('<script language="javascript">');
+                                            echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');
+                                            echo('</script>');*/
+
                                             $pdo = null;
                                         } catch(Exception $e) {
                                             echo("Exception :".$e->getMessage());

@@ -52,7 +52,6 @@
                     $pseudoCo = addslashes($_POST["pseudoCo"]);
                     $motDePasseCo = addslashes($_POST["motDePasseCo"]);
                     
-                    
                     try {
                         // Etape 1 : connexion au serveur de base de données
                         require("param.inc.php");
@@ -67,19 +66,30 @@
                         // Etape 3 : traitement des données retournées
                         $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                         
-                        if (md5($motDePasseCo) == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
-                            /*echo("Vos mot de passe et pseudo existent dans la BDD");*/
-                            $classConnecte = "visible";
-                            $_SESSION["pseudoCo"] = $pseudoCo;
-                            $_SESSION["motDePasseCo"] = $motDePasseCo;
-                        }
-                       /* echo("La connexion a échoué");*/
-                        $pdo = null;
+                        if($ligne == false){ //si le résultat retourné est vide > si l'utilisateur n'existe pas
+                        ?>
+                            <div class="flou visible">
+                                 <div class="popup visible">
+                                    <h3>Erreur</h3>
+                                    <p>Ce pseudo n'existe pas</p>
+                                    <button class="fermer">Fermer</button>
+                                </div>
+                            </div>
+                        <?php
+                        }else{ //si l'utilisateur existe                         
+                            if (md5($motDePasseCo) == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
+                                /*echo("Vos mot de passe et pseudo existent dans la BDD");*/
+                                $classConnecte = "visible";
+                                $_SESSION["pseudoCo"] = $pseudoCo;
+                                $_SESSION["motDePasseCo"] = $motDePasseCo;
+                            }
+                               /* echo("La connexion a échoué");*/
+                                $pdo = null;
+                            } //fin else
                     } catch(Exception $e) {
                         echo("Exception :".$e->getMessage());
                     }
-
-                } // Fin condition si le formulaire a été envoyé
+                }// Fin condition si le formulaire a été envoyé
             } else {// Si la session existe = si l'utilisateur est connecté              
                 
                 //echo("Vous êtes maintenant déconnecté");

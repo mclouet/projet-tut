@@ -28,25 +28,31 @@
             var descOeuvre = document.querySelector(".descOeuvre");
             descOeuvre.style.color = couleurs[laCouleur];
         }
-        
-        //écouteur sur le bouton pour fermer les popups d'erreur
+
+        if (document.querySelector(".compte a")) {
+            var lienCompte = document.querySelector(".compte a");
+            lienCompte.addEventListener("mouseenter", changerCouleur);
+            lienCompte.addEventListener("mouseleave", supprimerCouleur);
+        }
+
+        // Ecouteur sur le bouton pour fermer les popups d'erreur
         $(".fermer").click(fermerPopup);
         $(".btnConfirm").click(fermerPopup);
     }
 
-    function fermerPopup(evt){        
+    function fermerPopup(evt) {
         var divMessage = $(".popup.visible");
         var divFlou = $(".flou.visible");
-        
+
         divFlou.css({
             display: "none"
         })
-        
+
         divMessage.css({
             display: "none"
         })
     }
-    
+
     function supprimerCouleur(evt) {
         var actif = document.getElementsByClassName("actif");
 

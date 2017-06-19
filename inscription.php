@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="icon" type="image/png" href="./images/img-favicon.png">
 </head>
 
 <body>

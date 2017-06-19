@@ -16,6 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="icon" type="image/png" href="./images/img-favicon.png">
     </head>
 
     <body>
@@ -133,5 +134,8 @@
                 <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="Logo Google+" /></a>
             </div>
         </footer>
+        
+        <script src="./js/script.js" type="text/javascript"></script>
+        <script src="./js/jquery-3.2.1.js"></script>
     </body>
 </html>

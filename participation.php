@@ -213,7 +213,7 @@
                                         $pdo->query("SET NAMES utf8");
                                         $pdo->query("SET CHARACTER SET 'utf8'");
 
-                                        // Etape 2 : envoi de la requête SQL au serveur INSERER IMAGE
+                                        // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER AFFICHE DE L'UTILISATEUR CO
                                         $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'AND Type = 'affiche'";
                                         $statement = $pdo->query($sql);
                                         echo 'requete : '.$sql;
@@ -288,7 +288,35 @@
 
                                     if ($_FILES["monFichier"]["type"] == "video/mp4") { // Si le fichier est en .mp4
                                         if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
+                                            
+                                            // VERIFICATION SI L'AUTEUR A DEJA DEPOSE UNE VIDEO
+                                            // Etape 1 : connexion au serveur de base de données
+                                            require("param.inc.php");
+                                            $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                            $pdo->query("SET NAMES utf8");
+                                            $pdo->query("SET CHARACTER SET 'utf8'");
 
+                                            // Etape 2 : envoi de la requête SQL au serveur SELECTION VIDEO DE L'UTILISATEUR CO
+                                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'AND Type = 'video'";
+                                            $statement = $pdo->query($sql);
+                                            echo 'requete : '.$sql;
+
+                                            // Etape 3 : traitement des données retournées
+                                            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+
+                                            if ($ligne != false) { // Si l'utilisateur a déjà déposé une affiche
+                                                echo 'déjà une vidéo je te la supprime';
+
+                                                unlink("./php/videos/".$ligne["GdeOeuvre"]);
+                                                unlink("./php/vignettes/".$ligne["Vignette"]);
+                                                $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'video'";
+                                                $statement = $pdo->query($sql);                                            
+                                            }
+
+                                            echo 'vous n\'avez pas plus de video';
+
+                                            $pdo = null;
+                                            
                                             copy($_FILES["monFichier"]["tmp_name"], "./php/videos/vid_".$fileName); // Copie du fichier dans ./videos/
 
                                             require("convertirImage200x200.inc.php");
@@ -367,6 +395,34 @@
 
                                     if ($_FILES["monFichier"]["type"] == "audio/mpeg" || $_FILES["monFichier"]["type"] == "audio/x-wav" || $_FILES["monFichier"]["type"] == "audio/wav") { // Si le format est .mpeg ou .wav
                                         if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
+                                            
+                                            // VERIFICATION SI L'AUTEUR A DEJA DEPOSE UN CLIP AUDIO
+                                            // Etape 1 : connexion au serveur de base de données
+                                            require("param.inc.php");
+                                            $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                            $pdo->query("SET NAMES utf8");
+                                            $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                            // Etape 2 : envoi de la requête SQL au serveur SELECTION VIDEO DE L'UTILISATEUR CO
+                                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'AND Type = 'audio'";
+                                            $statement = $pdo->query($sql);
+                                            echo 'requete : '.$sql;
+
+                                            // Etape 3 : traitement des données retournées
+                                            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+
+                                            if ($ligne != false) { // Si l'utilisateur a déjà déposé une affiche
+                                                echo 'déjà un clip audio je te le supprime';
+
+                                                unlink("./php/clips-audio/".$ligne["GdeOeuvre"]);
+                                                unlink("./php/vignettes/".$ligne["Vignette"]);
+                                                $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'audio'";
+                                                $statement = $pdo->query($sql);                                            
+                                            }
+
+                                            echo 'vous n\'avez pas plus de clip audio';
+
+                                            $pdo = null;
                                             
                                             copy($_FILES["monFichier"]["tmp_name"], "./php/clips-audio/aud_".$fileName); // Copie du fichier dans ./clips-audio/
 

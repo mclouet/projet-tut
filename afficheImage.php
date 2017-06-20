@@ -60,7 +60,7 @@
                 
                 $idOeuvre = $_GET["idImg"];
                 
-                $sql = "SELECT u.Pseudo, u.Biographie, o.GdeOeuvre, o.DescOeuvre, o.Note, o.Titre, o.Type 
+                $sql = "SELECT u.Pseudo, u.Biographie, o.GdeOeuvre, o.DescOeuvre, o.Titre, o.Type 
 	               FROM OEUVRE o
 	               INNER JOIN UTILISATEUR u
     	               ON u.Pseudo = o.Pseudo

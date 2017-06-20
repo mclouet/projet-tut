@@ -176,6 +176,26 @@
                 En tant que commanditaire du site C'est dans le sac !, vous pouvez ajouter ou supprimer les droits d'administration aux différents utilisateurs du site.</br>
                 Attention toutefois ! Un administrateur a la possibilité de supprimer n'importe quelle œuvre à partir du moment où il la juge contraire au règlement du concours.
             </p>
+        
+            <form method="post" action="./administration.php" class="formulaire">
+                <div>
+                    <label for="pseudoModif">Pseudo de l'utilisateur</label>
+                    <input type="text" name="pseudoModif" required="required"/>
+                </div>
+
+                <div>
+                    <label class="boolAdmin" for="boolAdmin">Ajouter les droits</label>
+                    <input type="radio" name="boolAdmin" required="required"/>
+                </div>
+                <div>
+                    <label class="boolAdmin" for="boolAdmin">Supprimer les droits</label>
+                    <input type="radio" name="boolAdmin" required="required"/>
+                </div>
+
+                    <div>
+                        <input type="submit" value="Modifier" class="inputSubmit" />
+                    </div>
+            </form>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
             
 <?php
@@ -193,62 +213,16 @@
                 $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                 
                 $cpt = 0;
-?>
+                $pdo = null;
+                
+            }
+?> 
+        
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-        <div id="tableUser">
+            </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
-                while($ligne != false) {
-                    $cpt++;
-/*
-                    if($ligne["Pseudo"] != "Cabadix"){
-*/
-                        if($ligne["Admin"] == "0") {
-                            $admin = "Non";
-                            $srcBtn = "./images/img-bouton-ajouter.png";
-                        } else {
-                            $admin = "Oui";
-                            $srcBtn = "./images/img-bouton-supprimer.png";
-                        }
-?>
-    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-     
-                <p class="utilisateursAdmin" data-user="<?php echo($cpt) ?>"><?php echo($ligne["Pseudo"]); ?> &#124; Admin : <?php echo($admin); ?></p>
-                <form action="administration.php" method="post">
-                    <button type="submit" name="admin" data-admin="<?php echo($cpt) ?>"><img src="<?php echo($srcBtn); ?>" alt="Bouton de modifications des droits d'administration" /></button>
-                </form>
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->    
-<?php
-                    
-                    // COMMENT ASSOCIER LE BOUTON AU <p></p> ET DONC A L'UTILISATEUR ET A LA VALEUR DE ADMIN ?
-//                    $user.$cpt = array("pseudo".$cpt => $ligne["Pseudo"], "adminON".$cpt => $admin); // Tableau contenant le pseudo et les droits de l'utilisateur
-//                    $tous = array();
-//                    $tous = array_merge($tous, $user.$cpt);
-                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                    //} // fin if utilisateur différent de Cabadix
-                } // Fin boucle
-?>
-    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-        </div>
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->      
-<?php
-                $pdo = null;                
-                
-                if(isset($_POST["admin"])) { // Si le commanditaire clique sur l'un des boutons ajout / suppression droits admin
-//                    $utilisateur = $tous["pseudo5"];
-//                    echo 'utilisateur '.$utilisateur;
-//                    $sql = "UPDATE UTILISATEUR SET Admin ='1' WHERE Pseudo ='".$utilisateur."'";
-//                    echo 'sql : '.$sql;
-                    
-                } // Fin condition si le commanditaire clique sur l'un des boutons ajout / suppression droits admin
-                
-            } // Fin condition si l'utilisateur est le commanditaire
-?>
-    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->     
-        </main>
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->
-<?php
-            require("pied.inc.php");
+        require("pied.inc.php");
 ?>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
         <script type="text/javascript" src="./js/participation.js"></script>

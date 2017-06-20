@@ -751,6 +751,27 @@ input:focus {
 
 /*************** AFFICHE IMAGE ***************/
 
+#descAut{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#descNote button{
+    border: none;
+    background: none;
+    cursor: pointer;   
+}
+
+#descNote button>img{
+    width: 50px;
+}
+
+#descNote{
+    display: inline-flex;
+    align-items: center;
+}
+
 .grandeOeuvre {
     border: 20px solid transparent;
     border-image: url("./images-css/img-media-4-foreground.png") 70 45;
@@ -761,7 +782,6 @@ input:focus {
 .descOeuvre {
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 15pt;
-    display: inline-flex;
     margin-bottom: 30px;
     width: 70%;
     justify-content: center;

@@ -117,13 +117,19 @@
             }            
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-            <div>
-                <h3>Description par l'auteur</h3>
-                <p class="descOeuvre">
-                    <?php
-                    echo($ligne["DescOeuvre"]);
-                    ?>
-                </p>
+            <div id="descNote">
+                <div id="descAut">
+                    <h3>Description par l'auteur</h3>
+                    <p class="descOeuvre">
+                        <?php
+                        echo($ligne["DescOeuvre"]);
+                        ?>
+                    </p>
+                </div>
+                <form action="afficheImage.php" method="post">
+                <button type="submit" name="noterOeuvre">
+                    <img src="./images/img-bouton-ajouter.png" alt="Bouton de notation de l'oeuvre" /></button>
+                </form>
             </div>
         </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->

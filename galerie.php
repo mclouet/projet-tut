@@ -73,7 +73,7 @@
                     $compteur = 0;
                     $dataNum = 2;
                     //ETAPE 2: Envoyer une requête SQL
-                    $sql = "SELECT IdOeuvre, Vignette, Type, DescOeuvre FROM oeuvre";
+                    $sql = "SELECT IdOeuvre, Vignette, Type, DescOeuvre FROM OEUVRE";
 
                     $statement = $pdo->prepare($sql);
                     $statement->execute();

@@ -2,7 +2,7 @@
     header("Content-type: text/html");
     require("config.inc.php");
 ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,10 +18,11 @@
 </head>
 
 <body>
-    <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("entete.inc.php");
-    ?>
-    
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <nav>
         <ul>
             <li>
@@ -68,11 +69,11 @@
             <a href="./participation.php">Je Participe !</a>
         </div>
     </main>
-    
-    <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
         require("pied.inc.php");
-    ?>
-
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <script src="./js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
     <script src="./jquery-ui-1.12.1.custom/jquery-ui.js"></script>

@@ -44,7 +44,8 @@
         </ul>
     </nav>
 
-    <!-- ---------------------- PHP ----------------- -->
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+
 
     <?php
         $form = "";
@@ -87,7 +88,7 @@
                                     $classInscrit = "visible";
                                     // POPUP VOTRE INSCRIPTION A ETE PRISE EN COMPTE
                                     ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                                     <div class="flou <?php echo($classInscrit) ?>">
                                         <div class="popup <?php echo($classInscrit) ?>">
                                             <h3>Bravo !</h3>
@@ -96,7 +97,7 @@
                                             <a href="./connexion.php" class="titreRose">Se connecter !</a>
                                         </div>
                                     </div>        
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                                     <?php
                                 }
 
@@ -110,7 +111,7 @@
                             $form = true;
 
                           ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                             <div class="flou visible">
                                 <div class="popup visible">
                                     <h3>Erreur</h3>
@@ -118,7 +119,7 @@
                                     <button class="fermer">Fermer</button>
                                 </div>
                             </div>        
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                             <?php
 
                         } // Fin condition si l'email n'est pas valide
@@ -127,7 +128,7 @@
                         $form = true;
 
                           ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                             <div class="flou visible">
                                 <div class="popup visible">
                                     <h3>Erreur</h3>
@@ -135,7 +136,7 @@
                                     <button class="fermer">Fermer</button>
                                 </div>
                             </div>        
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                             <?php
 
                     } // Fin condition si le mot de passe ne contient pas au moins 6 caractères
@@ -144,7 +145,7 @@
                     $form = true;
 
                       ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                         <div class="flou visible">
                             <div class="popup visible">
                                 <h3>Erreur</h3>
@@ -152,7 +153,7 @@
                                 <button class="fermer">Fermer</button>
                             </div>
                         </div>        
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                     <?php
 
                 } // Fin condition si le mot de passe de vérification ne correspond pas au mot de passe
@@ -166,7 +167,8 @@
                                 <p><?php echo($message) ?></p>
                                 <button class="fermer">Fermer</button>
                             </div>
-                        </div>        
+                        </div>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                 
             } // Fin condition modalités
@@ -177,19 +179,19 @@
         
     ?>
         
-        <!-- ---------------------- FIN PHP ----------------- -->
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 
         <main>
             <h2 class="titreBleu">Inscription</h2>
             
-        <!-- ---------------------- PHP ----------------- -->
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 
             
             <?php
                     if ($form) { // Si le formulaire doit être ré-affiché
             ?>
             
-            <!-- ---------------------- FIN PHP ----------------- -->
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 
 
             <form action="inscription.php" id="inscription" method="post" class="formulaire">
@@ -223,19 +225,19 @@
                 </div>
             </form>
             
-            <!-- ---------------------- PHP ----------------- -->
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
     
     <?php
         }
     ?>
     
-    <!-- ---------------------- FIN PHP ----------------- -->
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         </main>
-        
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
     <?php
         require("pied.inc.php");
     ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <script type="text/javascript" src="./js/inscription.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
     <script src="./js/jquery-3.2.1.js"></script>

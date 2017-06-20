@@ -2,6 +2,7 @@
     header("Content-type: text/html");
     require("config.inc.php");
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 
     <!DOCTYPE html>
     <html lang="fr">
@@ -18,10 +19,11 @@
     </head>
 
     <body>
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("entete.inc.php");
-    ?>
-
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <nav>
                 <ul>
                     <li>
@@ -77,10 +79,7 @@
                     <input type="submit" value="Envoyer" class="inputSubmit" />
                 </form>
             </main>
-
-
-            <!-- ---------------------- PHP ----------------- -->
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
         
         require("pied.inc.php");
@@ -123,13 +122,15 @@
             // Envoi du message
             if(mail($destinataire, $objet, $message)){
                 $classMessage = "visible";
-                $message = "Votre message a bien été envoyé !";
+                $titrePopup = "Message envoyé";
+                $messagePopup = "Votre message a bien été envoyé !";
             }
             
         } else { // Si l'email n'est pas valide
             //POPUP
             $classMessage = "visible";
-            $message = "Votre email n\'est pas valide. Veuillez la ressaisir";
+            $messagePopup = "Votre email n\'est pas valide. Veuillez la ressaisir";
+            $titrePopup = "Email Invalide";
             
         } // Fin condition email
 
@@ -139,13 +140,11 @@
     } // Fin condition si le formulaire est envoyé
     
 ?>
-
-                <!-- ---------------------- FIN PHP ----------------- -->
-            
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <div class="flou <?php echo($classMessage) ?>">
                 <div class="popup <?php echo($classMessage) ?>">
-                    <h3>Connexion</h3>
-                    <p><?php echo($message) ?></p>
+                    <h3><?php echo($titrePopup) ?></h3>
+                    <p><?php echo($messagePopup) ?></p>
                     <button class="fermer">Fermer</button>
                 </div>
             </div>

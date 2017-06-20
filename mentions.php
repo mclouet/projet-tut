@@ -2,7 +2,7 @@
     header("Content-type: text/html");
     require("config.inc.php");
 ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -18,10 +18,11 @@
 </head>
 
 <body>
-    <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("entete.inc.php");
-    ?>
-
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <nav>
         <ul>
             <li>
@@ -162,11 +163,11 @@
         </p>
 
     </main>
-
-    <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("pied.inc.php");
-    ?>
-    
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <script type="text/javascript" src="./js/script.js"></script>
     <script src="./js/jquery-3.2.1.js"></script>
 </body>

@@ -2,7 +2,7 @@
     header("Content-type: text/html");
     require("config.inc.php");
 ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -18,10 +18,11 @@
     </head>
 
     <body>
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("entete.inc.php");
-        ?>
-        
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <nav>
             <ul>
                 <li>
@@ -58,8 +59,8 @@
             <div id="galerie">
                 <ul id="imgGalerie">
                     <li data-numero = "1">
-        <!-- --------------------------- PHP ------------------------------------ -->
-            <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                 
                 try {        
                     //boucle sur chaque oeuvre (depuis BDD)
@@ -83,19 +84,20 @@
                     while($ligne != false){
                         
                         if($ligne["Type"] == "affiche"){ //si le document est de type affiche
-                ?>
-                            <!-- ------------------------------------------------------------------ -->
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                             <a href="./afficheImage.php?idImg=<?php echo($ligne["IdOeuvre"]) ?>">
                                 <img  alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="image" class="enfantGalerie"/>
                             </a> 
                         
-            <!-- --------------------------- PHP ------------------------------------ --> 
-            <?php       $compteur++;
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php           
+                        $compteur++;
                             
                         }else if($ligne["Type"] == "video"){ //si le doc est de type vidéo
                                        
-             ?>
-                                <!-- ------------------------------------------------------------------ -->
+?>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                             <a href="./afficheImage.php?idImg=<?php echo($ligne["IdOeuvre"]) ?>">
                                 <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="video" class="enfantGalerie"/>
                             </a>
@@ -104,30 +106,28 @@
                         Author webpage: https://vimeo.com/mskrzyp125 
                         Licence: ATTRIBUTION LICENSE 3.0 (http://creativecommons.org/licenses/by/3.0/us/)
                         Downloaded at Mazwai.com -->
-                                                                                                                                     
-            <!-- --------------------------- PHP ------------------------------------ -->                     <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->                   
+<?php
                         $compteur++;                                                                                      
                         }else{ // si le doc est un audio
-            ?>
-            <!-- ------------------------------------------------------------------ -->
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                             <a href="./afficheImage.php?idImg=<?php echo($ligne["IdOeuvre"]) ?>">
                                 <img alt="vignette de <?php echo($ligne["DescOeuvre"]); ?>" src="./php/vignettes/<?php echo($ligne["Vignette"]); ?>" data-format="audio" class="enfantGalerie"/>
-                            </a>    
-                        
-              
-            <!-- --------------------------- PHP ------------------------------------ --> 
-            <?php       
+                            </a>                     
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php       
                         $compteur++;
                         }
                         
                         if($compteur == 3){
                             $compteur = 0;
-            ?>
-            <!-- ------------------------------------------------------------------ -->       
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                         </li>
                         <li data-numero ="<?php echo($dataNum++) ?>">            
-            <!-- --------------------------- PHP ------------------------------------ -->           
-            <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                         }
                         
                     
@@ -140,9 +140,9 @@
             } catch(Exception $e){
                     echo("Exception :".$e->getMessage());
             }
-        ?>
-
-            <!-- ------------------------------------------------------------------ -->
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+    
                         <a href="./participation.php">                            
                             <img src="./images/img-fin-galerie.png" alt="image de fin de galerie"/>
                         </a>
@@ -157,11 +157,11 @@
                 <img src="./images/img-page-suivante.png" alt="Flèche page suivante" class="boutonNavi" data-navi="avancer"/> 
             </div>
         </main>
-        
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("pied.inc.php");
-        ?>
-        
+?>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
     </body>
         <script type="text/javascript" src="./js/galerie.js"></script>
         <script src="./js/jquery-3.2.1.js"></script>

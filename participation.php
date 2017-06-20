@@ -233,9 +233,9 @@
                                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                                             // Etape 2 : envoi de la requête SQL au serveur INSERER IMAGE
-                                            $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
+                                            $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramTitre, :paramType, :paramPseudo)";
                                             $statement = $pdo->prepare($sql);
-                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$fileName, ":paramVig" => "vignette_".$fileName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
+                                            $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$fileName, ":paramVig" => "vignette_".$fileName, ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                                                <!-- div popup fichier enregistré-->
@@ -324,10 +324,10 @@
                                                 $pdo->query("SET CHARACTER SET 'utf8'");
 
                                                 // Etape 2 : envoi de la requête SQL au serveur INSERER VIDEO
-                                                $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramVid, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
+                                                $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Titre, Type, Pseudo) VALUES (:paramDesc, :paramVid, :paramVig, :paramTitre, :paramType, :paramPseudo)";
 
                                                 $statement = $pdo->prepare($sql);
-                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "vid_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => $_SESSION["pseudoCo"]));
+                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "vid_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => $_SESSION["pseudoCo"]));
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <!-- div popup fichier enregistré -->
@@ -424,10 +424,10 @@
                                                 $pdo->query("SET CHARACTER SET 'utf8'");
 
                                                 // Etape 2 : envoi de la requête SQL au serveur INSERER AUDIO
-                                                $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
+                                                $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Titre, Type, Pseudo) VALUES (:paramDesc, :paramAud, :paramVig, :paramTitre, :paramType, :paramPseudo)";
 
                                                 $statement = $pdo->prepare($sql);
-                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => $_SESSION["pseudoCo"]));
+                                                $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => $_SESSION["pseudoCo"]));
                                                 
 ?>
     <!-- - - - - - - - - - FIN HP - - - - - - - - - -->

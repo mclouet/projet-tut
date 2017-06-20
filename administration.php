@@ -200,21 +200,23 @@
 <?php
                 while($ligne != false) {
                     $cpt++;
-                    $srcBtn = "./images/img-bouton-supprimer.png"; // A SUPPRIMER
-                    if($ligne["Admin"] == "0") {
-                        $admin = "Non";
-                        // $srcBtn = le lien vers le bouton +
-                    } else {
-                        $admin = "Oui";
-                        // $srcBtn = le lien vers le bouton -
-                    }
+/*
+                    if($ligne["Pseudo"] != "Cabadix"){
+*/
+                        if($ligne["Admin"] == "0") {
+                            $admin = "Non";
+                            $srcBtn = "./images/img-bouton-ajouter.png";
+                        } else {
+                            $admin = "Oui";
+                            $srcBtn = "./images/img-bouton-supprimer.png";
+                        }
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
      
-            <p class="utilisateursAdmin" data-user="<?php echo($cpt) ?>"><?php echo($ligne["Pseudo"]); ?> &#124; Admin : <?php echo($admin); ?></p>
-            <form action="administration.php" method="post">
-                <button type="submit" name="admin" data-admin="<?php echo($cpt) ?>"><img src="<?php echo($srcBtn); ?>" alt="Bouton de modifications des droits d'administration" /></button>
-            </form>
+                <p class="utilisateursAdmin" data-user="<?php echo($cpt) ?>"><?php echo($ligne["Pseudo"]); ?> &#124; Admin : <?php echo($admin); ?></p>
+                <form action="administration.php" method="post">
+                    <button type="submit" name="admin" data-admin="<?php echo($cpt) ?>"><img src="<?php echo($srcBtn); ?>" alt="Bouton de modifications des droits d'administration" /></button>
+                </form>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->    
 <?php
                     
@@ -223,6 +225,7 @@
 //                    $tous = array();
 //                    $tous = array_merge($tous, $user.$cpt);
                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                    //} // fin if utilisateur différent de Cabadix
                 } // Fin boucle
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->

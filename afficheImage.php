@@ -2,6 +2,7 @@
     header("Content-type: text/html");
     require("config.inc.php");
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <!DOCTYPE html>
 
     <html lang="fr">
@@ -20,10 +21,11 @@
     </head>
 
     <body>
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("entete.inc.php");
-        ?>
-
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <nav>
             <ul>
                 <li>
@@ -44,8 +46,9 @@
             </ul>
         </nav>
 
-        <main>        
-        <?php
+        <main> 
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
            //ETAPE 1: connexion à la base de données
             require("param.inc.php");
             $pdo = new PDO("mysql:host=".MYHOST.";dbname=".MYDB,MYUSER,MYPASS);
@@ -68,8 +71,8 @@
 
             //ETAPE 3: Traiter données retournées
                 $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                
-        ?> 
+?> 
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                 <h2 class="titreDesc titreRose"><?php echo($ligne["Titre"]); ?></h2>
             
                 <div class="retour">
@@ -78,37 +81,42 @@
                     </a>                
                     <p id="nomAuteur">Réalisé par <?php echo($ligne["Pseudo"]) ?></p>
                 </div>
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                 if($ligne["Type"] == "affiche"){
                     
-        ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                     <div>
                         <img src="./php/images/<?php echo($ligne["GdeOeuvre"]) ?>" alt="Image <?php $ligne["Titre"] ?>" class="grandeOeuvre" />
-                    </div>         
-            
-        <?php
+                    </div>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->            
+<?php
                 }else if($ligne["Type"] == "video"){
-        ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->    
                     <div>
                         <video controls preload="metadata" data-format="video" class="grandeOeuvre">
                             <source src="./php/videos/<?php echo($ligne["GdeOeuvre"]) ?>" type="video/mp4" />
                         </video>
                     </div>
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                 }else{
-        ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                     <div>
                         <audio src="./php/clips-audio/<?php echo($ligne["GdeOeuvre"]) ?>" controls preload="metadata" data-format="audio" class="grandeOeuvre">
                         </audio>
                     </div>
-            
-            
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->      
+<?php
                 } //fin if type
             }else { //si idImg n'existe pas
                      header("Location: ./galerie.php");
             }            
-        ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <div>
                 <h3>Description par l'auteur</h3>
                 <p class="descOeuvre">
@@ -118,11 +126,11 @@
                 </p>
             </div>
         </main>
-
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("pied.inc.php");
-        ?>
-        
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <script src="./js/script.js" type="text/javascript"></script>
         <script src="./js/jquery-3.2.1.js"></script>
     </body>

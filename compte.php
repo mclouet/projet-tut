@@ -46,7 +46,7 @@
 
             <main>
                 <h2 class="titreVert">Mon compte</h2>
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                 <?php
             //echo 'pseudo : '.$_SESSION["pseudoCo"].' mdp : '.$_SESSION["motDePasseCo"];
                 
@@ -55,15 +55,16 @@
                         $motDePasseCo = addslashes($_POST["motDePasseCo"]);*/
                         
                         $titrePopup ="";
-                        $messageModif = "";
+                        $messagePopup = "";
                         $conditionPopup = "";
                 ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                     <div id="monCompte">
                         <div>
                             <div id="bio">
                             <h3 class="titreBleu">Biographie</h3>
                             <p>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                             <?php
                                 // Afficher la biographie actuelle de l'utilisateur
                                 try {
@@ -89,6 +90,7 @@
                                     echo("Exception :".$e->getMessage());
                                 }
                             ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                             </p>
                         </div>
                             <!-- Modifier la biographie -->
@@ -149,7 +151,7 @@
                         <h3 id="titreMoncompteOeuvres" class="titreRose">Mes oeuvres</h3>
 
                         <div>
-                            
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->             
                     <?php
                         
                         // Afficher les oeuvres de l'auteur
@@ -212,7 +214,7 @@
                         }
                         
                     ?>
-                            
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->     
                             <a title="<?php echo($titreAffiche); ?>" >
                                 <img src="<?php echo($afficheUtilisateur); ?>" alt="Affiche de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" />
                             </a>
@@ -229,7 +231,7 @@
                             </form>
                         </div>
                     </div>
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                 <?php
                         if(isset($_POST["newBio"])) { // Si l'utilisateur modifie sa biographie : traitement textarea
                             
@@ -249,7 +251,7 @@
                                 
                                 // POPUP
                                 $titrePopup ="Mise à jour";
-                                $messageModif = "Votre biographie a été mise à jour !";
+                                $messagePopup = "Votre biographie a été mise à jour !";
                                 $conditionPopup = "visible";
                                     
                             } catch(Exception $e) {
@@ -297,7 +299,7 @@
                                                     $pdo = null;
                                                     
                                                     $titrePopup ="Mise à jour";
-                                                    $messageModif = "Votre mot de passe a bien été modifié";
+                                                    $messagePopup = "Votre mot de passe a bien été modifié";
                                                     $conditionPopup = "visible";
                                                     
                                                 } catch(Exception $e) {
@@ -306,7 +308,7 @@
 
                                         } else { // Si l'ancien mot de passe entré n'est pas bon
                                             $titrePopup ="Erreur";
-                                            $messageModif = "L'ancien mot de passe saisi est incorrect";
+                                            $messagePopup = "L'ancien mot de passe saisi est incorrect";
                                             $conditionPopup = "visible";
                                         }
                                     }
@@ -317,12 +319,12 @@
                                 
                                 } else { // Si le mot de passe contient moins de 6 caractères
                                     $titrePopup ="Erreur";
-                                    $messageModif = "Le nouveau mot de passe contient moins de 6 caractères";
+                                    $messagePopup = "Le nouveau mot de passe contient moins de 6 caractères";
                                     $conditionPopup = "visible";
                                 }
                             } else { // Si le mot de passe et le mot de passe de vérification sont différents
                                     $titrePopup ="Erreur";
-                                    $messageModif = "Les deux mots de passes ne sont pas identiques";
+                                    $messagePopup = "Les deux mots de passes ne sont pas identiques";
                                     $conditionPopup = "visible";
                             } // Fin condition mot de passe et vérification
                             
@@ -365,7 +367,7 @@
                                                 $pdo = null;
                                                 
                                                 $titrePopup ="Mise à jour";
-                                                $messageModif = "Votre mot de passe a été mise à jour !";
+                                                $messagePopup = "Votre mot de passe a été mise à jour !";
                                                 $conditionPopup = "visible";
                                                 
                                             } catch(Exception $e) {
@@ -374,7 +376,7 @@
                                             
                                         } else { // Si l'ancienne adresse email entrée n'est pas bonne
                                             $titrePopup ="Erreur";
-                                            $messageModif = "";
+                                            $messagePopup = "";
                                             $conditionPopup = "visible";
                                         } // Fin condition ancienne adresse email entrée
                                     }
@@ -385,12 +387,12 @@
                                     
                                 } else { // Si la nouvelle adresse email entrée n'est pas au bon format
                                     $titrePopup ="Erreur";
-                                    $messageModif = "La nouvelle adresse email n'est pas valide";
+                                    $messagePopup = "La nouvelle adresse email n'est pas valide";
                                     $conditionPopup = "visible";
                                 } // Fin condition format adresse email
                             } else { // Si les champs nouvelle adresse et vérification sont différents
                                     $titrePopup ="Erreur";
-                                    $messageModif = "Les deux adresses email sont différentes";
+                                    $messagePopup = "Les deux adresses email sont différentes";
                                     $conditionPopup = "visible";
                             } // Fin condition nouvelle adresse et vérification
                             
@@ -412,7 +414,7 @@
                             
                             if($ligne == false) { // Si l'auteur n'a pas d'affiche à supprimer
                                 $titrePopup ="Erreur";
-                                $messageModif = "Il n'y a pas d'affiche à supprimer";
+                                $messagePopup = "Il n'y a pas d'affiche à supprimer";
                                 $conditionPopup = "visible";
                                 
                             } else { // Si l'auteur a une affiche à supprimer
@@ -435,7 +437,7 @@
                                 $pdo = null;
                                 
                                 $titrePopup ="Suppression";
-                                $messageModif = "Votre affiche a bien été suppprimée";
+                                $messagePopup = "Votre affiche a bien été suppprimée";
                                 $conditionPopup = "visible";
                                 
                             } // Fin condition si l'auteur a une affiche à supprimer
@@ -458,7 +460,7 @@
                             if($ligne == false) { // Si l'auteur n'a pas de vidéo à supprimer
                             
                                 $titrePopup ="Erreur";
-                                $messageModif = "Il n'y a pas de vidéo à supprimer";
+                                $messagePopup = "Il n'y a pas de vidéo à supprimer";
                                 $conditionPopup = "visible";
                             
                             } else { // Si l'auteur a une vidéo à supprimer
@@ -485,7 +487,7 @@
                                 $pdo = null;
                                 
                                 $titrePopup ="Suppression";
-                                $messageModif = "La vidéo a bien été supprimée";
+                                $messagePopup = "La vidéo a bien été supprimée";
                                 $conditionPopup = "visible";
         
                                 } // Fin condition si l'auteur a une vidéo à supprimer
@@ -508,7 +510,7 @@
                             if($ligne == false) { // Si l'auteur n'a pas de clip audio à supprimer
                                 
                                 $titrePopup ="Erreur";
-                                $messageModif = "Il n'y a pas de clip audio à supprimer";
+                                $messagePopup = "Il n'y a pas de clip audio à supprimer";
                                 $conditionPopup = "visible";
                                 
                                 
@@ -536,34 +538,37 @@
                                 $pdo = null;
                                 
                                 $titrePopup ="Suppression";
-                                $messageModif = "Votre clip audio a bien été supprimé";
+                                $messagePopup = "Votre clip audio a bien été supprimé";
                                 $conditionPopup = "visible";
                                 
                             } // Fin condition si l'auteur a un clip audio à supprimer
                
                         }// Fin condition si l'utilisateur modifie l'un des champs (bio, mdp, mail, supprimer affiche, vidéo, audio)
-                         
-                ?>           
+           
+                ?>   
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                           <div class="flou <?php echo($conditionPopup) ?>">
-                            <div class="popup <? echo($conditionPopup) ?>">
+                            <div class="popup <?php echo($conditionPopup) ?>">
                                 <h3><?php echo($titrePopup)?></h3>
                                 <p><?php echo($messagePopup) ?></p>
                                 <button class="fermer">Fermer</button>
                             </div>
                         </div> 
+                
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                 <?php
                         
                     } else { // Si l'utilisateur n'est pas connecté
                         header("Location: connexion.php");
                     }
                 ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             </main>
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
             <?php
                 require("pied.inc.php");
             ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <script type="text/javascript" src="./js/inscription.js"></script>
             <script type="text/javascript" src="./js/script.js"></script>
             <script src="./js/jquery-3.2.1.js"></script>

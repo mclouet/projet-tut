@@ -2,6 +2,7 @@
     header("Content-type: text/html");
     require("config.inc.php");
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 
     <!DOCTYPE html>
     <html lang="fr">
@@ -18,10 +19,11 @@
     </head>
 
     <body>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
         <?php
             require("entete.inc.php");
         ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <nav>
             <ul>
                 <li>
@@ -42,8 +44,7 @@
             </ul>
         </nav>
 
-        <!-- ---------------------- PHP ----------------- -->
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
         <?php        
         $classConnecte = "";
         
@@ -69,6 +70,7 @@
                         
                         if($ligne == false){ //si le résultat retourné est vide > si l'utilisateur n'existe pas
                         ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                             <div class="flou visible">
                                  <div class="popup visible">
                                     <h3>Erreur</h3>
@@ -76,6 +78,7 @@
                                     <button class="fermer">Fermer</button>
                                 </div>
                             </div>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
                         <?php
                         }else{ //si l'utilisateur existe                         
                             if (md5($motDePasseCo) == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
@@ -95,6 +98,7 @@
                 
                 //echo("Vous êtes maintenant déconnecté");
                 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                 <div class="flou <?php echo($classConnecte)?>">
                      <div class="popup <?php echo($classConnecte) ?>">
                         <h3>Déconnexion</h3>
@@ -102,16 +106,12 @@
                         <a href="./index.php" class="titreRose">Retourner à l'accueil</a>
                     </div>
                 </div>
-        
-        
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
         <?php
             session_destroy();
             } //fin else
         ?>
-
-
-            <!-- ---------------------- FIN PHP ----------------- -->
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <main>
                 <h2 class="titreBleu">Connexion</h2>
 
@@ -140,11 +140,11 @@
                     </div>
                 </div>
             </main>
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
             <?php
                 require("pied.inc.php");
             ?>
-        
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <script src="./js/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="./js/script.js"></script>
         

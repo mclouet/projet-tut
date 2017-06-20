@@ -6,6 +6,7 @@
         
         // POPUP VOUS DEVEZ ETRE CONNECTE(E) POUR POSTER UNE OEUVRE
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <div class="flou visible">
                 <div class="popup visible">
                     <h3>Erreur</h3>
@@ -13,6 +14,7 @@
                     <a class="titreJaune" href="./connexion.php">Se connecter</a>
                 </div>
             </div>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
     } else { // Si l'utilisateur est connecté
         
@@ -43,6 +45,7 @@
                 $stop = true;
                 // POPUP VOUS N'AVEZ PAS LES DROITS POUR ACCEDER A CETTE PAGE
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <div class="flou visible">
                 <div class="popup visible">
                     <h3>Erreur</h3>
@@ -50,6 +53,7 @@
                     <a class="titreJaune" href="./index.php">Retourner à l'accueil</a>
                 </div>
             </div>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php  
             } // Fin condition si l'utilisateur n'est pas un admin
             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
@@ -59,6 +63,7 @@
         
     } // Fin condition si l'utilisateur est connecté
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 
     <!DOCTYPE html>
 
@@ -76,10 +81,11 @@
     </head>
 
     <body>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
         <?php
             require("entete.inc.php");
         ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <nav>
             <ul>
                 <li>
@@ -103,6 +109,7 @@
         <main>
             <h2 class="titreJaune">Administration</h2>
             
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
             // GERER SUPPRESSION OEUVRES NON NON NON COPIER SLIDER GALERIE ET AJOUTER BTN SUPPRESSION OU JUSTE AJOUTER BTN DANS GALERIE ET IF UTILISATEUR ADMIN ALORS PEUT SUPPRIMER
             // Etape 1 : connexion au serveur de base de données
@@ -124,27 +131,33 @@
                 $auteur = $ligne["Pseudo"];
                 if($ligne["Type"] == "affiche") { // Si l'oeuvre est une affiche
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             
                     <a title="Affiche &#124; Titre : <?php echo($titre); ?> &#124; Auteur : <?php echo($auteur); ?>">
                         <img src="<?php echo($vignette); ?>" alt="Affiche de <?php echo($auteur); ?>" class="oeuvreAdministration" />
                     </a>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
             
 <?php
                 } else if($ligne["Type"] == "video") { // Si l'oeuvre est une vidéo
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             
                     <a title="Vidéo &#124; Titre : <?php echo($titre); ?> &#124; Auteur : <?php echo($auteur); ?>">
                         <img src="<?php echo($vignette); ?>" alt="Vidéo de <?php echo($auteur); ?>" class="oeuvreAdministration" />
                     </a>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
             
 <?php                    
                 } else if($ligne["Type"] == "audio") { // Si l'oeuvre est un clip audio
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             
                     <a title="Clip audio &#124; Titre : <?php echo($titre); ?> &#124; Auteur : <?php echo($auteur); ?>">
                         <img src="<?php echo($vignette); ?>" alt="Clip audio de <?php echo($auteur); ?>" class="oeuvreAdministration" />
                     </a>
             
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->            
 <?php                    
                 } // Fin condition type oeuvre
                 
@@ -155,6 +168,7 @@
             
             if($chef) { // Si l'utilisateur est le commanditaire, afficher la liste des utilisateurs, possibilité de modifier droits admin
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             
             <h3>Liste des utilisateurs du site</h3>
             
@@ -162,6 +176,7 @@
                 En tant que commanditaire du site C'est dans le sac !, vous pouvez ajouter ou supprimer les droits d'administration aux différents utilisateurs du site.</br>
                 Attention toutefois ! Un administrateur a la possibilité de supprimer n'importe quelle œuvre à partir du moment où il la juge contraire au règlement du concours.
             </p>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
             
 <?php
                 // Etape 1 : connexion au serveur de base de données
@@ -179,9 +194,9 @@
                 
                 $cpt = 0;
 ?>
-     
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <div id="tableUser">
-            
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                 while($ligne != false) {
                     $cpt++;
@@ -194,12 +209,13 @@
                         // $srcBtn = le lien vers le bouton -
                     }
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
      
             <p class="utilisateursAdmin" data-user="<?php echo($cpt) ?>"><?php echo($ligne["Pseudo"]); ?> &#124; Admin : <?php echo($admin); ?></p>
             <form action="administration.php" method="post">
                 <button type="submit" name="admin" data-admin="<?php echo($cpt) ?>"><img src="<?php echo($srcBtn); ?>" alt="Bouton de modifications des droits d'administration" /></button>
             </form>
-            
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->    
 <?php
                     
                     // COMMENT ASSOCIER LE BOUTON AU <p></p> ET DONC A L'UTILISATEUR ET A LA VALEUR DE ADMIN ?
@@ -209,13 +225,11 @@
                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                 } // Fin boucle
 ?>
-     
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         </div>
-            
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->      
 <?php
-                $pdo = null;
-                
-                
+                $pdo = null;                
                 
                 if(isset($_POST["admin"])) { // Si le commanditaire clique sur l'un des boutons ajout / suppression droits admin
 //                    $utilisateur = $tous["pseudo5"];
@@ -227,13 +241,13 @@
                 
             } // Fin condition si l'utilisateur est le commanditaire
 ?>
-            
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->     
         </main>
-
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("pied.inc.php");
-        ?>
-        
+?>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
         <script type="text/javascript" src="./js/participation.js"></script>
         <script type="text/javascript" src="./js/script.js"></script>
         <script src="./js/jquery-3.2.1.js"></script>

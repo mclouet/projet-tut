@@ -5,7 +5,8 @@
     if (!isset($_SESSION["pseudoCo"])) {
         
         // POPUP VOUS DEVEZ ETRE CONNECTE(E) POUR POSTER UNE OEUVRE
-        ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <div class="flou visible">
                 <div class="popup visible">
                     <h3>Erreur</h3>
@@ -13,10 +14,11 @@
                     <a class="titreJaune" href="./connexion.php">Se connecter</a>
                 </div>
             </div>
-        <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
     }
 ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <!DOCTYPE html>
 
     <html lang="fr">
@@ -33,10 +35,11 @@
     </head>
 
     <body>
-        <?php
-            require("entete.inc.php");
-        ?>
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
+        require("entete.inc.php");
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <nav>
             <ul>
                 <li>
@@ -102,11 +105,8 @@
                 <div> <img src="./images/img-apercu-defaut.jpg" alt="Aperçu de l'image téléchargée" id="apercu" /> </div>
             </div>
         </main>
-        
-        <!-- ----------------- PHP ---------------- -->
-
-    <?php
-        
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
             require("pied.inc.php");
         
                     if (isset($_FILES["monFichier"])) {
@@ -116,10 +116,9 @@
                             $taille_max = 31457280; // 31457280 octets = 30Mo
                             $taille_fichier = filesize($_FILES["monFichier"]["tmp_name"]);
 
-                            if ($taille_fichier > $taille_max) { // Si fichier trop lourd
-                                
-    ?>
-        
+                            if ($taille_fichier > $taille_max) { // Si fichier trop lourd                              
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <!-- div popup fichier trop lourd -->
         <div class="flou visible">
             <div class="popup visible">
@@ -128,8 +127,8 @@
                 <button class="fermer">Fermer</button>
             </div>
         </div>
-        
-    <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                             }  else { // Si taille fichier ok
                                                                 try {
                                     // Etape 1 : connexion au serveur de base de données
@@ -237,7 +236,8 @@
                                             $sql = "INSERT INTO OEUVRE (DescOeuvre, GdeOeuvre, Vignette, Note, Titre, Type, Pseudo) VALUES (:paramDesc, :paramGde, :paramVig, :paramNote, :paramTitre, :paramType, :paramPseudo)";
                                             $statement = $pdo->prepare($sql);
                                             $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramGde" => "grande_".$fileName, ":paramVig" => "vignette_".$fileName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "affiche", ":paramPseudo" => $_SESSION["pseudoCo"]));
-        ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                                                <!-- div popup fichier enregistré-->
                                                     <div class="flou visible">
                                                         <div class="popup visible">
@@ -247,8 +247,9 @@
                                                             <a href="./index.php" class="titreJaune">Retour à l'accueil</a>
                                                             <button class="fermer">Fermer</button>
                                                         </div>
-                                                   </div>      
-        <?php
+                                                   </div>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                                            /* echo('<script language="javascript">');
                                             echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');
                                             echo('</script>');*/
@@ -259,7 +260,8 @@
                                         }
 
                                 } else { // Si le format est différent de ceux attendus
-    ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <!-- div popup mauvais format -->
         <div class="flou visible">
             <div class="popup visible">
@@ -268,7 +270,8 @@
                 <button class="fermer">Fermer</button>
             </div>
         </div>
-    <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                                         
                                         /*echo('<script language="javascript">');
                                         echo('alert("Les formats acceptés sont .jpeg, .jpg et .png.")');
@@ -325,31 +328,28 @@
 
                                                 $statement = $pdo->prepare($sql);
                                                 $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramVid" => "vid_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "video", ":paramPseudo" => $_SESSION["pseudoCo"]));
-                                                
-    ?>
-        <!-- div popup fichier enregistré -->
-        <div class="flou visible">
-            <div class="popup visible">
-                <h3>Félicitations !</h3>
-                <p>Votre fichier a bien été enregistré, rendez-vous dans la galerie pour consulter les oeuvres !</p>
-                <a href="./galerie.php" class="titreRose">Galerie</a>
-                <a href="./index.php" class="titreJaune">Retour à l'accueil</a>
-                <button class="fermer">Fermer</button>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+            <!-- div popup fichier enregistré -->
+            <div class="flou visible">
+                <div class="popup visible">
+                    <h3>Félicitations !</h3>
+                    <p>Votre fichier a bien été enregistré, rendez-vous dans la galerie pour consulter les oeuvres !</p>
+                    <a href="./galerie.php" class="titreRose">Galerie</a>
+                    <a href="./index.php" class="titreJaune">Retour à l'accueil</a>
+                    <button class="fermer">Fermer</button>
+                </div>
             </div>
-        </div>
-    <?php
-                                                
-                                                /*echo('<script language="javascript">');
-                                                echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');
-                                                echo('</script>');*/
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php                                           
                                                 $pdo = null;
                                             } catch(Exception $e) {
                                                 echo("Exception :".$e->getMessage());
                                             }
 
                                         } else { // Si aucune vignette n'a été choisie
-    ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <!-- div popup pas de vignette choisie -->
         <div class="flou visible">
             <div class="popup visible">
@@ -358,16 +358,14 @@
                 <button class="fermer">Fermer</button>
             </div>
         </div>
-    <?php                                           
-                                            
-                                            /*echo('<script language="javascript">');
-                                            echo('alert("Vous devez choisir une vignette au format .jpeg, .jpg ou .png.")');
-                                            echo('</script>');*/
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                                         } // Fin condition vignette
 
                                     } else { // Si le format est différent de celui attendu
                                         echo($_FILES["monFichier"]["type"]);
-    ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <!-- div popup mauvais format -->
         <div class="flou visible">
             <div class="popup visible">
@@ -376,10 +374,8 @@
                 <button class="fermer">Fermer</button>
             </div>
         </div>
-    <?php
-                                      /*  echo('<script language="javascript">');
-                                        echo('alert("Le format accepté est .mp4.")');
-                                        echo('</script>');*/
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                                     } // Fin condition format vidéo
 
                                 } else if ($_POST["categorie"] == "audio") { // Si la catégorie choisie est clip AUDIO
@@ -433,7 +429,8 @@
                                                 $statement = $pdo->prepare($sql);
                                                 $statement->execute(array(":paramDesc" => $_POST["desc"], ":paramAud" => "aud_".$fileName, ":paramVig" => "vignette_".$vigName, ":paramNote" => "0", ":paramTitre" => $_POST["titre"], ":paramType" => "audio", ":paramPseudo" => $_SESSION["pseudoCo"]));
                                                 
-    ?>
+?>
+    <!-- - - - - - - - - - FIN HP - - - - - - - - - -->
         <!-- div popup fichier enregistré -->
         <div class="flou visible">
             <div class="popup visible">
@@ -444,19 +441,16 @@
                 <button class="fermer">Fermer</button>
             </div>
         </div>
-    <?php
-                                                
-                                                /*echo('<script language="javascript">');
-                                                echo('alert("Votre fichier a été enregistré, rendez-vous dans la galerie pour consulter les œuvres !")');
-                                                echo('</script>');*/
-
-                                                $pdo = null;
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
+                                              $pdo = null;
                                             } catch(Exception $e) {
                                                 echo("Exception :".$e->getMessage());
                                             }
                                             
                                         } else { // Si aucune vignette n'a été choisie
-    ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <!-- div popup pas de vignette choisie -->
         <div class="flou visible">
             <div class="popup visible">
@@ -465,15 +459,13 @@
                 <button class="fermer">Fermer</button>
             </div>
         </div>
-    <?php
-                                            
-                                            /* echo('<script language="javascript">');
-                                            echo('alert("Vous devez choisir une vignette au format .jpeg, .jpg ou .png.")');
-                                            echo('</script>');*/
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                                         } // Fin condition vignette
 
                                     } else { // Si le format est différent de ceux attendus
-    ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <!-- div popup mauvais format -->
         <div class="flou visible">
             <div class="popup visible">
@@ -482,15 +474,13 @@
                 <button class="fermer">Fermer</button>
             </div>
         </div>
-    <?php
-                                        
-                                        /*echo('<script language="javascript">');
-                                        echo('alert("Les formats acceptés sont .mp3 et .wav.")');
-                                        echo('</script>');*/
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                                     } // Fin condition format clip audio
 
                                 } else { // Si aucune catégorie n'est choisie
-    ?>
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <!-- div popup pas de catégorie choisie -->
         <div class="flou visible">
             <div class="popup visible">
@@ -499,7 +489,8 @@
                 <button class="fermer">Fermer</button>
             </div>
         </div>
-    <?php
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
                                 } // Fin condition aucune catégorie choisie
                                 
                             } // Fin condition taille fichier
@@ -507,10 +498,8 @@
                         } // Fin condition fichier différent de .htaccess
                     } // Fin condition fichier isset
         
-    ?>
-
-        <!-- ---------------------- FIN PHP ----------------- -->
-
+?>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
         <script type="text/javascript" src="./js/participation.js"></script>
         <script type="text/javascript" src="./js/script.js"></script>
         <script src="./js/jquery-3.2.1.js"></script>

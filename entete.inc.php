@@ -1,6 +1,7 @@
 <?php
     header("Content-type: text/html");
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 
     <header>
         <div class="reseauxSoc">
@@ -12,11 +13,12 @@
         </div>
 
         <h1>C'est dans le sac !</h1>
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
     if (isset($_SESSION["pseudoCo"])) {
     // Si la session existe (utilisateur connecté), affichage des logos "se déconnecter" et "mon compte"    
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 
             <div class="compte">
                 <a href="./compte.php">Mon compte
@@ -28,12 +30,12 @@
                     </a>
                 </div>
             </div>
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
         } else {
         // Si la session n'existe pas (utilisateur déconnecté), affichage du logo "se connecter"
 ?>
-
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                 <div class="compte">
                     <div class="log">
                         <a href="./connexion.php" title="Se connecter" id="logIn">
@@ -41,8 +43,9 @@
                         </a>
                     </div>
                 </div>
-
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
     }
 ?> 
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
 </header>

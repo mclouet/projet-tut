@@ -96,7 +96,8 @@
                 } // Fin génération mot de passe aléatoire
                 
                 // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER NOMS EMAIL
-                $sql = "UPDATE UTILISATEUR SET MotDePasse = '".$mdpAlea."' WHERE Pseudo = '".$pseudo."'";
+                $mdpInsertion = md5($mdpAlea);
+                $sql = "UPDATE UTILISATEUR SET MotDePasse = '".$mdpInsertion."' WHERE Pseudo = '".$pseudo."'";
                 $statement = $pdo->query($sql);                
                 
                 // Headers
@@ -105,10 +106,10 @@
                 // Le message
                 $cdls = "<a href='https://projets.iut-laval.univ-lemans.fr/16mmi1pj06/'>C'est dans le sac !</a>";
                 $connexion = "<a href='https://projets.iut-laval.univ-lemans.fr/16mmi1pj06/connexion.php'>connexion</a>";
-                $compte = "<a href='https://projets.iut-laval.univ-lemans.fr/16mmi1pj06/compte.php'>mon Compte</a>"
-                $message = "Vous venez de réinitialiser votre mot de passe sur le site ".$cdls."\r\nNous vous joignons un mot de passe temporaire. Veillez à rapidement le changer via la page '".$compte."' après votre ".$connexion.".\r\nVotre mot de passe temporaire : ".$mdpAlea."\r\nA bientôt sur notre site concours !\r\nC'est dans le sac !";
+                $compte = "<a href='https://projets.iut-laval.univ-lemans.fr/16mmi1pj06/compte.php'>mon Compte</a>";
+                $message = "Vous venez de réinitialiser votre mot de passe sur le site ".$cdls."</br>Nous vous joignons un mot de passe temporaire. Veillez à rapidement le changer via la page '".$compte."' après votre ".$connexion.".</br>Votre mot de passe temporaire : ".$mdpAlea."</br>A bientôt sur notre site concours !</br>C'est dans le sac !";
                 // Plusieurs destinataires
-                $to = "marie.clouet.etu@univ-lemans.fr" . ", "; // notez la virgule
+                $to = "marie.clouet.etu@univ-lemans.fr" . ", ";
                 $to .= $email;
                 // Objet
                 $objet = "Récupération de votre mot de passe &#124; CDLS";

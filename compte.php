@@ -567,44 +567,6 @@
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
             <?php
                 require("pied.inc.php");
-        
-
-                if(!empty($_POST['email'])) {
-                    $email = $_POST['email'];
-                } else {
-                    exit("mail vide.");
-                }
-
-                // Etape 1 : connexion au serveur de base de données
-                require("param.inc.php");
-                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
-                $pdo->query("SET NAMES utf8");
-                $pdo->query("SET CHARACTER SET 'utf8'");
-
-                // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER NOMS EMAIL
-                $sql = "SELECT AdMail FROM UTILISATEUR WHERE AdMail = '".$email."'";
-                $statement = $pdo->query($sql);
-
-                // Etape 3 : traitement des données retournées
-                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-
-                if($ligne != false) {
-                    $row1 = mysql_fetch_assoc($req);
-                    $retour = mysql_query("SELECT pass FROM tbl_membre WHERE email = '".$email."' ");
-                    $row2 = mysql_fetch_assoc($retour);
-
-                    $headers  = 'MIME-Version: 1.0' . "\r\n";
-                    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-                    $objet = 'Récupération de votre mot de passe';
-
-                    if(!mail($row1['email'], $objet, $row2['pass'], $headers))
-                    echo 'probleme lors de l\'envoi du mail';
-                    else
-                    echo 'mail envoye';
-
-                } else {
-                    exit("mail inconnu.");
-                }
 
             ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->

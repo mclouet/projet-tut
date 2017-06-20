@@ -1,7 +1,3 @@
-<?php
-    header("Content-type: text/html");
-?>
-
 <footer>
     <div class="txtFooter">
         <a href="./mentions.php">Mentions légales</a>

@@ -268,11 +268,14 @@ footer::after {
 }
 
 @media (max-width: 1500px) {
+    #baleine {
+        bottom: 65%;
+    }
+    #usine {
+        bottom: 44%;
+    }
     #magicien {
         bottom: 17%;
-    }
-    #baleine {
-        bottom: 68%;
     }
 }
 
@@ -491,11 +494,12 @@ input:focus {
 
 
 /* Biographie */
-#formBio{
+
+#formBio {
     font-size: 15pt;
 }
 
-#bio{
+#bio {
     padding: 5px;
     border: 16px solid transparent;
     border-image: url("./images-css/img-media-4-foreground.png") 65 45;
@@ -505,7 +509,8 @@ input:focus {
     margin-bottom: 30px;
     font-family: 'Open Sans Condensed', sans-serif;
 }
-#bio>h3{
+
+#bio>h3 {
     margin-top: 10px;
     width: 100%;
     font-family: 'Amatic SC', cursive;
@@ -617,7 +622,7 @@ input:focus {
     box-sizing: border-box;
 }
 
-#titreMoncompteOeuvres{
+#titreMoncompteOeuvres {
     margin-top: 55px;
 }
 

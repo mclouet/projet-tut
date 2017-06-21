@@ -46,11 +46,13 @@
 
         divFlou.css({
             display: "none"
-        })
+        });
 
         divMessage.css({
             display: "none"
-        })
+        });
+        
+        location.assign(location.href);
     }
 
     function supprimerCouleur(evt) {

@@ -109,70 +109,14 @@
         <main>
             <h2 class="titreJaune">Administration</h2>
             
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->
-<?php
-            // GERER SUPPRESSION OEUVRES NON NON NON COPIER SLIDER GALERIE ET AJOUTER BTN SUPPRESSION OU JUSTE AJOUTER BTN DANS GALERIE ET IF UTILISATEUR ADMIN ALORS PEUT SUPPRIMER
-            // Etape 1 : connexion au serveur de base de données
-            require("param.inc.php");
-            $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
-            $pdo->query("SET NAMES utf8");
-            $pdo->query("SET CHARACTER SET 'utf8'");
-
-            // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER LES OEUVRES
-            $sql = "SELECT Pseudo, Titre, Vignette, Type FROM OEUVRE";
-            $statement = $pdo->query($sql);
-
-            // Etape 3 : traitement des données retournées
-            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-
-            while($ligne != false) { 
-                $titre = $ligne["Titre"];
-                $vignette = "./php/vignettes/".$ligne["Vignette"];
-                $auteur = $ligne["Pseudo"];
-                if($ligne["Type"] == "affiche") { // Si l'oeuvre est une affiche
-?>
-    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-            
-                    <a title="Affiche &#124; Titre : <?php echo($titre); ?> &#124; Auteur : <?php echo($auteur); ?>">
-                        <img src="<?php echo($vignette); ?>" alt="Affiche de <?php echo($auteur); ?>" class="oeuvreAdministration" />
-                    </a>
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->
-            
-<?php
-                } else if($ligne["Type"] == "video") { // Si l'oeuvre est une vidéo
-?>
-    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-            
-                    <a title="Vidéo &#124; Titre : <?php echo($titre); ?> &#124; Auteur : <?php echo($auteur); ?>">
-                        <img src="<?php echo($vignette); ?>" alt="Vidéo de <?php echo($auteur); ?>" class="oeuvreAdministration" />
-                    </a>
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->
-            
-<?php                    
-                } else if($ligne["Type"] == "audio") { // Si l'oeuvre est un clip audio
-?>
-    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-            
-                    <a title="Clip audio &#124; Titre : <?php echo($titre); ?> &#124; Auteur : <?php echo($auteur); ?>">
-                        <img src="<?php echo($vignette); ?>" alt="Clip audio de <?php echo($auteur); ?>" class="oeuvreAdministration" />
-                    </a>
-            
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->            
-<?php                    
-                } // Fin condition type oeuvre
-                
-                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-            } // Fin boucle
-            
-            
-            
+<?php            
             if($chef) { // Si l'utilisateur est le commanditaire, afficher la liste des utilisateurs, possibilité de modifier droits admin
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             
             <h3>Liste des utilisateurs du site</h3>
             
-            <p id="preventionAdmin">
+            <p class="preventionAdmin">
                 En tant que commanditaire du site C'est dans le sac !, vous pouvez ajouter ou supprimer les droits d'administration aux différents utilisateurs du site.</br>
                 Attention toutefois ! Un administrateur a la possibilité de supprimer n'importe quelle œuvre à partir du moment où il la juge contraire au règlement du concours.
             </p>
@@ -196,6 +140,7 @@
 ?>
      
         <div id="tableUser">
+            <div>
             
 <?php
                 while($ligne != false) {
@@ -213,7 +158,7 @@
                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                 } // Fin boucle
 ?>
-     
+            </div>
         </div>
             
 <?php
@@ -226,11 +171,11 @@
                     <input type="text" name="pseudoModif" required="required"/>
                 </div>
                 <div>
-                    <input type="radio" name="boolAdmin" id="ajouterDroits" required="required"/>
+                    <input type="radio" name="boolAdmin" id="ajouterDroits" value="ajouter" required="required"/>
                     <label class="boolAdmin" for="ajouterDroits">Ajouter les droits</label>
                 </div>
                 <div>
-                    <input type="radio" name="boolAdmin" id="supprimerDroits" required="required"/>
+                    <input type="radio" name="boolAdmin" id="supprimerDroits" value="supprimer" required="required"/>
                     <label class="boolAdmin" for="supprimerDroits">Supprimer les droits</label>
                 </div>             
                 <div>
@@ -240,42 +185,99 @@
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
             
 <?php
-                
                 if(isset($_POST["pseudoModif"])) { // Si le formulaire est envoyé
-                    $pseudoModif = addslashes($_POST["pseudoModif"]);
-                    // SELECTIONNER L'UTILISATEUR ENTRE DANS LA BDD ET VERIFIER SI IL EXISTE
-                    // Etape 1 : connexion au serveur de base de données
-                    require("param.inc.php");
-                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
-                    $pdo->query("SET NAMES utf8");
-                    $pdo->query("SET CHARACTER SET 'utf8'");
+                    if(isset($_POST["boolAdmin"])) { // Si un bouton a été coché
+                        $pseudoModif = addslashes($_POST["pseudoModif"]);
+                        // SELECTIONNER L'UTILISATEUR ENTRE DANS LA BDD ET VERIFIER SI IL EXISTE
+                        // Etape 1 : connexion au serveur de base de données
+                        require("param.inc.php");
+                        $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
+                        $pdo->query("SET NAMES utf8");
+                        $pdo->query("SET CHARACTER SET 'utf8'");
 
-                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER LES UTILISATEURS
-                    $sql = "SELECT Pseudo, Admin FROM UTILISATEUR";
-                    $statement = $pdo->query($sql);
+                        // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER LES UTILISATEURS
+                        $sql = "SELECT Pseudo, Admin FROM UTILISATEUR";
+                        $statement = $pdo->query($sql);
 
-                    // Etape 3 : traitement des données retournées
-                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                    $stop = false;
-
-                    while($ligne != false and $stop == false) {
-                        echo 'lignepseudo '.$ligne["Pseudo"].' ';
-                        echo 'pseudoModif'.$pseudoModif.' FIN';
-                        if($ligne["Pseudo"] == $pseudoModif) { // C'EST ICI QUE CA NE MARCHE PAS
-                            echo 'il existe, ce pseudo ! bien';
-                            $stop = true;
-                        }
+                        // Etape 3 : traitement des données retournées
                         $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                    } // Fin boucle
 
+                        $pseudoExiste = false;
+                        $stop = false;
+
+                        while($ligne != false and $stop == false) {
+                            if($ligne["Pseudo"] == $pseudoModif) { // C'EST ICI QUE CA NE MARCHE PAS
+                                $pseudoExiste = true;
+                                $stop = true;
+                            }
+                            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                        } // Fin boucle
+
+                        if($pseudoExiste) { // Si le pseudo entré existe dans la BDD
+                            if($_POST["boolAdmin"] == "ajouter") { // Si le commanditaire veut ajouter des droits
+                                $sql = "UPDATE UTILISATEUR SET Admin = '1' WHERE Pseudo = '".$pseudoModif."'";
+                                $statement = $pdo->query($sql);
+?>
+<!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+            <!-- div popup fichier ajout droits-->
+            <div class="flou visible">
+                <div class="popup visible">
+                    <h3>Ajout</h3>
+                    <p>Vous avez bien ajouté les droits d'administration à <?php echo(stripslashes($pseudoModif)); ?></p>
+                    <button class="fermer">Fermer</button>
+                </div>
+            </div>
+<!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
+                            } else if($_POST["boolAdmin"] == "supprimer") { // Si le commanditaire veut supprimer des droits
+                                $sql = "UPDATE UTILISATEUR SET Admin = '0' WHERE Pseudo = '".$pseudoModif."'";
+                                $statement = $pdo->query($sql);
+?>
+<!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+            <!-- div popup fichier suppression droits-->
+            <div class="flou visible">
+                <div class="popup visible">
+                    <h3>Suppression</h3>
+                    <p>Vous avez bien supprimé les droits d'administration de <?php echo(stripslashes($pseudoModif)); ?></p>
+                    <button class="fermer">Fermer</button>
+                </div>
+            </div>
+<!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
+                            } // Fin condition ajout ou suppression droits
+                        } else { // Si le pseudo entré ne correspond à aucun psueod dans la BDD
+?>
+<!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+            <!-- div popup fichier pseudo pas dans la bdd-->
+            <div class="flou visible">
+                <div class="popup visible">
+                    <h3>Erreur</h3>
+                    <p>Le pseudo entré n'existe pas dans la base de données.</p>
+                    <button class="fermer">Fermer</button>
+                </div>
+            </div>
+<!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
+                        }
+                        
                         $pdo = null;
-                                        
+                        
+                    } else { // Si aucun bouton n'est coché
+                        echo 'vous devez cocher un bouton'; // POPUP
+                    } // Fin condition boutons cochés
                 } // Fin condition si le formulaire est envoyé
                 
             } // Fin condition si l'utilisateur est le commanditaire
 ?> 
         
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+                <h3>Gestion des oeuvres</h3>
+            
+                <p class="preventionAdmin">
+                    Votre rôle d'administrateur consiste à regarder fréquemment les œuvres déposées par les utilisateurs. Vous devez vérifier que celles-ci respectent les modalités du concours. Si ce n'est pas le cas, vous devez les supprimer via la page d'affichage de l'œuvre.
+                </p>
+        
+        
             </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php

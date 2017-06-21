@@ -38,6 +38,27 @@
         // Ecouteur sur le bouton pour fermer les popups d'erreur
         $(".fermer").click(fermerPopup);
         $(".btnConfirm").click(fermerPopup);
+
+        // Popup de confirmation avant suppression
+        // $(".btnSupprConfirm").click(confirmer);
+        
+        // COMPTE : SI SRC DE L'IMG EST APERCU PAR DEFAUT, NE PAS METTRE ECOUTEUR DE CLIC
+        if(document.getElementsByClassName("oeuvreCompte")) { // Si oeuvreCompte
+            var oeuvresCompte = document.getElementsByClassName("oeuvreCompte");
+            var btnSupprConfirm = document.getElementsByClassName("btnSupprConfirm");
+            
+            for(var uneOeuvreCompte of oeuvresCompte) { // For oeuvres
+                if(uneOeuvreCompte.src == "./images/img-apercu-defaut-carre.png") { // Si l'auteur n'a pas déposé d'oeuvre pour cette catégorie
+                    // L'écouteur de clic n'est pas mis sur le bouton
+                } else { // Si l'auteur a déposé une oeuvre pour cette catégorie
+                    for(var unBtnSupprConfirm of btnSupprConfirm) {
+                        if(unBtnSupprConfirm.dataset.btn == uneOeuvreCompte.dataset.img) { // Si le data du bouton vaut celui de l'oeuvre
+                            unBtnSupprConfirm.addEventListener("click", confirmer);
+                        } // Fin condition data
+                    } // Fin for boutons
+                } // Fin condition src img
+            } // Fin for oeuvres
+        } // Fin condition si oeuvreCompte
     }
 
     function fermerPopup(evt) {
@@ -51,9 +72,21 @@
         divMessage.css({
             display: "none"
         });
-        
+
         location.assign(location.href);
     }
+
+    function confirmer(evt) {
+        var txt;
+        var r = confirm("Voulez-vous vraiment supprimer cette œuvre ?");
+        if (r == true) {
+            
+        } else {
+            evt.preventDefault();
+        }
+        document.getElementById("demo").innerHTML = txt;
+    }
+
 
     function supprimerCouleur(evt) {
         var actif = document.getElementsByClassName("actif");
@@ -64,7 +97,6 @@
             }
         }
     }
-
 
     function changerCouleur(evt) {
         var couleurs = new Array("#eebd30", "#91dfd6", "#a1cd69", "#fe5d99", "#ffbad4");

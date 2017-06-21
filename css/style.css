@@ -768,7 +768,6 @@ input:focus {
 }
 
 #descNote button {
->>>>>>> master
     border: none;
     background: none;
     cursor: pointer;
@@ -999,7 +998,7 @@ h3 {
 
 /********************** ADMINISTRATION *********************/
 
-#preventionAdmin {
+.preventionAdmin {
     max-width: calc(100% - 500px);
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 15pt;
@@ -1010,9 +1009,8 @@ h3 {
 }
 
 #tableUser {
-    width: 314px;
-    height: 335px;
-    overflow: auto;
+    width: 325px;
+    height: 346px;
     display: inline-block;
     vertical-align: middle;
     background-image: url("./images-css/img-processus-publication.png");
@@ -1020,6 +1018,14 @@ h3 {
     background-position: center;
     background-repeat: no-repeat;
     box-sizing: border-box;
+}
+
+#tableUser>div {
+    width: 320px;
+    height: 310px;
+    display: inline-block;
+    overflow: auto;
+    margin-top: 15px;
 }
 
 .utilisateursAdmin {
@@ -1072,13 +1078,4 @@ h3 {
 
 .utilisateursAdmin+form button img {
     width: 35px;
-}
-
-.oeuvreAdministration {
-    max-width: 200px;
-    border: 16px solid transparent;
-    border-image: url("./images-css/img-media-4-foreground.png") 65 45;
-    box-sizing: border-box;
-    margin-right: 15px;
-    margin-left: 15px;
 }

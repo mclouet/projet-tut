@@ -38,6 +38,9 @@
         // Ecouteur sur le bouton pour fermer les popups d'erreur
         $(".fermer").click(fermerPopup);
         $(".btnConfirm").click(fermerPopup);
+
+        // Popup de confirmation avant suppression
+        $(".btnSupprConfirm").click(confirmer);
     }
 
     function fermerPopup(evt) {
@@ -46,12 +49,26 @@
 
         divFlou.css({
             display: "none"
-        })
+        });
 
         divMessage.css({
             display: "none"
-        })
+        });
+
+        location.assign(location.href);
     }
+
+    function confirmer(evt) {
+        var txt;
+        var r = confirm("Voulez-vous vraiment supprimer cette œuvre ?");
+        if (r == true) {
+            
+        } else {
+            evt.preventDefault();
+        }
+        document.getElementById("demo").innerHTML = txt;
+    }
+
 
     function supprimerCouleur(evt) {
         var actif = document.getElementsByClassName("actif");
@@ -62,7 +79,6 @@
             }
         }
     }
-
 
     function changerCouleur(evt) {
         var couleurs = new Array("#eebd30", "#91dfd6", "#a1cd69", "#fe5d99", "#ffbad4");

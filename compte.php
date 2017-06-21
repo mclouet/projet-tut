@@ -216,18 +216,18 @@
                     ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->     
                             <a title="<?php echo($titreAffiche); ?>" >
-                                <img src="<?php echo($afficheUtilisateur); ?>" alt="Affiche de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" />
+                                <img src="<?php echo($afficheUtilisateur); ?>" alt="Affiche de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" data-img="affiche" />
                             </a>
                             <a title="<?php echo($titreVideo); ?>">
-                                <img src="<?php echo($videoUtilisateur); ?>" alt="Vidéo de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" />
+                                <img src="<?php echo($videoUtilisateur); ?>" alt="Vidéo de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" data-img="video" />
                             </a>
                             <a title="<?php echo($titreAudio); ?>">
-                                <img src="<?php echo($audioUtilisateur); ?>" alt="Clip audio de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" />
+                                <img src="<?php echo($audioUtilisateur); ?>" alt="Clip audio de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" data-img="audio" />
                             </a>
                             <form action="compte.php" method="post">
-                                <button type="submit" name="supprAffiche"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de l'affiche" /></button>
-                                <button type="submit" name="supprVideo"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de la vidéo" /></button>
-                                <button type="submit" name="supprAudio"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression du clip audio" /></button>
+                                <button type="submit" name="supprAffiche" class="btnSupprConfirm" data-btn="affiche"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de l'affiche" /></button>
+                                <button type="submit" name="supprVideo" class="btnSupprConfirm" data-btn="video"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de la vidéo" /></button>
+                                <button type="submit" name="supprAudio" class="btnSupprConfirm" data-btn="audio"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression du clip audio" /></button>
                             </form>
                         </div>
                     </div>
@@ -570,7 +570,6 @@
 
             ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-            <script type="text/javascript" src="./js/inscription.js"></script>
             <script type="text/javascript" src="./js/script.js"></script>
             <script src="./js/jquery-3.2.1.js"></script>
     </body>

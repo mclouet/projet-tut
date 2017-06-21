@@ -98,7 +98,6 @@
 ?> 
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                 <h2 class="titreDesc titreRose"><?php echo($ligne["Titre"]); ?></h2>
-            
                 <div class="retour">
                     <a href="./galerie.php">
                         <img src="./css/images-css/img-fleche-precedent.png" alt="Flèche page précedente"/>
@@ -133,11 +132,11 @@
                         <audio src="./php/clips-audio/<?php echo($ligne["GdeOeuvre"]) ?>" controls preload="metadata" data-format="audio" class="grandeOeuvre">
                         </audio>
                     </div>
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->      
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                 } //fin if type
             } else { //si idImg n'existe pas
-                     header("Location: ./galerie.php");
+                header("Location: ./galerie.php");
             }            
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
@@ -150,11 +149,34 @@
                         ?>
                     </p>
                 </div>
-                <form action="afficheImage.php" method="post">
+                <form action="afficheImage.php?idImg=<?php echo($idOeuvre) ?>" method="post">
                 <button type="submit" name="noterOeuvre">
                     <img src="./images/img-bouton-ajouter.png" alt="Bouton de notation de l'oeuvre" />
                 </button>
                 </form>
+                
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+<?php
+            $pdo = null;
+                      
+        // Etape 1 : connexion au serveur de base de données
+            require("param.inc.php");
+            $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+            $pdo->query("SET NAMES utf8");
+            $pdo->query("SET CHARACTER SET 'utf8'");
+
+        // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
+            $sql = "SELECT COUNT(Note) FROM NOTE WHERE IdOeuvre = '".$idOeuvre."'";
+            $statement = $pdo->query($sql);     
+
+        // Etape 3 : traitement des données retournées
+            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+            
+//            echo("$ligne 'countnote   '".$ligne["COUNT(Note)"]);
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+                <p>Nombre de votes :
+                </br><span id="countNotes"><?php echo($ligne["COUNT(Note)"]) ?></span></p>
             </div>
         </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
@@ -164,8 +186,8 @@
             if($admin == "oui"){
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-        <form action="afficheImage.php" method="post" id="supprOeAdmin">
-            <button type="submit" name="adminSupprOe">
+        <form action="afficheImage.php?idImg=<?php echo($idOeuvre) ?>" method="post" id="supprOeAdmin">
+            <button type="submit" name="adminSupprOe" class="btnSupprConfirm">
                 <img src="./images/img-bouton-supprimer.png" alt="bouton de suppression d'un oeuvre en tant qu'administrateur" />
             </button>
         </form>        
@@ -204,6 +226,41 @@
                 } catch(Exception $e) {
                     echo("Exception :".$e->getMessage());
                 }
+                $pdo = null;
+            }
+        
+            if(isset($_POST["noterOeuvre"])){
+                
+                // Etape 1 : connexion au serveur de base de données
+                    require("param.inc.php");
+                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                    $pdo->query("SET NAMES utf8");
+                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER OEUVRE
+                    $sql = "SELECT Note, Pseudo, IdOeuvre FROM NOTE WHERE IdOeuvre = '".$idOeuvre."' AND Pseudo = '".$_SESSION["pseudoCo"]."'";
+
+                    $statement = $pdo->query($sql);
+
+                // Etape 3 : traitement des données retournées
+                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                    
+                    if($ligne != false){
+                        if($ligne["Note"] == '0'){
+                            $sql = "INSERT INTO NOTE (Pseudo, IdOeuvre, Note) VALUES ('".$_SESSION["pseudoCo"]."','".$idOeuvre."', '1')";
+            
+                            echo("la note était à 0");
+                            $statement = $pdo->query($sql);
+                            
+                        }else{
+                            $sql = "INSERT INTO NOTE (Pseudo, IdOeuvre, Note) VALUES (".$_SESSION["pseudoCo"].",".$idOeuvre.", '0')";
+                            $statement = $pdo->query($sql);
+                        }
+                    }else{
+                        $sql = "INSERT INTO NOTE (Pseudo, IdOeuvre, Note) VALUES ('".$_SESSION["pseudoCo"]."','".$idOeuvre."', '1')";
+                        $statement = $pdo->query($sql);
+                    }
+                
                 $pdo = null;
             }
         

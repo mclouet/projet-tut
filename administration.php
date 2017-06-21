@@ -177,24 +177,25 @@
                 Attention toutefois ! Un administrateur a la possibilité de supprimer n'importe quelle œuvre à partir du moment où il la juge contraire au règlement du concours.
             </p>
         
+        
+            
+        
             <form method="post" action="./administration.php" class="formulaire">
                 <div>
                     <label for="pseudoModif">Pseudo de l'utilisateur</label>
                     <input type="text" name="pseudoModif" required="required"/>
                 </div>
-
                 <div>
-                    <label class="boolAdmin" for="boolAdmin">Ajouter les droits</label>
-                    <input type="radio" name="boolAdmin" required="required"/>
+                    <label class="boolAdmin" for="ajouterDroits">Ajouter les droits</label>
+                    <input type="radio" name="boolAdmin" id="ajouterDroits" required="required"/>
                 </div>
                 <div>
-                    <label class="boolAdmin" for="boolAdmin">Supprimer les droits</label>
-                    <input type="radio" name="boolAdmin" required="required"/>
+                    <label class="boolAdmin" for="supprimerDroits">Supprimer les droits</label>
+                    <input type="radio" name="boolAdmin" id="supprimerDroits" required="required"/>
+                </div>             
+                <div>
+                    <input type="submit" value="Modifier" class="inputSubmit" />
                 </div>
-
-                    <div>
-                        <input type="submit" value="Modifier" class="inputSubmit" />
-                    </div>
             </form>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
             

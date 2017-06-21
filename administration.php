@@ -121,6 +121,7 @@
                 Attention toutefois ! Un administrateur a la possibilité de supprimer n'importe quelle œuvre à partir du moment où il la juge contraire au règlement du concours.
             </p>
         
+     <!-- - - - - - - - - - PHP - - - - - - - - - -->   
 <?php
                 // AFFICHER LISTE UTILISATEURS
                 // Etape 1 : connexion au serveur de base de données
@@ -138,10 +139,10 @@
                 
                 $cpt = 0;
 ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
      
         <div id="tableUser">
-            <div>
-            
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                 while($ligne != false) {
                     if($ligne["Admin"] == "0") {
@@ -153,18 +154,19 @@
 ?>
      
             <p class="utilisateursAdmin"><?php echo($pseudoAffichage); ?> &#124; Admin : <?php echo($admin); ?></p>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
             
 <?php
                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                 } // Fin boucle
 ?>
-            </div>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         </div>
-            
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                 $pdo = null;
 ?>
-        
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
             <form method="post" action="./administration.php" class="formulaire">
                 <div>
                     <label for="pseudoModif">Pseudo de l'utilisateur</label>

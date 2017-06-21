@@ -761,10 +761,18 @@ input:focus {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 60%;
 }
 
 #descAut h3{
     width: 100%;
+}
+
+#descNote {
+    justify-content: space-around;
+    display: inline-flex;
+    align-items: center;
+    max-width: 80%;
 }
 
 #descNote button {
@@ -777,11 +785,21 @@ input:focus {
     width: 50px;
 }
 
-#descNote {
-    display: inline-flex;
-    align-items: center;
-    max-width: 80%;
+#descNote>p:last-child { 
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 15pt;
+    background-image: url("./images-css/img-fond-compte.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 20px;
+    box-sizing: border-box;
 }
+
+#countNotes{
+    font-size: 22pt;
+}
+
 
 .grandeOeuvre {
     border: 20px solid transparent;

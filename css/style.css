@@ -821,6 +821,11 @@ h3 {
     width: 50px;
 }
 
+#supprOeAdmin button{
+    border: none;
+    background: none;
+    cursor: pointer;   
+}
 
 /*************** MODALITES ***************/
 

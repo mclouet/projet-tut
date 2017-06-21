@@ -1,6 +1,30 @@
 <?php
     header("Content-type: text/html");
     require("config.inc.php");
+
+    if(isset($_SESSION["pseudoCo"])){
+        //ETAPE 1: connexion à la base de données
+        require("param.inc.php");
+        $pdo = new PDO("mysql:host=".MYHOST.";dbname=".MYDB,MYUSER,MYPASS);
+        $pdo -> query("SET NAMES utf8");
+        $pdo -> query("SET CHARACTER SET 'utf8'");  
+
+        //ETAPE 2: Envoyer une requête SQL
+        $sql = "SELECT Admin, Pseudo FROM UTILISATEUR WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+
+        //ETAPE 3: Traiter les données retournées.
+        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+        if($ligne["Admin"] == 1){
+            $admin = "oui";
+        }else{
+            $admin = "non";
+        }
+
+        $pdo = null;
+    }
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <!DOCTYPE html>
@@ -112,7 +136,7 @@
     <!-- - - - - - - - - - PHP - - - - - - - - - -->      
 <?php
                 } //fin if type
-            }else { //si idImg n'existe pas
+            } else { //si idImg n'existe pas
                      header("Location: ./galerie.php");
             }            
 ?>
@@ -128,12 +152,61 @@
                 </div>
                 <form action="afficheImage.php" method="post">
                 <button type="submit" name="noterOeuvre">
-                    <img src="./images/img-bouton-ajouter.png" alt="Bouton de notation de l'oeuvre" /></button>
+                    <img src="./images/img-bouton-ajouter.png" alt="Bouton de notation de l'oeuvre" />
+                </button>
                 </form>
             </div>
         </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
+            $pdo = null;
+        // Affichage du bouton de suppression de l'oeuvre si l'utilisateur est admin
+            if($admin == "oui"){
+?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+        <form action="afficheImage.php" method="post" id="supprOeAdmin">
+            <button type="submit" name="adminSupprOe">
+                <img src="./images/img-bouton-supprimer.png" alt="bouton de suppression d'un oeuvre en tant qu'administrateur" />
+            </button>
+        </form>        
+        
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+    <?php   
+            // Etape 1 : connexion au serveur de base de données
+                require("param.inc.php");
+                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                $pdo->query("SET NAMES utf8");
+                $pdo->query("SET CHARACTER SET 'utf8'");
+
+            // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
+                $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE IdOeuvre = '".$idOeuvre."'";
+                $statement = $pdo->query($sql);     
+                
+            // Etape 3 : traitement des données retournées
+                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                
+                unlink("./php/videos/".$ligne["GdeOeuvre"]);
+                unlink("./php/vignettes/".$ligne["Vignette"]);
+
+                try {
+                    // Etape 1 : connexion au serveur de base de données
+                    require("param.inc.php");
+                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                    $pdo->query("SET NAMES utf8");
+                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                    // Etape 2 : envoi de la requête SQL au serveur SUPPRIMER TOUT
+                    $sql = "DELETE FROM OEUVRE WHERE IdOeuvre = '".$idOeuvre."'";
+                    $statement = $pdo->query($sql);
+
+                    // Etape 3 : traitement des données retournées
+                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                } catch(Exception $e) {
+                    echo("Exception :".$e->getMessage());
+                }
+                $pdo = null;
+            }
+        
             require("pied.inc.php");
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->

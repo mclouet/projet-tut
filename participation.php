@@ -93,7 +93,7 @@
                         </div>
                         <!-- 4 -->
                         <label for="titre" class="liste">4. Donnez un titre à votre oeuvre !</label>
-                        <input type="text" name="titre" id="titre" required="required" />
+                        <input type="text" name="titre" id="titre" required="required" pattern=".{1,24}" title="Le titre doit faire au maximum 24 caractères" />
                         <!-- 5 -->
                         <label for="desc" class="liste">5. Décrivez votre oeuvre !</label>
                         <textarea name="desc" rows="10" cols="35" id="desc" required="required"></textarea>

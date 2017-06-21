@@ -537,6 +537,8 @@ input:focus {
     background-repeat: no-repeat;
     padding: 10px;
     border: none;
+    font-family: 'Open Sans Condensed', sans-serif;
+    height: 90px;
 }
 
 
@@ -711,6 +713,10 @@ input:focus {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
+#participation #titre {
+    font-size: 12pt;
+}
+
 #participation textarea {
     background-image: url("./images-css/img-formulaire-message.png");
     background-size: contain;
@@ -751,23 +757,23 @@ input:focus {
 
 /*************** AFFICHE IMAGE ***************/
 
-#descAut{
+#descAut {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-#descNote button{
+#descNote button {
     border: none;
     background: none;
-    cursor: pointer;   
+    cursor: pointer;
 }
 
-#descNote button>img{
+#descNote button>img {
     width: 50px;
 }
 
-#descNote{
+#descNote {
     display: inline-flex;
     align-items: center;
 }
@@ -984,29 +990,66 @@ h3 {
 
 #preventionAdmin {
     max-width: calc(100% - 500px);
-    display: inline-block;
-    vertical-align: top;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 15pt;
-    text-align: justify;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #tableUser {
-    width: 400px;
+    width: 314px;
+    height: 335px;
+    overflow: auto;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
+    background-image: url("./images-css/img-processus-publication.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
 }
 
 .utilisateursAdmin {
     display: inline-block;
     width: 300px;
     vertical-align: middle;
-    text-align: right;
+    text-align: center;
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.utilisateursAdmin+form {
+#tableUser+form {
     display: inline-block;
+    vertical-align: middle;
+    margin-left: 10%;
+}
+
+#tableUser+form>div:nth-child(2),
+#tableUser+form>div:nth-child(3) {
+    display: inline-block;
+}
+
+#tableUser+form label {
+    width: 130px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+
+#tableUser+form div:first-child label {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#tableUser+form input[type=text] {
+    margin: 0px;
+}
+
+#tableUser+form input[type=radio] {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .utilisateursAdmin+form button {

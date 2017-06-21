@@ -190,7 +190,7 @@
                                                     
                                 if ($_POST["categorie"] == "affiche") { // Si la catégorie choisie est IMAGE
 
-                                    if ($_FILES["monFichier"]["type"] == "image/jpeg" || $_FILES["monFichier"]["type"] == "image/pjpeg" || $_FILES["monFichier"]["type"] == "image/png") { // Si le format est .jpeg, .jpg ou .png
+                                    if ($_FILES["monFichier"]["type"] == "image/jpeg" || $_FILES["monFichier"]["type"] == "image/pjpeg") { // Si le format est .jpeg ou .jpg
                                         
                                         // VERIFICATION SI L'AUTEUR A DEJA DEPOSE UNE AFFICHE
                                         // Etape 1 : connexion au serveur de base de données
@@ -266,22 +266,19 @@
         <div class="flou visible">
             <div class="popup visible">
                 <h3>Erreur</h3>
-                <p>Les formats acceptés sont .jpeg, .jpg et .png</p>
+                <p>Les formats acceptés sont .jpeg et .jpg</p>
                 <button class="fermer">Fermer</button>
             </div>
         </div>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                                         
-                                        /*echo('<script language="javascript">');
-                                        echo('alert("Les formats acceptés sont .jpeg, .jpg et .png.")');
-                                        echo('</script>');*/
                                     } // Fin condition format image
 
                                 } else if ($_POST["categorie"] == "video") { // Si la catégorie choisie est VIDEO
 
                                     if ($_FILES["monFichier"]["type"] == "video/mp4") { // Si le fichier est en .mp4
-                                        if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
+                                        if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg") { // Si une vignette est téléchargée et au bon format (jpeg, jpg)
                                             
                                             // VERIFICATION SI L'AUTEUR A DEJA DEPOSE UNE VIDEO
                                             // Etape 1 : connexion au serveur de base de données
@@ -354,7 +351,7 @@
         <div class="flou visible">
             <div class="popup visible">
                 <h3>Erreur</h3>
-                <p>Votre vignette doit être au format .jpeg, .jpg ou .png</p>
+                <p>Votre vignette doit être au format .jpeg ou .jpg</p>
                 <button class="fermer">Fermer</button>
             </div>
         </div>
@@ -381,7 +378,7 @@
                                 } else if ($_POST["categorie"] == "audio") { // Si la catégorie choisie est clip AUDIO
 
                                     if ($_FILES["monFichier"]["type"] == "audio/mpeg" || $_FILES["monFichier"]["type"] == "audio/x-wav" || $_FILES["monFichier"]["type"] == "audio/wav") { // Si le format est .mpeg ou .wav
-                                        if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/png") { // Si une vignette est téléchargée et au bon format (jpeg, jpg, png)
+                                        if ($_FILES["vignetteMonFichier"]["type"] == "image/jpeg" || $_FILES["vignetteMonFichier"]["type"] == "image/pjpeg") { // Si une vignette est téléchargée et au bon format (jpeg, jpg)
                                             
                                             // VERIFICATION SI L'AUTEUR A DEJA DEPOSE UN CLIP AUDIO
                                             // Etape 1 : connexion au serveur de base de données
@@ -455,7 +452,7 @@
         <div class="flou visible">
             <div class="popup visible">
                 <h3>Erreur</h3>
-                <p>Vous devez choisir une vignette au format .jpeg, .jpg ou .png</p>
+                <p>Vous devez choisir une vignette au format .jpeg ou .jpg.</p>
                 <button class="fermer">Fermer</button>
             </div>
         </div>

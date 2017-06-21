@@ -177,28 +177,8 @@
                 Attention toutefois ! Un administrateur a la possibilité de supprimer n'importe quelle œuvre à partir du moment où il la juge contraire au règlement du concours.
             </p>
         
-            <form method="post" action="./administration.php" class="formulaire">
-                <div>
-                    <label for="pseudoModif">Pseudo de l'utilisateur</label>
-                    <input type="text" name="pseudoModif" required="required"/>
-                </div>
-
-                <div>
-                    <label class="boolAdmin" for="boolAdmin">Ajouter les droits</label>
-                    <input type="radio" name="boolAdmin" required="required"/>
-                </div>
-                <div>
-                    <label class="boolAdmin" for="boolAdmin">Supprimer les droits</label>
-                    <input type="radio" name="boolAdmin" required="required"/>
-                </div>
-
-                    <div>
-                        <input type="submit" value="Modifier" class="inputSubmit" />
-                    </div>
-            </form>
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->
-            
 <?php
+                // AFFICHER LISTE UTILISATEURS
                 // Etape 1 : connexion au serveur de base de données
                 require("param.inc.php");
                 $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
@@ -213,9 +193,86 @@
                 $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                 
                 $cpt = 0;
+?>
+     
+        <div id="tableUser">
+            
+<?php
+                while($ligne != false) {
+                    if($ligne["Admin"] == "0") {
+                        $admin = "Non";
+                    } else {
+                        $admin = "Oui";
+                    }
+                    $pseudoAffichage = stripslashes($ligne["Pseudo"]);
+?>
+     
+            <p class="utilisateursAdmin"><?php echo($pseudoAffichage); ?> &#124; Admin : <?php echo($admin); ?></p>
+            
+<?php
+                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                } // Fin boucle
+?>
+     
+        </div>
+            
+<?php
                 $pdo = null;
+?>
+        
+            <form method="post" action="./administration.php" class="formulaire">
+                <div>
+                    <label for="pseudoModif">Pseudo de l'utilisateur</label>
+                    <input type="text" name="pseudoModif" required="required"/>
+                </div>
+                <div>
+                    <input type="radio" name="boolAdmin" id="ajouterDroits" required="required"/>
+                    <label class="boolAdmin" for="ajouterDroits">Ajouter les droits</label>
+                </div>
+                <div>
+                    <input type="radio" name="boolAdmin" id="supprimerDroits" required="required"/>
+                    <label class="boolAdmin" for="supprimerDroits">Supprimer les droits</label>
+                </div>             
+                <div>
+                    <input type="submit" value="Modifier" class="inputSubmit" />
+                </div>
+            </form>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+            
+<?php
                 
-            }
+                if(isset($_POST["pseudoModif"])) { // Si le formulaire est envoyé
+                    $pseudoModif = addslashes($_POST["pseudoModif"]);
+                    // SELECTIONNER L'UTILISATEUR ENTRE DANS LA BDD ET VERIFIER SI IL EXISTE
+                    // Etape 1 : connexion au serveur de base de données
+                    require("param.inc.php");
+                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS);
+                    $pdo->query("SET NAMES utf8");
+                    $pdo->query("SET CHARACTER SET 'utf8'");
+
+                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER LES UTILISATEURS
+                    $sql = "SELECT Pseudo, Admin FROM UTILISATEUR";
+                    $statement = $pdo->query($sql);
+
+                    // Etape 3 : traitement des données retournées
+                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                    $stop = false;
+
+                    while($ligne != false and $stop == false) {
+                        echo 'lignepseudo '.$ligne["Pseudo"].' ';
+                        echo 'pseudoModif'.$pseudoModif.' FIN';
+                        if($ligne["Pseudo"] == $pseudoModif) { // C'EST ICI QUE CA NE MARCHE PAS
+                            echo 'il existe, ce pseudo ! bien';
+                            $stop = true;
+                        }
+                        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                    } // Fin boucle
+
+                        $pdo = null;
+                                        
+                } // Fin condition si le formulaire est envoyé
+                
+            } // Fin condition si l'utilisateur est le commanditaire
 ?> 
         
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
@@ -225,7 +282,6 @@
         require("pied.inc.php");
 ?>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
-        <script type="text/javascript" src="./js/participation.js"></script>
         <script type="text/javascript" src="./js/script.js"></script>
         <script src="./js/jquery-3.2.1.js"></script>
     </body>

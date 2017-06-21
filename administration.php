@@ -242,6 +242,7 @@
 <?php
                 
                 if(isset($_POST["pseudoModif"])) { // Si le formulaire est envoyé
+                    $pseudoModif = addslashes($_POST["pseudoModif"]);
                     // SELECTIONNER L'UTILISATEUR ENTRE DANS LA BDD ET VERIFIER SI IL EXISTE
                     // Etape 1 : connexion au serveur de base de données
                     require("param.inc.php");
@@ -256,18 +257,18 @@
                     // Etape 3 : traitement des données retournées
                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                     $stop = false;
-                    while($ligne != false) {
-                        $ligne["Pseudo"] = addslashes($ligne["Pseudo"]);
-                        echo 'ligne pseudo : '.$ligne["Pseudo"];
-                        echo 'modif pseudo : '.$_POST["pseudoModif"];
-//                        if($ligne["Pseudo"] == $_POST["pseudoModif"]) {
-//                            echo 'il existe, ce pseudo ! bien';
-//                            $stop = true;
-//                        }
+
+                    while($ligne != false and $stop == false) {
+                        echo 'lignepseudo '.$ligne["Pseudo"].' ';
+                        echo 'pseudoModif'.$pseudoModif.' FIN';
+                        if($ligne["Pseudo"] == $pseudoModif) { // C'EST ICI QUE CA NE MARCHE PAS
+                            echo 'il existe, ce pseudo ! bien';
+                            $stop = true;
+                        }
                         $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                     } // Fin boucle
 
-                    $pdo = null;
+                        $pdo = null;
                                         
                 } // Fin condition si le formulaire est envoyé
                 

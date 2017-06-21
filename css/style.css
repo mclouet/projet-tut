@@ -763,7 +763,11 @@ input:focus {
     justify-content: center;
 }
 
-#descNote button {
+#descAut h3{
+    width: 100%;
+}
+
+#descNote button{
     border: none;
     background: none;
     cursor: pointer;
@@ -776,6 +780,7 @@ input:focus {
 #descNote {
     display: inline-flex;
     align-items: center;
+    max-width: 80%;
 }
 
 .grandeOeuvre {
@@ -822,6 +827,11 @@ h3 {
     width: 50px;
 }
 
+#supprOeAdmin button{
+    border: none;
+    background: none;
+    cursor: pointer;   
+}
 
 /*************** MODALITES ***************/
 

@@ -873,6 +873,9 @@ h3 {
     cursor: pointer;
 }
 
+#popupBioAI {
+    display: none;
+}
 
 /*************** MODALITES ***************/
 

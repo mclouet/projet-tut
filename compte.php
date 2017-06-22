@@ -574,9 +574,7 @@
                                         unlink("./php/clips-audio/".$ligne["GdeOeuvre"]);
                                         unlink("./php/vignettes/".$ligne["Vignette"]);
                                     } // Fin condition type oeuvre
-                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                                }
-                                while($ligne !=false) {                                    
+                                      
                                     $requete = "DELETE FROM NOTE WHERE IdOeuvre = '".$ligne["IdOeuvre"]."'"; // Supprimer notes oeuvres auteur
                                     $statement = $pdo->query($requete);
                                     

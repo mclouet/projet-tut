@@ -51,7 +51,6 @@
         $(".btnSupprConfirm").click(confirmer);
         
         // Page afficheImage : afficher bio quand clic sur nom auteur
-        $("#popupBioAI").hide();
         $("#nomAuteur").click(afficherBio);
         
         // Popup de confirmation avant la suppression du compte

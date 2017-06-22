@@ -629,6 +629,28 @@ input:focus {
 }
 
 
+/* Suppression compte */
+
+#monCompte+form {
+    margin-top: 75px;
+}
+
+#monCompte+form button {
+    font-size: 13pt;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    border: none;
+    background: none;
+    background-image: url(images-css/img-label-foreground.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+
 /*************** PARTICIPATION ***************/
 
 #divParticipation {

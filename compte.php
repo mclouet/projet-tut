@@ -224,13 +224,18 @@
                             <a title="<?php echo($titreAudio); ?>">
                                 <img src="<?php echo($audioUtilisateur); ?>" alt="Clip audio de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" data-img="audio" />
                             </a>
-                            <form action="compte.php" method="post">
+                            <form action="./compte.php" method="post">
                                 <button type="submit" name="supprAffiche" class="btnSupprConfirm" data-btn="affiche"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de l'affiche" /></button>
                                 <button type="submit" name="supprVideo" class="btnSupprConfirm" data-btn="video"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression de la vidéo" /></button>
                                 <button type="submit" name="supprAudio" class="btnSupprConfirm" data-btn="audio"><img src="./images/img-bouton-supprimer.png" alt="Bouton de suppression du clip audio" /></button>
                             </form>
                         </div>
                     </div>
+                
+                <form action="./compte.php" method="post">
+                    <button type="submit" name="supprCompte">Supprimer mon compte</button>
+                </form>
+                
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
                 <?php
                         if(isset($_POST["newBio"])) { // Si l'utilisateur modifie sa biographie : traitement textarea
@@ -543,7 +548,69 @@
                                 
                             } // Fin condition si l'auteur a un clip audio à supprimer
                
-                        }// Fin condition si l'utilisateur modifie l'un des champs (bio, mdp, mail, supprimer affiche, vidéo, audio)
+                        } else if(isset($_POST["supprCompte"])) { // Si l'utilisateur veut supprimer son compte
+                            try {
+                                // Etape 1 : connexion au serveur de base de données
+                                require("param.inc.php");
+                                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                $pdo->query("SET NAMES utf8");
+                                $pdo->query("SET CHARACTER SET 'utf8'");
+
+                                // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER IdOeuvre
+                                $sql = "SELECT IdOeuvre, Pseudo, GdeOeuvre, Vignette, Type FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+                                $statement = $pdo->query($sql);
+                                
+                                // Etape 3 : traitement des données retournées
+                                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                
+                                while($ligne != false) {
+                                    $requete = "DELETE FROM NOTE WHERE IdOeuvre = '".$ligne["IdOeuvre"]."'"; // Supprimer notes oeuvres auteur
+                                    $statement = $pdo->query($requete);
+                                    
+                                    $requeteDeux = "DELETE FROM NOTE WHERE Pseudo = '".$ligne["Pseudo"]."'"; // Supprimer les votes que l'auteur a effectués
+                                    $statement = $pdo->query($requeteDeux);
+                                    
+                                    if($ligne["Type"] == "affiche") { // Si l'oeuvre est une affiche
+                                        unlink("./php/images/".$ligne["GdeOeuvre"]);
+                                        unlink("./php/vignettes/".$ligne["Vignette"]);
+                                    } else if($ligne["Type"] == "video") { // Si l'oeuvre est une vidéo
+                                        unlink("./php/videos/".$ligne["GdeOeuvre"]);
+                                        unlink("./php/vignettes/".$ligne["Vignette"]);
+                                    } else if($ligne["Type"] == "audio") { // Si l'oeuvre est un clip audio
+                                        unlink("./php/clips-audio/".$ligne["GdeOeuvre"]);
+                                        unlink("./php/vignettes/".$ligne["Vignette"]);
+                                    } // Fin condition type oeuvre
+                                    
+                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                } // Fin boucle
+                                                            
+                                $requeteSupprOe = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'"; // Supprimer les oeuvres de l'utlisateur
+                                $statement = $pdo->query($requeteSupprOe);
+                                                            
+                                $requeteSupprUs = "DELETE FROM UTILISATEUR WHERE Pseudo = '".$_SESSION["pseudoCo"]."'"; // Supprimer l'utilisateur
+                                $statement = $pdo->query($requeteSupprUs);
+                                
+                            } catch(Exception $e) {
+                                echo("Exception :".$e->getMessage());
+                            }
+                                
+                                $pdo = null;
+                            
+                            session_destroy();
+                            
+                ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+                <div class="flou visible">
+                     <div class="popup visible">
+                        <h3>Suppression</h3>
+                        <p>Vous avez bien supprimé votre compte. A bientôt !</p>
+                        <button class="fermer">Fermer</button>
+                    </div>
+                </div>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+                <?php
+                            
+                        } // Fin condition si l'utilisateur modifie l'un des champs (bio, mdp, mail, supprimer affiche, vidéo, audio)
            
                 ?>   
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->

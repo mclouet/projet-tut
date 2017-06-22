@@ -47,12 +47,15 @@
         $(".fermer#afficheImage").click(fermerSuppr);
         $(".btnConfirm").click(fermerPopup);
 
-        // Popup de confirmation avant suppression
+        // Popup de confirmation avant la suppression d'oeuvres
         $(".btnSupprConfirm").click(confirmer);
         
         // Page afficheImage : afficher bio quand clic sur nom auteur
         $("#popupBioAI").hide();
         $("#nomAuteur").click(afficherBio);
+        
+        // Popup de confirmation avant la suppression du compte
+        $("#monCompte+form button").click(confirmerSupprCompte);
     }
 
     function fermerPopup(evt) {
@@ -98,6 +101,16 @@
 
     function afficherBio(evt) {
         $("#popupBioAI").show();
+    }
+    
+    function confirmerSupprCompte(evt) {
+        var txt;
+        var r = confirm("Voulez-vous vraiment supprimer votre compte ? \nAttention, cette action est irréversible.");
+        if (r == true) {
+            
+        } else {
+            evt.preventDefault();
+        }
     }
 
     function supprimerCouleur(evt) {

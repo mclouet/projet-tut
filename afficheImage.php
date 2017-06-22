@@ -292,7 +292,7 @@
                     $statement = $pdo->query($sql);
 
                     // Etape 3 : traitement des données retournées
-                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
 
                     if($ligne != false) { // Si l'utilisateur a déjà noté cette oeuvre
                         if($ligne["Note"] == '0') { // Si il a supprimé son vote

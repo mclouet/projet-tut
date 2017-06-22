@@ -310,7 +310,7 @@
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                         } else { // Si son vote pour cette oeuvre est à 1
-                            $sql = "DELETE FROM NOTE WHERE IdOeuvre = '".$idOeuvre."' AND Pseudo = '".$_SESSION["pseudoCo"]."'";
+                            $sql = "UPDATE NOTE SET Note = '0' WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND IdOeuvre = '".$idOeuvre."'";
                             $statement = $pdo->query($sql);
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->

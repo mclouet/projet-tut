@@ -230,6 +230,10 @@
                 </div>
             </form>
             
+            <p class="lienInscription">J'ai déjà un 
+                    <a href="./connexion.php">compte !</a>
+            </p>
+            
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
     
     <?php

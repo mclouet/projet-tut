@@ -131,7 +131,12 @@
                     </div>
                 </form>
                 
-                <p class="lienInscription">Pas encore de compte ? <a href="./inscription.php">Inscrivez-vous !</a></p>
+                <p class="lienInscription">Pas encore de compte ?
+                    <a href="./inscription.php">Inscrivez-vous !</a>
+                </p>
+                <p class="lienInscription">Mot de passe
+                    <a href="./oubli.php">oublié ?</a>
+                </p>
                 <div class="flou <?php echo($classConnecte) ?>">
                     <div class="popup <?php echo($classConnecte) ?>">
                         <h3>Connexion</h3>

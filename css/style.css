@@ -810,7 +810,7 @@ input:focus {
 #descNote>p:last-child {
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 15pt;
-    background-image: url("./images-css/img-fond-compte.png");
+    background-image: url("./images-css/img-note-background.png");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -875,6 +875,10 @@ h3 {
 
 #popupBioAI {
     display: none;
+}
+
+.btnSupprConfirm.supprAfficheImage img {
+    width: 50px;
 }
 
 /*************** MODALITES ***************/

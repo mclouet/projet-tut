@@ -34,9 +34,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Oeuvre &#124; CDLS</title>
-        <!-- AFFICHER LE TITRE DE L'OEUVRE -->
         <meta name="description" content="Description d'une oeuvre déposée pour le concours C'est dans le sac !" />
-        <!-- AFFICHER TITRE DE L'OEUVRE -->
         <meta name="keywords" content="oeuvre, description, concours, sacs plastique, pollution, affiches, vidéos, clips audio" />
         <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -188,17 +186,16 @@
 <?php
 
         // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
-        $sql = "SELECT COUNT(Note) FROM NOTE WHERE IdOeuvre = '".$idOeuvre."'";
-        $statement = $pdo->query($sql);     
+        $sql = "SELECT COUNT(Note) FROM NOTE WHERE IdOeuvre = '".$idOeuvre."' AND Note = '1'";
+        $statement = $pdo->query($sql);
 
         // Etape 3 : traitement des données retournées
-        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+        $ligneVote = $statement->fetch(PDO::FETCH_ASSOC);
             
-//            echo("$ligne 'countnote   '".$ligne["COUNT(Note)"]);
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                 <p>Nombre de votes :
-                </br><span id="countNotes"><?php echo($ligne["COUNT(Note)"]) ?></span></p>
+                </br><span id="countNotes"><?php echo($ligneVote["COUNT(Note)"]) ?></span></p>
             </div>
         </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
@@ -211,7 +208,7 @@
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <form action="afficheImage.php?idImg=<?php echo($idOeuvre) ?>" method="post" id="supprOeAdmin">
-            <button type="submit" name="adminSupprOe" class="btnSupprConfirm">
+            <button type="submit" name="adminSupprOe" class="btnSupprConfirm supprAfficheImage">
                 <img src="./images/img-bouton-supprimer.png" alt="bouton de suppression d'un oeuvre en tant qu'administrateur" />
             </button>
         </form>        
@@ -255,11 +252,11 @@
 
                         try {
                             // Etape 2 : envoi de la requête SQL au serveur SUPPRIMER TOUT
+                            $sql = "DELETE FROM NOTE WHERE IdOeuvre = '".$idOeuvre."'";
+                            $statement = $pdo->query($sql);
+                            
                             $sql = "DELETE FROM OEUVRE WHERE IdOeuvre = '".$idOeuvre."'";
                             $statement = $pdo->query($sql);
-
-                            // Etape 3 : traitement des données retournées
-                            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                         } catch(Exception $e) {
                             echo("Exception :".$e->getMessage());
                         }
@@ -280,6 +277,7 @@
                     } // Fin condition si l'utilisateur clique sur le bouton de suppression de l'oeuvre
                 } // Fin condition si l'utilisateur est un admin
 
+                // VOTER
                 if(isset($_POST["noterOeuvre"])){ // Si l'utilisateur clique sur le bouton de vote
 
                     // Etape 1 : connexion au serveur de base de données
@@ -312,14 +310,16 @@
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                         } else { // Si son vote pour cette oeuvre est à 1
-                            $sql = "UPDATE NOTE SET Note = '0' WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND IdOeuvre = '".$idOeuvre."'";
+                            $sql = "DELETE FROM NOTE WHERE IdOeuvre = '".$idOeuvre."' AND Pseudo = '".$_SESSION["pseudoCo"]."'";
                             $statement = $pdo->query($sql);
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                 <div class="flou visible">
                      <div class="popup visible">
                         <h3>Bravo</h3>
-                        <p>Votre vote a bien été pris en compte !</p>
+                            <p>Votre vote a bien été pris en compte !</br>
+                            Vous avez supprimé votre vote pour cette oeuvre.
+                            </p>
                         <button class="fermer">Fermer</button>
                     </div>
                 </div>

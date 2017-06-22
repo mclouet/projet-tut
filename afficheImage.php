@@ -94,7 +94,7 @@
                 $statement->execute();
 
             //ETAPE 3: Traiter données retournées
-                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+            $ligne = $statement->fetch(PDO::FETCH_ASSOC);
 ?> 
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                 <h2 class="titreDesc titreRose"><?php echo($ligne["Titre"]); ?></h2>
@@ -104,6 +104,15 @@
                     </a>                
                     <p id="nomAuteur">Réalisé par <?php echo($ligne["Pseudo"]) ?></p>
                 </div>
+
+                <div class="flou visible" id="popupBioAI">
+                    <div class="popup visible">
+                        <h3>Biographie de <?php echo($ligne["Pseudo"]); ?></h3>
+                        <p><?php echo($ligne["Biographie"]); ?></p>
+                        <button class="fermer">Fermer</button>
+                    </div>
+                </div>
+              
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                 if($ligne["Type"] == "affiche"){
@@ -182,8 +191,8 @@
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
             $pdo = null;
-        // Affichage du bouton de suppression de l'oeuvre si l'utilisateur est admin
-            if($admin == "oui"){
+        
+            if($admin == "oui") { // Affichage du bouton de suppression de l'oeuvre si l'utilisateur est admin
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
         <form action="afficheImage.php?idImg=<?php echo($idOeuvre) ?>" method="post" id="supprOeAdmin">
@@ -194,40 +203,72 @@
         
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
     <?php   
-            // Etape 1 : connexion au serveur de base de données
-                require("param.inc.php");
-                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
-                $pdo->query("SET NAMES utf8");
-                $pdo->query("SET CHARACTER SET 'utf8'");
-
-            // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
-                $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE IdOeuvre = '".$idOeuvre."'";
-                $statement = $pdo->query($sql);     
-                
-            // Etape 3 : traitement des données retournées
-                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                
-                unlink("./php/videos/".$ligne["GdeOeuvre"]);
-                unlink("./php/vignettes/".$ligne["Vignette"]);
-
-                try {
+                if(isset($_POST["adminSupprOe"])) { // Si l'utilisateur clique sur le bouton de suppression de l'oeuvre
+                    
                     // Etape 1 : connexion au serveur de base de données
                     require("param.inc.php");
                     $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
                     $pdo->query("SET NAMES utf8");
                     $pdo->query("SET CHARACTER SET 'utf8'");
 
-                    // Etape 2 : envoi de la requête SQL au serveur SUPPRIMER TOUT
-                    $sql = "DELETE FROM OEUVRE WHERE IdOeuvre = '".$idOeuvre."'";
+                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
+                    $sql = "SELECT Pseudo, Titre, GdeOeuvre, Vignette, Type FROM OEUVRE WHERE IdOeuvre = '".$idOeuvre."'";
                     $statement = $pdo->query($sql);
 
                     // Etape 3 : traitement des données retournées
                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
-                } catch(Exception $e) {
-                    echo("Exception :".$e->getMessage());
-                }
-                $pdo = null;
-            }
+
+                    $auteur = $ligne["Pseudo"];
+                    
+                    if($ligne["Type"] == "affiche") { // Si l'oeuvre est une affiche
+                        unlink("./php/images/".$ligne["GdeOeuvre"]);
+                        unlink("./php/vignettes/".$ligne["Vignette"]);
+                        $type = "L'affiche";
+                        $suppr = "supprimée";
+                    } else if($ligne["Type"] == "video") { // Si l'oeuvre est une vidéo
+                        unlink("./php/videos/".$ligne["GdeOeuvre"]);
+                        unlink("./php/vignettes/".$ligne["Vignette"]);
+                        $type = "La vidéo";
+                        $suppr = "supprimée";
+                    } else if($ligne["Type"] == "audio") { // Si l'oeuvre est un clip audio
+                        unlink("./php/clips-audio/".$ligne["GdeOeuvre"]);
+                        unlink("./php/vignettes/".$ligne["Vignette"]);
+                        $type = "Le clip audio";
+                        $suppr = "supprimé";
+                    } // Fin condition type oeuvre
+
+                    try {
+                        // Etape 1 : connexion au serveur de base de données
+                        require("param.inc.php");
+                        $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                        $pdo->query("SET NAMES utf8");
+                        $pdo->query("SET CHARACTER SET 'utf8'");
+
+                        // Etape 2 : envoi de la requête SQL au serveur SUPPRIMER TOUT
+                        $sql = "DELETE FROM OEUVRE WHERE IdOeuvre = '".$idOeuvre."'";
+                        $statement = $pdo->query($sql);
+
+                        // Etape 3 : traitement des données retournées
+                        $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                    } catch(Exception $e) {
+                        echo("Exception :".$e->getMessage());
+                    }
+                    
+                    $pdo = null;
+    ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+                <div class="flou visible">
+                     <div class="popup visible">
+                        <h3>Suppression</h3>
+                        <p><?php echo($type); ?> de <?php echo($auteur); ?> a bien été <?php echo($suppr); ?></p>
+                        <button class="fermer" id="afficheImage">Fermer</button>
+                    </div>
+                </div>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+    <?php
+
+                } // Fin condition si l'utilisateur clique sur le bouton de suppression de l'oeuvre
+            } // Fin condition si l'utilisateur est un admin
         
             if(isset($_POST["noterOeuvre"])){
                 

@@ -825,6 +825,7 @@ h3 {
 #nomAuteur {
     font-family: 'Open Sans Condensed', sans-serif;
     display: inline-flex;
+    cursor: pointer;
 }
 
 .retour {

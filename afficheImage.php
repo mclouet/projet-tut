@@ -96,18 +96,18 @@
             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
 ?> 
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-                <h2 class="titreDesc titreRose"><?php echo($ligne["Titre"]); ?></h2>
+                <h2 class="titreDesc titreRose"><?php echo(stripslashes($ligne["Titre"])); ?></h2>
                 <div class="retour">
                     <a href="./galerie.php">
                         <img src="./css/images-css/img-fleche-precedent.png" alt="Flèche page précedente"/>
                     </a>                
-                    <p id="nomAuteur">Réalisé par <?php echo($ligne["Pseudo"]) ?></p>
+                    <p id="nomAuteur">Réalisé par <?php echo(stripslashes($ligne["Pseudo"])) ?></p>
                 </div>
 
                 <div class="flou visible" id="popupBioAI">
                     <div class="popup visible">
-                        <h3>Biographie de <?php echo($ligne["Pseudo"]); ?></h3>
-                        <p><?php echo($ligne["Biographie"]); ?></p>
+                        <h3>Biographie de <?php echo(stripslashes($ligne["Pseudo"])); ?></h3>
+                        <p><?php echo(stripslashes($ligne["Biographie"])); ?></p>
                         <button class="fermer">Fermer</button>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                 <div id="descAut">
                     <h3>Description par l'auteur</h3>
                     <p class="descOeuvre">
-                        <?php echo($ligne["DescOeuvre"]); ?>
+                        <?php echo(stripslashes($ligne["DescOeuvre"])); ?>
                     </p>
                 </div>
                 <form action="afficheImage.php?idImg=<?php echo($idOeuvre) ?>" method="post">
@@ -292,7 +292,7 @@
                     $statement = $pdo->query($sql);
 
                     // Etape 3 : traitement des données retournées
-                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
 
                     if($ligne != false) { // Si l'utilisateur a déjà noté cette oeuvre
                         if($ligne["Note"] == '0') { // Si il a supprimé son vote

@@ -200,16 +200,20 @@
                                         $pdo->query("SET CHARACTER SET 'utf8'");
 
                                         // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER AFFICHE DE L'UTILISATEUR CO
-                                        $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'AND Type = 'affiche'";
+                                        $sql = "SELECT Titre, GdeOeuvre, Vignette, IdOeuvre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'AND Type = 'affiche'";
                                         $statement = $pdo->query($sql);
                                         
                                         // Etape 3 : traitement des données retournées
                                         $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                                         
                                         if ($ligne != false) { // Si l'utilisateur a déjà déposé une affiche
+                                            $idOeuvre = $ligne["IdOeuvre"];
                                             
                                             unlink("./php/images/".$ligne["GdeOeuvre"]);
                                             unlink("./php/vignettes/".$ligne["Vignette"]);
+                                            $sql = "DELETE FROM NOTE WHERE IdOeuvre = '".$idOeuvre."'";
+                                            $statement = $pdo->query($sql);
+                                            
                                             $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'affiche'";
                                             $statement = $pdo->query($sql);                                            
                                         }
@@ -286,18 +290,21 @@
                                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                                             // Etape 2 : envoi de la requête SQL au serveur SELECTION VIDEO DE L'UTILISATEUR CO
-                                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'AND Type = 'video'";
+                                            $sql = "SELECT Titre, GdeOeuvre, Vignette, IdOeuvre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'AND Type = 'video'";
                                             $statement = $pdo->query($sql);
                                             echo 'requete : '.$sql;
 
                                             // Etape 3 : traitement des données retournées
                                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
 
-                                            if ($ligne != false) { // Si l'utilisateur a déjà déposé une affiche
-                                                echo 'déjà une vidéo je te la supprime';
+                                            if ($ligne != false) { // Si l'utilisateur a déjà déposé une vidéo
+                                                $idOeuvre = $ligne["IdOeuvre"];
 
                                                 unlink("./php/videos/".$ligne["GdeOeuvre"]);
                                                 unlink("./php/vignettes/".$ligne["Vignette"]);
+                                                $sql = "DELETE FROM NOTE WHERE IdOeuvre = '".$idOeuvre."'";
+                                                $statement = $pdo->query($sql);
+                                                
                                                 $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'video'";
                                                 $statement = $pdo->query($sql);                                            
                                             }
@@ -386,18 +393,21 @@
                                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                                             // Etape 2 : envoi de la requête SQL au serveur SELECTION VIDEO DE L'UTILISATEUR CO
-                                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'AND Type = 'audio'";
+                                            $sql = "SELECT Titre, GdeOeuvre, Vignette, IdOeuvre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."'AND Type = 'audio'";
                                             $statement = $pdo->query($sql);
                                             echo 'requete : '.$sql;
 
                                             // Etape 3 : traitement des données retournées
                                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
 
-                                            if ($ligne != false) { // Si l'utilisateur a déjà déposé une affiche
-                                                echo 'déjà un clip audio je te le supprime';
+                                            if ($ligne != false) { // Si l'utilisateur a déjà déposé un clip audio
+                                                $idOeuvre = $ligne["IdOeuvre"];
 
                                                 unlink("./php/clips-audio/".$ligne["GdeOeuvre"]);
                                                 unlink("./php/vignettes/".$ligne["Vignette"]);
+                                                $sql = "DELETE FROM NOTE WHERE IdOeuvre = '".$idOeuvre."'";
+                                                $statement = $pdo->query($sql);
+                                                
                                                 $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'audio'";
                                                 $statement = $pdo->query($sql);                                            
                                             }

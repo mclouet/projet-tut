@@ -564,12 +564,6 @@
                                 $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                                 
                                 while($ligne != false) {
-                                    $requete = "DELETE FROM NOTE WHERE IdOeuvre = '".$ligne["IdOeuvre"]."'"; // Supprimer notes oeuvres auteur
-                                    $statement = $pdo->query($requete);
-                                    
-                                    $requeteDeux = "DELETE FROM NOTE WHERE Pseudo = '".$ligne["Pseudo"]."'"; // Supprimer les votes que l'auteur a effectués
-                                    $statement = $pdo->query($requeteDeux);
-                                    
                                     if($ligne["Type"] == "affiche") { // Si l'oeuvre est une affiche
                                         unlink("./php/images/".$ligne["GdeOeuvre"]);
                                         unlink("./php/vignettes/".$ligne["Vignette"]);
@@ -581,6 +575,12 @@
                                         unlink("./php/vignettes/".$ligne["Vignette"]);
                                     } // Fin condition type oeuvre
                                     
+                                    $requete = "DELETE FROM NOTE WHERE IdOeuvre = '".$ligne["IdOeuvre"]."'"; // Supprimer notes oeuvres auteur
+                                    $statement = $pdo->query($requete);
+                                    
+                                    $requeteDeux = "DELETE FROM NOTE WHERE Pseudo = '".$ligne["Pseudo"]."'"; // Supprimer les votes que l'auteur a effectués
+                                    $statement = $pdo->query($requeteDeux);
+                                                                    
                                     $ligne = $statement->fetch(PDO::FETCH_ASSOC);
                                 } // Fin boucle
                                                             

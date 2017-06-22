@@ -412,7 +412,7 @@ footer::after {
     transform: rotate(-1deg);
 }
 
-.formulaire input:not([type=submit]):not([type=checkbox]) {
+.formulaire input:not([type=submit]):not([type=checkbox]):not([type=radio]) {
     background-image: url("./images-css/img-formulaire-nom.png");
     background-size: contain;
     background-repeat: no-repeat;

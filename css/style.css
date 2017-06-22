@@ -803,7 +803,7 @@ input:focus {
     cursor: pointer;
 }
 
-#descNote button>img {
+#descNote button img {
     width: 50px;
 }
 

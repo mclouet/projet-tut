@@ -10,7 +10,7 @@
         <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank">
             <img src="./images/img-facebook-icon.png" alt="Logo Facebook" />
         </a>
-        <a href="https://twitter.com/cestdanslesac" target="_blank">
+        <a href="https://twitter.com/cestdanslesac_" target="_blank">
             <img src="./images/img-tweeter-icon.png" alt="Logo Twitter" />
         </a>
         <a href="https://fr.pinterest.com/cdanslesac/" target="_blank">

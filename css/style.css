@@ -412,7 +412,7 @@ footer::after {
     transform: rotate(-1deg);
 }
 
-.formulaire input:not([type=submit]):not([type=checkbox]) {
+.formulaire input:not([type=submit]):not([type=checkbox]):not([type=radio]) {
     background-image: url("./images-css/img-formulaire-nom.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -629,6 +629,28 @@ input:focus {
 }
 
 
+/* Suppression compte */
+
+#monCompte+form {
+    margin-top: 75px;
+}
+
+#monCompte+form button {
+    font-size: 13pt;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    border: none;
+    background: none;
+    background-image: url(images-css/img-label-foreground.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+
 /*************** PARTICIPATION ***************/
 
 #divParticipation {
@@ -764,7 +786,7 @@ input:focus {
     max-width: 60%;
 }
 
-#descAut h3{
+#descAut h3 {
     width: 100%;
 }
 
@@ -785,7 +807,7 @@ input:focus {
     width: 50px;
 }
 
-#descNote>p:last-child { 
+#descNote>p:last-child {
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 15pt;
     background-image: url("./images-css/img-fond-compte.png");
@@ -796,10 +818,9 @@ input:focus {
     box-sizing: border-box;
 }
 
-#countNotes{
+#countNotes {
     font-size: 22pt;
 }
-
 
 .grandeOeuvre {
     border: 20px solid transparent;
@@ -825,6 +846,7 @@ h3 {
 #nomAuteur {
     font-family: 'Open Sans Condensed', sans-serif;
     display: inline-flex;
+    cursor: pointer;
 }
 
 .retour {
@@ -845,11 +867,12 @@ h3 {
     width: 50px;
 }
 
-#supprOeAdmin button{
+#supprOeAdmin button {
     border: none;
     background: none;
-    cursor: pointer;   
+    cursor: pointer;
 }
+
 
 /*************** MODALITES ***************/
 
@@ -1017,13 +1040,21 @@ h3 {
 /********************** ADMINISTRATION *********************/
 
 .preventionAdmin {
-    max-width: calc(100% - 500px);
+    width: 85%;
     font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 15pt;
-    text-align: center;
+    font-size: 13pt;
+    text-align: left;
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.preventionAdmin.preventionCommanditaire {
+    margin-bottom: 40px;
+}
+
+.titreAdmin {
+    margin-top: 60px;
 }
 
 #tableUser {
@@ -1039,7 +1070,7 @@ h3 {
 }
 
 #tableUser>div {
-    width: 320px;
+    width: 300px;
     height: 310px;
     display: inline-block;
     overflow: auto;

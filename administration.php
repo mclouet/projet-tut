@@ -116,7 +116,7 @@
             
             <h3>Liste des utilisateurs du site</h3>
             
-            <p class="preventionAdmin">
+            <p class="preventionAdmin preventionCommanditaire">
                 En tant que commanditaire du site C'est dans le sac !, vous pouvez ajouter ou supprimer les droits d'administration aux différents utilisateurs du site.</br>
                 Attention toutefois ! Un administrateur a la possibilité de supprimer n'importe quelle œuvre à partir du moment où il la juge contraire au règlement du concours.
             </p>
@@ -142,6 +142,7 @@
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
      
         <div id="tableUser">
+            <div>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
                 while($ligne != false) {
@@ -161,6 +162,7 @@
                 } // Fin boucle
 ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+            </div>
         </div>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php
@@ -273,10 +275,11 @@
 ?> 
         
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-                <h3>Gestion des oeuvres</h3>
+                <h3 class="titreAdmin">Gestion des oeuvres</h3>
             
-                <p class="preventionAdmin">
-                    Votre rôle d'administrateur consiste à regarder fréquemment les œuvres déposées par les utilisateurs. Vous devez vérifier que celles-ci respectent les modalités du concours. Si ce n'est pas le cas, vous devez les supprimer via la page d'affichage de l'œuvre.
+                <p class="preventionAdmin lienInscription">
+                    Votre rôle d'administrateur consiste à regarder fréquemment les œuvres déposées par les utilisateurs. Vous devez vérifier que celles-ci respectent les modalités du concours. Si ce n'est pas le cas, vous devez les supprimer via la page d'affichage de l'œuvre.</br>
+                    Rendez-vous dans la <a href="./galerie.php">galerie</a> pour consulter les participations !
                 </p>
         
         

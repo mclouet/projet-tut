@@ -48,46 +48,50 @@
 
 
     <?php
-        $form = "";
-        $message = "";
-        $classInscrit = "";
-        if (isset($_POST["pseudo"]) and $_POST["pseudo"] != "") { // Si le formulaire a été envoyé
-            if (isset($_POST["accepterModalite"])) { // Si le bouton accepter les modalités a été coché
-                if ($_POST["motDePasse"] == $_POST["verifMdp"]) { // Si le mot de passe de vérification correspond au mot de passe
-                    if (strlen($_POST["motDePasse"]) >= 6) { // Si le mot de passe contient au moins 6 caractères
-                        if(preg_match('#^(([a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+\.?)*[a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+)@(([a-z0-9-_]+\.?)*[a-z0-9-_]+)\.[a-z]{2,}$#i',$_POST["email"])) { // Si l'email est valide
-                            $pseudo = addslashes($_POST["pseudo"]);
-                            $email = addslashes($_POST["email"]);
-                            $motDePasse = addslashes($_POST["motDePasse"]);
+    
+        if(isset($_SESSION["pseudoCo"])) { // Si l'utilisateur est connecté
+            header("Location: index.php");
+        } else { // Si l'utilisateur n'est pas connecté
+            $form = "";
+            $message = "";
+            $classInscrit = "";
+            if (isset($_POST["pseudo"]) and $_POST["pseudo"] != "") { // Si le formulaire a été envoyé
+                if (isset($_POST["accepterModalite"])) { // Si le bouton accepter les modalités a été coché
+                    if ($_POST["motDePasse"] == $_POST["verifMdp"]) { // Si le mot de passe de vérification correspond au mot de passe
+                        if (strlen($_POST["motDePasse"]) >= 6) { // Si le mot de passe contient au moins 6 caractères
+                            if(preg_match('#^(([a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+\.?)*[a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+)@(([a-z0-9-_]+\.?)*[a-z0-9-_]+)\.[a-z]{2,}$#i',$_POST["email"])) { // Si l'email est valide
+                                $pseudo = addslashes($_POST["pseudo"]);
+                                $email = addslashes($_POST["email"]);
+                                $motDePasse = addslashes($_POST["motDePasse"]);
 
-                            // Vérification si pseudo n'existe pas déjà
-                             try {
-                                // Etape 1 : connexion au serveur de base de données
-                                require("param.inc.php");
-                                $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
-                                $pdo->query("SET NAMES utf8");
-                                $pdo->query("SET CHARACTER SET 'utf8'");
+                                // Vérification si pseudo n'existe pas déjà
+                                 try {
+                                    // Etape 1 : connexion au serveur de base de données
+                                    require("param.inc.php");
+                                    $pdo=new PDO("mysql:host=".MYHOST.";dbname=".MYDB, MYUSER, MYPASS) ;
+                                    $pdo->query("SET NAMES utf8");
+                                    $pdo->query("SET CHARACTER SET 'utf8'");
 
-                                // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO
-                                $sql = "SELECT Pseudo FROM UTILISATEUR WHERE Pseudo = '".$pseudo."'";
-                                $statement = $pdo->query($sql);
+                                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO
+                                    $sql = "SELECT Pseudo FROM UTILISATEUR WHERE Pseudo = '".$pseudo."'";
+                                    $statement = $pdo->query($sql);
 
-                                // Etape 3 : traitement des données retournées
-                                $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                    // Etape 3 : traitement des données retournées
+                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
 
-                                if ($ligne != false) { // Si le pseudo existe déjà
-                                    $message = "Le pseudo existe déjà";
-                                    $form = true;
-                                } else { // Si le pseudo n'existe pas
-                                    $sql = "INSERT INTO UTILISATEUR(Pseudo, AdMail, MotDePasse, Admin) VALUES (:paramPseudo, :paramMail, :paramMdp, :paramAdmin)";
-                                    $statement = $pdo->prepare($sql);
-                                    $statement->execute(array(":paramPseudo" => $pseudo, ":paramMail" => $email, ":paramMdp" => md5($motDePasse), ":paramAdmin" => "0"));
-                                    $message = "Votre inscription a bien été enregistrée !";
-                                    $form = false;
-                                    /*header("Location: ./connexion.php");*/
-                                    $classInscrit = "visible";
-                                    // POPUP VOTRE INSCRIPTION A ETE PRISE EN COMPTE
-                                    ?>
+                                    if ($ligne != false) { // Si le pseudo existe déjà
+                                        $message = "Le pseudo existe déjà";
+                                        $form = true;
+                                    } else { // Si le pseudo n'existe pas
+                                        $sql = "INSERT INTO UTILISATEUR(Pseudo, AdMail, MotDePasse, Admin) VALUES (:paramPseudo, :paramMail, :paramMdp, :paramAdmin)";
+                                        $statement = $pdo->prepare($sql);
+                                        $statement->execute(array(":paramPseudo" => $pseudo, ":paramMail" => $email, ":paramMdp" => md5($motDePasse), ":paramAdmin" => "0"));
+                                        $message = "Votre inscription a bien été enregistrée !";
+                                        $form = false;
+                                        /*header("Location: ./connexion.php");*/
+                                        $classInscrit = "visible";
+                                        // POPUP VOTRE INSCRIPTION A ETE PRISE EN COMPTE
+    ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                                     <div class="flou <?php echo($classInscrit) ?>">
                                         <div class="popup <?php echo($classInscrit) ?>">
@@ -98,19 +102,36 @@
                                         </div>
                                     </div>        
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
-                                    <?php
-                                }
+    <?php
+                                    }
 
-                                $pdo = null;
-                             } catch(Exception $e) {
-                                 echo("Exception :".$e->getMessage());
-                             }
+                                    $pdo = null;
+                                 } catch(Exception $e) {
+                                     echo("Exception :".$e->getMessage());
+                                 }
 
-                        } else { // Fin condition si l'email est valide
-                            $message = "L'email n'est pas valide";
+                            } else { // Fin condition si l'email est valide
+                                $message = "L'email n'est pas valide";
+                                $form = true;
+
+    ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+                            <div class="flou visible">
+                                <div class="popup visible">
+                                    <h3>Erreur</h3>
+                                    <p><?php echo($message) ?></p>
+                                    <button class="fermer">Fermer</button>
+                                </div>
+                            </div>        
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+    <?php
+
+                            } // Fin condition si l'email n'est pas valide
+                        } else { // Fin condition si le mot de passe contient au moins 6 caractères
+                            $message = "Le mot de passe doit contenir au moins 6 caractères";
                             $form = true;
 
-                          ?>
+    ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                             <div class="flou visible">
                                 <div class="popup visible">
@@ -120,31 +141,14 @@
                                 </div>
                             </div>        
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
-                            <?php
+    <?php
 
-                        } // Fin condition si l'email n'est pas valide
-                    } else { // Fin condition si le mot de passe contient au moins 6 caractères
-                        $message = "Le mot de passe doit contenir au moins 6 caractères";
+                        } // Fin condition si le mot de passe ne contient pas au moins 6 caractères
+                    } else { // Fin condition si le mot de passe de vérification correspond au mot de passe
+                        $message = "Les mots de passe saisis ne sont pas égaux";
                         $form = true;
 
-                          ?>
-    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
-                            <div class="flou visible">
-                                <div class="popup visible">
-                                    <h3>Erreur</h3>
-                                    <p><?php echo($message) ?></p>
-                                    <button class="fermer">Fermer</button>
-                                </div>
-                            </div>        
-    <!-- - - - - - - - - - PHP - - - - - - - - - -->
-                            <?php
-
-                    } // Fin condition si le mot de passe ne contient pas au moins 6 caractères
-                } else { // Fin condition si le mot de passe de vérification correspond au mot de passe
-                    $message = "Les mots de passe saisis ne sont pas égaux";
-                    $form = true;
-
-                      ?>
+    ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
                         <div class="flou visible">
                             <div class="popup visible">
@@ -154,13 +158,13 @@
                             </div>
                         </div>        
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
-                    <?php
+    <?php
 
-                } // Fin condition si le mot de passe de vérification ne correspond pas au mot de passe
-            } else { // Si l'utilisateur n'a pas accepté les modalités du concours
-                $message = "Vous devez accepter les modalités et mentions légales avant de poursuivre";
-                $form = true;
- ?>
+                    } // Fin condition si le mot de passe de vérification ne correspond pas au mot de passe
+                } else { // Si l'utilisateur n'a pas accepté les modalités du concours
+                    $message = "Vous devez accepter les modalités et mentions légales avant de poursuivre";
+                    $form = true;
+    ?>
                         <div class="flou visible">
                             <div class="popup visible">
                                 <h3>Erreur</h3>
@@ -169,12 +173,13 @@
                             </div>
                         </div>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
-<?php
+    <?php
                 
-            } // Fin condition modalités
-        } else { // Fin condition si formulaire envoyé
-            $form = true;
-        } // Fin condition si formulaire pas envoyé
+                } // Fin condition modalités
+            } else { // Fin condition si formulaire envoyé
+                $form = true;
+            } // Fin condition si formulaire pas envoyé
+        } // Fin condition si l'utilisateur n'est pas connecté
     
         
     ?>
@@ -224,6 +229,10 @@
                     <input type="submit" value="Envoyer" class="inputSubmit" />
                 </div>
             </form>
+            
+            <p class="lienInscription">J'ai déjà un 
+                    <a href="./connexion.php">compte !</a>
+            </p>
             
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
     

@@ -43,8 +43,8 @@
 
         // Ecouteur sur le bouton pour fermer les popups d'erreur
         $(".fermer").click(fermerPopup);
-        $(".fermer#afficheImage").off("click", fermerPopup);
-        $(".fermer#afficheImage").click(fermerSuppr);
+        $(".fermer.afficheImage").off("click", fermerPopup);
+        $(".fermer.afficheImage").click(fermerSuppr);
         $(".btnConfirm").click(fermerPopup);
 
         // Popup de confirmation avant la suppression d'oeuvres

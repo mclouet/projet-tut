@@ -6,7 +6,7 @@
     <header>
         <div class="reseauxSoc">
             <a href="https://www.facebook.com/Cest-dans-le-sac-1703344363292608/" target="_blank"><img src="./images/img-facebook-icon.png" alt="logo facebook" /></a>
-            <a href="https://twitter.com/cestdanslesac" target="_blank"><img src="./images/img-tweeter-icon.png" alt="logo twitter" /></a>
+            <a href="https://twitter.com/cestdanslesac_" target="_blank"><img src="./images/img-tweeter-icon.png" alt="logo twitter" /></a>
             <a href="https://fr.pinterest.com/cdanslesac/" target="_blank"><img src="./images/img-pinterest-icon.png" alt="logo pinterest" /></a>
             <a href="https://www.instagram.com/cestdanslesac/" target="_blank"><img src="./images/img-instagram-icon.png" alt="logo instagram" /></a>
             <a href="https://plus.google.com/108664054375147502962" target="_blank"><img src="./images/img-googleplus-icon.png" alt="logo google+" /></a>

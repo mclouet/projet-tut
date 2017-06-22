@@ -412,7 +412,7 @@
                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
-                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'affiche'";
+                            $sql = "SELECT Titre, GdeOeuvre, Vignette, IdOeuvre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'affiche'";
                             $statement = $pdo->query($sql);     
                             // Etape 3 : traitement des données retournées
                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
@@ -425,6 +425,7 @@
                             } else { // Si l'auteur a une affiche à supprimer
                                 unlink("./php/images/".$ligne["GdeOeuvre"]);
                                 unlink("./php/vignettes/".$ligne["Vignette"]);
+                                $idOeuvre = $ligne["IdOeuvre"];
                                 
                                 // Etape 1 : connexion au serveur de base de données
                                 require("param.inc.php");
@@ -433,6 +434,9 @@
                                 $pdo->query("SET CHARACTER SET 'utf8'");
 
                                 // Etape 2 : envoi de la requête SQL au serveur SUPPRIMER AFFICHE
+                                $sql = "DELETE FROM NOTE WHERE IdOeuvre = '".$idOeuvre."'";
+                                $statement = $pdo->query($sql);
+                                
                                 $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND TYPE = 'affiche'";
                                 $statement = $pdo->query($sql);
 
@@ -457,7 +461,7 @@
                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
-                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'video'";
+                            $sql = "SELECT Titre, GdeOeuvre, Vignette, IdOeuvre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'video'";
                             $statement = $pdo->query($sql);     
                             // Etape 3 : traitement des données retournées
                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
@@ -471,6 +475,7 @@
                             } else { // Si l'auteur a une vidéo à supprimer
                                 unlink("./php/videos/".$ligne["GdeOeuvre"]);
                                 unlink("./php/vignettes/".$ligne["Vignette"]);
+                                $idOeuvre = $ligne["IdOeuvre"];
                                 
                                 try {
                                     // Etape 1 : connexion au serveur de base de données
@@ -479,7 +484,10 @@
                                     $pdo->query("SET NAMES utf8");
                                     $pdo->query("SET CHARACTER SET 'utf8'");
 
-                                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO ET MAIL
+                                    // Etape 2 : envoi de la requête SQL au serveur SUPPRIMER VIDEO
+                                    $sql = "DELETE FROM NOTE WHERE IdOeuvre = '".$idOeuvre."'";
+                                    $statement = $pdo->query($sql);
+                                    
                                     $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND TYPE = 'video'";
                                     $statement = $pdo->query($sql);
 
@@ -507,7 +515,7 @@
                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER TITRE
-                            $sql = "SELECT Titre, GdeOeuvre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'audio'";
+                            $sql = "SELECT Titre, GdeOeuvre, Vignette, IdOeuvre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'audio'";
                             $statement = $pdo->query($sql);     
                             // Etape 3 : traitement des données retournées
                             $ligne = $statement->fetch(PDO::FETCH_ASSOC);
@@ -522,6 +530,7 @@
                             } else { // Si l'auteur a un clip audio à supprimer
                                 unlink("./php/clips-audio/".$ligne["GdeOeuvre"]);
                                 unlink("./php/vignettes/".$ligne["Vignette"]);
+                                $idOeuvre = $ligne["IdOeuvre"];
                                 
                                 try {
                                     // Etape 1 : connexion au serveur de base de données
@@ -530,7 +539,10 @@
                                     $pdo->query("SET NAMES utf8");
                                     $pdo->query("SET CHARACTER SET 'utf8'");
 
-                                    // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER PSEUDO ET MAIL
+                                    // Etape 2 : envoi de la requête SQL au serveur SUPPRIMER CLIP AUDIO
+                                    $sql = "DELETE FROM NOTE WHERE IdOeuvre = '".$idOeuvre."'";
+                                    $statement = $pdo->query($sql);
+                                    
                                     $sql = "DELETE FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND TYPE = 'audio'";
                                     $statement = $pdo->query($sql);
 
@@ -574,7 +586,9 @@
                                         unlink("./php/clips-audio/".$ligne["GdeOeuvre"]);
                                         unlink("./php/vignettes/".$ligne["Vignette"]);
                                     } // Fin condition type oeuvre
-                                      
+                                    $ligne = $statement->fetch(PDO::FETCH_ASSOC);
+                                }
+                                while($ligne !=false) {                                    
                                     $requete = "DELETE FROM NOTE WHERE IdOeuvre = '".$ligne["IdOeuvre"]."'"; // Supprimer notes oeuvres auteur
                                     $statement = $pdo->query($requete);
                                     

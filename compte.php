@@ -164,7 +164,7 @@
                             $pdo->query("SET CHARACTER SET 'utf8'");
 
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER AFFICHE DE L'AUTEUR
-                            $sql = "SELECT Titre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'affiche'";
+                            $sql = "SELECT Titre, Vignette, IdOeuvre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'affiche'";
                             $statement = $pdo->query($sql);
                             
                             // Etape 3 : traitement des données retournées
@@ -172,14 +172,17 @@
                             if($ligne != false) { // Si l'auteur a déposé une affiche
                                 $afficheUtilisateur = "./php/vignettes/".$ligne["Vignette"];
                                 $titreAffiche = $ligne["Titre"];
+                                $idAffiche = $ligne["IdOeuvre"];
+                                $cheminAff = "./afficheImage.php?idImg=$idAffiche";
                             } else { // Si l'auteur n'a pas déposé d'affiche
                                 $afficheUtilisateur = "./images/img-apercu-defaut-carre.png";
                                 $titreAffiche = "Vous n'avez pas encore déposé d'affiche";
+                                $cheminAff = "";
                             }
                             
 
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER VIDEO DE L'AUTEUR
-                            $sql = "SELECT Titre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'video'";
+                            $sql = "SELECT Titre, Vignette, IdOeuvre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'video'";
                             $statement = $pdo->query($sql);
                             
                             // Etape 3 : traitement des données retournées
@@ -187,14 +190,17 @@
                             if($ligne != false) { // Si l'auteur a déposé une affiche
                                 $videoUtilisateur = "./php/vignettes/".$ligne["Vignette"];
                                 $titreVideo = $ligne["Titre"];
+                                $idVideo = $ligne["IdOeuvre"];
+                                $cheminVid = "./afficheImage.php?idImg=$idVideo";
                             } else { // Si l'auteur n'a pas déposé d'affiche
                                 $videoUtilisateur = "./images/img-apercu-defaut-carre.png";
                                 $titreVideo = "Vous n'avez pas encore déposé de vidéo";
+                                $cheminVid = "";
                             }
                             
                             
                             // Etape 2 : envoi de la requête SQL au serveur SELECTIONNER AUDIO DE L'AUTEUR
-                            $sql = "SELECT Titre, Vignette FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'audio'";
+                            $sql = "SELECT Titre, Vignette, IdOeuvre FROM OEUVRE WHERE Pseudo = '".$_SESSION["pseudoCo"]."' AND Type = 'audio'";
                             $statement = $pdo->query($sql);
                             
                             // Etape 3 : traitement des données retournées
@@ -202,9 +208,12 @@
                             if($ligne != false) { // Si l'auteur a déposé une affiche
                                 $audioUtilisateur = "./php/vignettes/".$ligne["Vignette"];
                                 $titreAudio = $ligne["Titre"];
+                                $idAudio = $ligne["IdOeuvre"];
+                                $cheminAud = "./afficheImage.php?idImg=$idAudio";
                             } else { // Si l'auteur n'a pas déposé d'affiche
                                 $audioUtilisateur = "./images/img-apercu-defaut-carre.png";
                                 $titreAudio = "Vous n'avez pas encore déposé de clip audio";
+                                $cheminAud = "";
                             }
                             
                             $pdo = null;
@@ -215,13 +224,13 @@
                         
                     ?>
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->     
-                            <a title="<?php echo($titreAffiche); ?>" >
+                            <a title="<?php echo($titreAffiche); ?>" href="<?php echo($cheminAff) ?>">
                                 <img src="<?php echo($afficheUtilisateur); ?>" alt="Affiche de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" data-img="affiche" />
                             </a>
-                            <a title="<?php echo($titreVideo); ?>">
+                            <a title="<?php echo($titreVideo); ?>" href="<?php echo($cheminVid) ?>">
                                 <img src="<?php echo($videoUtilisateur); ?>" alt="Vidéo de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" data-img="video" />
                             </a>
-                            <a title="<?php echo($titreAudio); ?>">
+                            <a title="<?php echo($titreAudio); ?>" href="<?php echo($cheminAud) ?>">
                                 <img src="<?php echo($audioUtilisateur); ?>" alt="Clip audio de <?php echo($_SESSION["pseudoCo"]); ?>" class="oeuvreCompte" data-img="audio" />
                             </a>
                             <form action="./compte.php" method="post">

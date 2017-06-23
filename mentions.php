@@ -56,14 +56,11 @@
             <br/> 53000 Laval
             <br/> France
             <br/> Tél. : (+33)6 13 22 21 84
-            <br/> http://cabadix.fr
-            <br/>
-
         </p>
 
         <h3>CONDITIONS D'UTILISATION</h3>
         <p>
-            Le site accessible à l'url suivant : https://cabadix.com est exploité dans le respect de la législation française. L'utilisation de ce site est régie par les présentes conditions générales. En utilisant le site, vous reconnaissez avoir pris connaissance de ces conditions et les avoir acceptées. Celles-ci pourront êtres modifiées à tout moment et sans préavis par l'association Cabadix. Cabadix ne saurait être tenu pour responsable en aucune manière d’une mauvaise utilisation du service.
+            Le site accessible à l'url suivant Cabadix est exploité dans le respect de la législation française. L'utilisation de ce site est régie par les présentes conditions générales. En utilisant le site, vous reconnaissez avoir pris connaissance de ces conditions et les avoir acceptées. Celles-ci pourront êtres modifiées à tout moment et sans préavis par l'association Cabadix. Cabadix ne saurait être tenu pour responsable en aucune manière d’une mauvaise utilisation du service.
         </p>
 
         <h3>RESPONSABLE ÉDITORIAL</h3>
@@ -74,8 +71,6 @@
             <br/> 53600 CHATRE LA FORET
             <br/> France
             <br/> Tél. : (+33)6 13 22 21 84
-            <br/> http://cabadix.fr
-            <br/>
         </p>
 
         <h3>LIMITATION DE RESPONSABILITÉ</h3>
@@ -110,14 +105,6 @@
             <br/>
         </p>
 
-        <h3>HÉBERGEUR</h3>
-        <p>
-            OVH
-            <br/> Plateforme de gestion et création de sites internet
-            <br/> www.ovh.com
-            <br/> contact@ovh.com
-        </p>
-
         <h3>CONDITIONS DE SERVICE</h3>
         <p>
             Ce site est proposé en langages HTML5 et CSS3, pour un meilleur confort d'utilisation et un graphisme plus agréable, nous vous recommandons de recourir à des navigateurs modernes comme Safari, Firefox, Chrome,...
@@ -127,12 +114,7 @@
         <p>
             Cabadix met en œuvre tous les moyens dont elle dispose, pour assurer une information fiable et une mise à jour fiable de son site internet. Toutefois, des erreurs ou omissions peuvent survenir. L'internaute devra donc s'assurer de l'exactitude des informations auprès de Cabadix, et signaler toutes modifications du site qu'il jugerait utile. Cabadix n'est en aucun cas responsable de l'utilisation faite de ces informations, et de tout préjudice direct ou indirect pouvant en découler.
         </p>
-
-        <h3>COOKIES</h3>
-        <p>
-            Pour des besoins de statistiques et d'affichage, le présent site utilise des cookies. Il s'agit de petits fichiers textes stockés sur votre disque dur afin d'enregistrer des données techniques sur votre navigation. Certaines parties de ce site ne peuvent être fonctionnelle sans l’acceptation de cookies.
-        </p>
-
+        
         <h3>LIENS HYPERTEXTES</h3>
         <p>
             Le site internet de Cabadix peut offrir des liens vers d’autres sites internet ou d’autres ressources disponibles sur Internet.
@@ -156,12 +138,6 @@
         <p>
             Aucune autre garantie n'est accordée à l'internaute, auquel incombe l'obligation de formuler clairement ses besoins et le devoir de s'informer. Si des informations fournies par Cabadix apparaissent inexactes, il appartiendra à l'internaute de procéder lui-même à toutes vérifications de la cohérence ou de la vraisemblance des résultats obtenus. Cabadix ne sera en aucune façon responsable vis-à-vis des tiers de l'utilisation par l'internaute des informations ou de leur absence contenues dans ses produits y compris de son site Internet.
         </p>
-
-        <h3>CONTACTEZ-NOUS</h3>
-        <p>
-            Cabadix est à votre disposition pour tous vos commentaires ou suggestions. Vous pouvez nous écrire en français par courrier électronique à : service-clients@cabadix.com.
-        </p>
-
     </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
 <?php

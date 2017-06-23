@@ -10,6 +10,10 @@ h2 {
     box-sizing: border-box;
 }
 
+textarea:focus,input:focus{
+    outline: transparent;
+}
+
 .titreVert {
     background-image: url("./images-css/img-affiches-foreground.png");
 }
@@ -476,11 +480,6 @@ footer::after {
     height: auto;
     background: none;
 }
-
-input:focus {
-    outline: transparent;
-}
-
 
 /*************** COMPTE ***************/
 

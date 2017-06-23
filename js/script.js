@@ -10,7 +10,7 @@
         var actif = document.getElementsByClassName("actif");
         var nav = document.querySelectorAll("nav a");
 
-        for (var unNav of nav) {
+        for(var unNav of nav) {
             unNav.addEventListener("mouseenter", changerCouleur);
             unNav.addEventListener("mouseleave", supprimerCouleur);
         }
@@ -18,18 +18,18 @@
         // Choix de la couleur aléatoire
         var laCouleur = Math.round(Math.random() * nbCouleurs);
 
-        for (var unActif of actif) {
+        for(var unActif of actif) {
             unActif.style.color = couleurs[laCouleur];
             unActif.removeEventListener("mouseenter", changerCouleur);
             unActif.removeEventListener("mouseleave", supprimerCouleur);
         }
 
-        if (document.querySelector("#descAut>h3")) {
+        if(document.querySelector("#descAut>h3")) {
             var descAut = document.querySelector("#descAut>h3");
             descAut.style.color = couleurs[laCouleur];
         }
 
-        if (document.querySelector(".compte a")) {
+        if(document.querySelector(".compte a")) {
             var lienCompte = document.querySelector(".compte a");
             lienCompte.addEventListener("mouseenter", changerCouleur);
             lienCompte.addEventListener("mouseleave", supprimerCouleur);

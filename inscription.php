@@ -82,6 +82,17 @@
                                     if ($ligne != false) { // Si le pseudo existe déjà
                                         $message = "Le pseudo existe déjà";
                                         $form = true;
+    ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+                                <div class="flou visible">
+                                    <div class="popup visible">
+                                        <h3>Erreur</h3>
+                                        <p><?php echo($message) ?></p>
+                                        <button class="fermer">Fermer</button>
+                                    </div>
+                                </div>        
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+    <?php
                                     } else { // Si le pseudo n'existe pas
                                         $sql = "INSERT INTO UTILISATEUR(Pseudo, AdMail, MotDePasse, Admin) VALUES (:paramPseudo, :paramMail, :paramMdp, :paramAdmin)";
                                         $statement = $pdo->prepare($sql);
@@ -226,7 +237,7 @@
                 </div> 
 
                 <div>
-                    <input type="submit" value="Envoyer" class="inputSubmit" />
+                    <input type="submit" value="Envoyer" class="inputSubmit btnHover" />
                 </div>
             </form>
             

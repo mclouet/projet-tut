@@ -183,7 +183,7 @@
                     <label class="boolAdmin" for="supprimerDroits">Supprimer les droits</label>
                 </div>             
                 <div>
-                    <input type="submit" value="Modifier" class="inputSubmit" />
+                    <input type="submit" value="Modifier" class="inputSubmit btnHover" />
                 </div>
             </form>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->

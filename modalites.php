@@ -48,7 +48,7 @@
 
         <h3>Société organisatrice</h3>
         <p>
-            Le site C’est Dans Le Sac, dans le cadre de la première année de DUT Métiers du Multimédia et de l’Internet (MMI) à Laval, organise un concours sur le thème de la pollution par les sacs plastiques. Le concours est commun à la France métropolitaine et aux départements d’outre-mer. Le classement est unique pour tous les départements. Les candidats seront classés en fonction du nombre de votes pour leur(s) oeuvre(s).
+            Le site C’est Dans Le Sac, dans le cadre de la première année de DUT Métiers du Multimédia et de l’Internet (MMI) à Laval, organise un concours sur le thème de la pollution par les sacs plastique. Le concours est commun à la France métropolitaine et aux départements d’outre-mer. Le classement est unique pour tous les départements. Les candidats seront classés en fonction du nombre de votes pour leur(s) oeuvre(s).
         </p>
         <p>
             Un nombre total de 10 lots environ est proposé.
@@ -57,7 +57,7 @@
         <h3>Inscription et participation</h3>
         <p>
             Pour participer au concours, les candidats doivent s'inscrire en complétant le formulaire d'inscription. Les participants font élection de domicile à l'adresse qu'ils auront indiquée. Une inscription incomplète, inexacte ou fantaisiste ne sera pas prise en compte.
-            <br/> Chaque candidat a la possibilité de déposer une oeuvre dans chacune des trois catégories de médias suivantes : affiche, clip vidéo, et clip audio. Les affiches doivent obligatoirement être au format <span class="gras">.jpeg</span> ou <span class="gras">.png</span>, les vidéos doivent être au format <span class="gras">.mp4</span> et les clips audios doivent être au format <span class="gras">.mp3</span> ou autre <span class="gras">.mpeg</span>.
+            <br/> Chaque candidat a la possibilité de déposer une oeuvre dans chacune des trois catégories de médias suivantes : affiche, clip vidéo, et clip audio. Les affiches doivent obligatoirement être au format <span class="gras">.jpeg</span> ou <span class="gras">.jpg</span>, les vidéos doivent être au format <span class="gras">.mp4</span> et les clips audio doivent être au format <span class="gras">.mp3</span> ou autres <span class="gras">.mpeg</span>.
             <br/> La participation au concours implique pour tout participant l'acceptation complète et sans réserve du présent règlement. Le site se réserve le droit de procéder à toutes vérifications pour la bonne application du présent article. Le site ne peut être tenu responsable en cas de mauvaise réception des inscriptions par voie électronique, quelle qu'en soit la raison.
         </p>
 
@@ -71,7 +71,7 @@
         </p>
 
         <h3>Date du concours</h3>
-        <p> La date du concours est du <span class="gras">20 août</span> au <span class="gras">30 septembre 2017</span>.
+        <p> Le concours se déroule du <span class="gras">20 août</span> au <span class="gras">30 septembre 2017</span>.
         </p>
         <p>
             En cas d’incivilité ou de toute autre pratique portant atteinte au respect d’autrui, les oeuvres ou comptes concernés pourront être supprimés et la participation et les votes du ou des auteurs éventuellement incriminés, considérés comme nuls.

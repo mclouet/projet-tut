@@ -81,7 +81,7 @@
         <h3>LIMITATION DE RESPONSABILITÉ</h3>
         <p>
             Les informations contenues sur ce site sont aussi précises que possibles et le site est périodiquement remis à jour, mais peut toutefois contenir des inexactitudes, des omissions ou des lacunes. Si vous constatez une lacune, erreur ou ce qui paraît être un dysfonctionnement, merci de bien vouloir le signaler par email en décrivant le problème de la manière la plus précise possible (page posant problème, action déclenchante, type d’ordinateur et de navigateur utilisé, …).
-            <br/> Les oeuvres déposées sur le site sont soumisent aux droits d'auteur.
+            <br/> Les oeuvres déposées sur le site sont soumises aux droits d'auteur.
             <br/> Les liens hypertextes mis en place dans le cadre du présent site internet en direction d'autres ressources présentes sur le réseau Internet ne sauraient engager la responsabilité de Cabadix.
         </p>
 
@@ -103,7 +103,7 @@
         <h3>PROPRIÉTÉ INTELLECTUELLE</h3>
         <p>
             Tout le contenu du présent site, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme sont la propriété exclusive de la société Cabadix à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.
-            <br/> Toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est strictement interdite sans l'accord express par écrit de Cabadix. Cette représentation ou reproduction, par quelque procédé que ce soit, constitue une contrefaçon sanctionnée par les articles L.3335-2 et suivants du Code de la propriété intellectuelle. Le non-respect de cette interdiction constitue une contrefaçon pouvant engager la responsabilité civile et pénale du contrefacteur. En outre, les propriétaires des Contenus copiés pourraient intenter une action en justice à votre encontre.
+            <br/> Toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est strictement interdite sans l'accord express par écrit de Cabadix. Cette représentation ou reproduction, par quelque procédé que ce soit, constitue une contrefaçon sanctionnée par les articles L.3335-2 et suivants du Code de la propriété intellectuelle. Le non-respect de cette interdiction constitue une contrefaçon pouvant engager la responsabilité civile et pénale du contrefacteur. En outre, les propriétaires des contenus copiés pourraient intenter une action en justice à votre encontre.
             <br/> Cabadix est identiquement propriétaire des "droits des producteurs de bases de données" visés au Livre III, Titre IV, du Code de la Propriété Intellectuelle (loi n° 98-536 du 1er juillet 1998) relative aux droits d'auteur et aux bases de données.
             <br/> Les utilisateurs et visiteurs du site internet peuvent mettre en place un hyperlien en direction de ce site, mais uniquement en direction de la page d’accueil, accessible à l’URL suivante : https://cabadix.com/accueil , à condition que ce lien s’ouvre dans une nouvelle fenêtre. En particulier un lien vers une sous page (« lien profond ») est interdit, ainsi que l’ouverture du présent site au sein d’un cadre (« framing »), sauf l'autorisation expresse et préalable de Cabadix.
             <br/> Pour toute demande d'autorisation ou d'information, veuillez nous contacter par email : service-clients@cabadix.com . Des conditions spécifiques sont prévues pour la presse.
@@ -154,7 +154,7 @@
 
         <h3>RESPONSABILITÉ</h3>
         <p>
-            Aucune autre garantie n'est accordée à l'internaute, auquel incombe l'obligation de formuler clairement ses besoins et le devoir de s'informer. Si des informations fournies par Cabadix apparaissent inexactes, il appartiendra à l'internaute de procéder lui-même à toutes vérifications de la cohérence ou de la vraisemblance des résultats obtenus. Cabadix ne sera en aucune façon responsable vis à vis des tiers de l'utilisation par linternaute des informations ou de leur absence contenues dans ses produits y compris de son site Internet.
+            Aucune autre garantie n'est accordée à l'internaute, auquel incombe l'obligation de formuler clairement ses besoins et le devoir de s'informer. Si des informations fournies par Cabadix apparaissent inexactes, il appartiendra à l'internaute de procéder lui-même à toutes vérifications de la cohérence ou de la vraisemblance des résultats obtenus. Cabadix ne sera en aucune façon responsable vis-à-vis des tiers de l'utilisation par l'internaute des informations ou de leur absence contenues dans ses produits y compris de son site Internet.
         </p>
 
         <h3>CONTACTEZ-NOUS</h3>

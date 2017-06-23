@@ -101,7 +101,7 @@
                                     </textarea>
                                 </div>
                                 <div>
-                                    <input type="submit" value="Mettre à jour" class="inputSubmit" />
+                                    <input type="submit" value="Mettre à jour" class="inputSubmit btnHover" />
                                 </div>
                             </form>
                         </div>
@@ -123,7 +123,7 @@
                                     <input type="password" name="newMdpVerif" id="newMdpVerif" required="required" pattern=".{6,}" />
                                 </div>
                                 <div>
-                                    <input type="submit" value="Mettre à jour" class="inputSubmit" />
+                                    <input type="submit" value="Mettre à jour" class="inputSubmit btnHover" />
                                 </div>
                             </form>
 
@@ -143,7 +143,7 @@
                                     <input type="mail" name="newMailVerif" id="newMailVerif" required="required" pattern="^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$" />
                                 </div>
                                 <div>
-                                    <input type="submit" value="Mettre à jour" class="inputSubmit" />
+                                    <input type="submit" value="Mettre à jour" class="inputSubmit btnHover" />
                                 </div>
                             </form>
                         </div>
@@ -233,7 +233,7 @@
                     </div>
                 
                 <form action="./compte.php" method="post">
-                    <button type="submit" name="supprCompte">Supprimer mon compte</button>
+                    <button type="submit" name="supprCompte" class="btnHover">Supprimer mon compte</button>
                 </form>
                 
     <!-- - - - - - - - - - PHP - - - - - - - - - -->

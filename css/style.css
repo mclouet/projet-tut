@@ -34,6 +34,13 @@ textarea:focus,input:focus{
     font-weight: 700;
 }
 
+.btnHover {
+    color: #000000;
+}
+
+.btnHover:hover {
+    color: #ffffff;
+}
 
 /********** BODY *********/
 
@@ -293,7 +300,6 @@ footer::after {
 }
 
 #liensIndex a {
-    color: black;
     font-weight: bold;
     text-decoration: none;
     background-size: contain;
@@ -317,7 +323,6 @@ footer::after {
 #selecGalerie p {
     display: inline-flex;
     font-size: 15pt;
-    color: #ffffff;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -384,6 +389,9 @@ footer::after {
     margin: 0;
 }
 
+.hoverTri {
+    color: #ffffff;
+}
 
 /*************** CONTACT ET INSCRIPTION ET CONNEXION (FORMULAIRES) ***************/
 

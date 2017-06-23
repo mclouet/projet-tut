@@ -48,9 +48,9 @@
 
         <p>
             Bienvenue sur le site C'est dans le sac !
-            <br/> Nous sommes un site concours pour la promotion de sacs respectueux de l'environnement, nous sommes à la recherches de sponsors pour porter notre projet.
-            <br/> En contrepartie d'une visibilité ou d'une annonce sur votre réseau, d'un soutient financier pour les lots ou si vous en avez à proposer, vous disposerez d'un espace sur le site et un lien direct vers votre site internet.
-            <br/> Afin de devenir partenaire, vous devez faire preuve ou avoir fais preuve d'intérêt envers le thème de la pollution, avoir un lot à proposer aux gagnants, un site internet (pour disposer d'un lien).
+            <br/> Nous sommes un site concours pour la promotion de sacs respectueux de l'environnement, nous sommes à la recherche de sponsors pour porter notre projet.
+            <br/> En contrepartie d'une visibilité ou d'une annonce sur votre réseau, de lots ou d'un soutien financier pour ceux-ci, vous disposerez d'un espace sur le site et un lien direct vers votre site internet.
+            <br/> Afin de devenir partenaire, vous devez faire preuve ou avoir fait preuve d'intérêt envers le thème de la pollution, avoir un lot à proposer aux gagnants, un site internet (pour disposer d'un lien).
             <br/> Des ajustements pourront être apportés à ses conditions dans la mesure du possible, une fois la collaboration mise en place. Pour déposer une demande pour devenir partenaire il vous faudra prendre contact avec Cabadix :
             <br/> Si vous souhaitez devenir sponsor, n'hésitez pas à nous contacter.<span class="gras"><a href="contact.php">Plus de renseignements</a></span>
 

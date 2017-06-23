@@ -96,7 +96,7 @@
                         <input type="text" name="titre" id="titre" required="required" pattern=".{1,24}" title="Le titre doit faire au maximum 24 caractères" />
                         <!-- 5 -->
                         <label for="desc" class="liste">5. Décrivez votre oeuvre !</label>
-                        <textarea name="desc" rows="30" cols="100" id="desc" required="required"></textarea>
+                        <textarea name="desc" rows="27" cols="65" id="desc" required="required"></textarea>
                         <!-- Envoyer -->
                         <input type="submit" value="Envoyer" class="inputSubmit" />
                     </div>

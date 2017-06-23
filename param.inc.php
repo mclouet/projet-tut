@@ -2,9 +2,9 @@
     if(!defined("MYHOST"))
         define("MYHOST","localhost");
     if(!defined("MYUSER"))
-        define("MYUSER","lea");
+        define("MYUSER","root");
     if(!defined("MYPASS"))
-        define("MYPASS","mdp");
+        define("MYPASS","root");
     if(!defined("MYDB"))
-        define("MYDB","essai_ptut");
+        define("MYDB","test-ptut");
 ?>

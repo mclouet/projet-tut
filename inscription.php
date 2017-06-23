@@ -60,9 +60,9 @@
                     if ($_POST["motDePasse"] == $_POST["verifMdp"]) { // Si le mot de passe de vérification correspond au mot de passe
                         if (strlen($_POST["motDePasse"]) >= 6) { // Si le mot de passe contient au moins 6 caractères
                             if(preg_match('#^(([a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+\.?)*[a-z0-9!\#$%&\\\'*+/=?^_`{|}~-]+)@(([a-z0-9-_]+\.?)*[a-z0-9-_]+)\.[a-z]{2,}$#i',$_POST["email"])) { // Si l'email est valide
-                                $pseudo = addslashes($_POST["pseudo"]);
-                                $email = addslashes($_POST["email"]);
-                                $motDePasse = addslashes($_POST["motDePasse"]);
+                                $pseudo = $_POST["pseudo"];
+                                $email = $_POST["email"];
+                                $motDePasse = $_POST["motDePasse"];
 
                                 // Vérification si pseudo n'existe pas déjà
                                  try {
@@ -213,7 +213,7 @@
             <form action="inscription.php" id="inscription" method="post" class="formulaire">
                 <div>
                     <label for="pseudo">Pseudo</label>
-                    <input id="pseudo" type="text" name="pseudo" required="required" />
+                    <input id="pseudo" type="text" name="pseudo" required="required" pattern=".[^']{1,25}" />
                 </div>
 
                 <div>

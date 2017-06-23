@@ -151,7 +151,7 @@
                     } else {
                         $admin = "Oui";
                     }
-                    $pseudoAffichage = stripslashes($ligne["Pseudo"]);
+                    $pseudoAffichage = $ligne["Pseudo"];
 ?>
      
             <p class="utilisateursAdmin"><?php echo($pseudoAffichage); ?> &#124; Admin : <?php echo($admin); ?></p>
@@ -227,7 +227,7 @@
             <div class="flou visible">
                 <div class="popup visible">
                     <h3>Ajout</h3>
-                    <p>Vous avez bien ajouté les droits d'administration à <?php echo(stripslashes($pseudoModif)); ?></p>
+                    <p>Vous avez bien ajouté les droits d'administration à <?php echo($pseudoModif); ?></p>
                     <button class="fermer">Fermer</button>
                 </div>
             </div>
@@ -242,7 +242,7 @@
             <div class="flou visible">
                 <div class="popup visible">
                     <h3>Suppression</h3>
-                    <p>Vous avez bien supprimé les droits d'administration de <?php echo(stripslashes($pseudoModif)); ?></p>
+                    <p>Vous avez bien supprimé les droits d'administration de <?php echo($pseudoModif); ?></p>
                     <button class="fermer">Fermer</button>
                 </div>
             </div>

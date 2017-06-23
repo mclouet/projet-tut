@@ -259,6 +259,8 @@
 
                                 // Etape 2 : envoi de la requête SQL au serveur AJOUTER BIOGRAPHIE
                                 $sql = "UPDATE UTILISATEUR SET Biographie = '".$biographie."' WHERE Pseudo = '".$_SESSION["pseudoCo"]."'";
+                                echo $sql;
+                                
                                 $statement = $pdo->query($sql);
 
                                 $pdo = null;

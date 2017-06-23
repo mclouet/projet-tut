@@ -96,13 +96,18 @@
                         <input type="text" name="titre" id="titre" required="required" pattern=".{1,24}" title="Le titre doit faire au maximum 24 caractères" />
                         <!-- 5 -->
                         <label for="desc" class="liste">5. Décrivez votre oeuvre !</label>
-                        <textarea name="desc" rows="10" cols="30" id="desc" required="required"></textarea>
+                        <textarea name="desc" rows="10" cols="35" id="desc" required="required"></textarea>
                         <!-- Envoyer -->
                         <input type="submit" value="Envoyer" class="inputSubmit btnHover" />
                     </div>
                 </form>
 
-                <div> <img src="./images/img-apercu-defaut.jpg" alt="Aperçu de l'image téléchargée" id="apercu" /> </div>
+                <div>
+                    <img src="./images/img-apercu-defaut.jpg" alt="Aperçu de l'image téléchargée" id="apercu" />
+                    <p id="formatsAcceptes">Les affiches doivent être au format <span class="gras">.jpg</span> ou <span class="gras">.jpeg</span>. Les vidéos doivent être au format <span class="gras">.mp4</span>. Les clips audio doivent être au format <span class="gras">.wav</span>, <span class="gras">.mp3</span> ou autres <span class="gras">.mpeg</span>.
+                    <br/>Votre fichier ne doit dépasser <span class="gras">30Mo</span>.
+                    <br/>Vous ne pouvez déposer qu'une oeuvre par catégorie.</p>
+                </div>
             </div>
         </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->

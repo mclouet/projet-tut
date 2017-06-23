@@ -778,12 +778,24 @@ footer::after {
     width: 100%;
     box-sizing: border-box;
     box-sizing: border-box;
+    margin-top: 15px;
 }
 
 #apercu {
     max-width: 250px;
 }
 
+#formatsAcceptes {
+    margin-top: 75px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-image: url("./images-css/img-note-background.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    width: 275px;
+    padding: 37px;
+}
 
 /*************** AFFICHE IMAGE ***************/
 

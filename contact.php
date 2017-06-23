@@ -76,7 +76,7 @@
                         <label for="message">Message<span class="formObli">*</span></label>
                         <textarea name="message" id="message" placeholder="A bientôt !" rows="10" required="required"></textarea>
                     </div>
-                    <input type="submit" value="Envoyer" class="inputSubmit" />
+                    <input type="submit" value="Envoyer" class="inputSubmit btnHover" />
                 </form>
             </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->

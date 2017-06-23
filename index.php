@@ -65,8 +65,8 @@
             <img src="./images/img-illustration-3.gif" alt="Transformation d'un sac plastique en sac Cabadix" />
         </div>
         <div id="liensIndex">
-            <a href="https://packingsorted.fr/" target="_blank">Boutique</a>
-            <a href="./participation.php">Je Participe !</a>
+            <a href="https://packingsorted.fr/" target="_blank" class="btnHover">Boutique</a>
+            <a href="./participation.php" class="btnHover">Je Participe !</a>
         </div>
     </main>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
@@ -76,8 +76,6 @@
     <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
     <script src="./js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
-    <script src="./jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-
 </body>
 
 </html>

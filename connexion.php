@@ -80,16 +80,27 @@
                             </div>
     <!-- - - - - - - - - - PHP - - - - - - - - - -->
                         <?php
-                        }else{ //si l'utilisateur existe                         
-                            if (md5($motDePasseCo) == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) {
-                                /*echo("Vos mot de passe et pseudo existent dans la BDD");*/
+                        } else { // Si l'utilisateur existe                         
+                            if (md5($motDePasseCo) == $ligne["MotDePasse"] and $pseudoCo == $ligne["Pseudo"]) { // Si le mot de passe est correct
                                 $classConnecte = "visible";
                                 $_SESSION["pseudoCo"] = $pseudoCo;
                                 $_SESSION["motDePasseCo"] = $motDePasseCo;
-                            }
-                               /* echo("La connexion a échoué");*/
+                            } else { // Si le mot de passe est incorrect
+                        ?>
+    <!-- - - - - - - - - - FIN PHP - - - - - - - - - -->
+                            <div class="flou visible">
+                                 <div class="popup visible">
+                                    <h3>Erreur</h3>
+                                    <p>Votre mot de passe est incorret</p>
+                                    <button class="fermer">Fermer</button>
+                                </div>
+                            </div>
+    <!-- - - - - - - - - - PHP - - - - - - - - - -->
+                        <?php
+                            } // Fin condition validité mot de passe
+
                                 $pdo = null;
-                            } //fin else
+                            } // Fin else
                     } catch(Exception $e) {
                         echo("Exception :".$e->getMessage());
                     }
@@ -127,7 +138,7 @@
                     </div>
 
                     <div>
-                        <input type="submit" value="Se connecter" class="inputSubmit" />
+                        <input type="submit" value="Se connecter" class="inputSubmit btnHover" />
                     </div>
                 </form>
                 

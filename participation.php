@@ -98,7 +98,7 @@
                         <label for="desc" class="liste">5. Décrivez votre oeuvre !</label>
                         <textarea name="desc" rows="10" cols="35" id="desc" required="required"></textarea>
                         <!-- Envoyer -->
-                        <input type="submit" value="Envoyer" class="inputSubmit" />
+                        <input type="submit" value="Envoyer" class="inputSubmit btnHover" />
                     </div>
                 </form>
 

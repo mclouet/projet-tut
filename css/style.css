@@ -30,6 +30,14 @@ h2 {
     font-weight: 700;
 }
 
+.btnHover {
+    color: #000000;
+}
+
+.btnHover:hover {
+    color: #ffffff;
+}
+
 
 /********** BODY *********/
 
@@ -289,7 +297,6 @@ footer::after {
 }
 
 #liensIndex a {
-    color: black;
     font-weight: bold;
     text-decoration: none;
     background-size: contain;

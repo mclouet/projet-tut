@@ -57,7 +57,7 @@
         <h3>Inscription et participation</h3>
         <p>
             Pour participer au concours, les candidats doivent s'inscrire en complétant le formulaire d'inscription. Les participants font élection de domicile à l'adresse qu'ils auront indiquée. Une inscription incomplète, inexacte ou fantaisiste ne sera pas prise en compte.
-            <br/> Chaque candidat a la possibilité de déposer une oeuvre dans chacune des trois catégories de médias suivantes : affiche, clip vidéo, et clip audio. Les affiches doivent obligatoirement être au format <span class="gras">.jpeg</span> ou <span class="gras">.jpg</span>, les vidéos doivent être au format <span class="gras">.mp4</span> et les clips audio doivent être au format <span class="gras">.mp3</span> ou autres <span class="gras">.mpeg</span>.
+            <br/> Chaque candidat a la possibilité de déposer une oeuvre dans chacune des trois catégories de médias suivantes : affiche, clip vidéo, et clip audio. Les affiches doivent obligatoirement être au format <span class="gras">.jpeg</span> ou <span class="gras">.jpg</span>, les vidéos doivent être au format <span class="gras">.mp4</span> et les clips audio doivent être au format <span class="gras">.wav</span>, <span class="gras">.mp3</span> ou autres <span class="gras">.mpeg</span>.
             <br/> La participation au concours implique pour tout participant l'acceptation complète et sans réserve du présent règlement. Le site se réserve le droit de procéder à toutes vérifications pour la bonne application du présent article. Le site ne peut être tenu responsable en cas de mauvaise réception des inscriptions par voie électronique, quelle qu'en soit la raison.
         </p>
 

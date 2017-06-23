@@ -769,6 +769,7 @@ footer::after {
     display: inline-flex;
     width: 100%;
     box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #apercu {
@@ -914,48 +915,41 @@ h3 {
 
 /*************** SPONSORS ***************/
 
-#sponsors p {
+#sponsors div{
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 90%;
+}
+
+#sponsors>div>p {
     font-family: 'Open Sans Condensed', sans-serif;
     text-align: justify;
-    width: 90%;
-    display: inline-block;
-    margin: 10px;
+    margin-bottom: 50px;
+    margin-top: 30px;
 }
 
-#sponsors ul {
+#sponsors div:nth-child(3){
+    justify-content: space-around;
+}
+
+#sponsors>div a {
+    font-size: 13pt;
+    padding: 13px;
     font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 18px;
-    text-align: left;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#sponsors ul a {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;    
     text-decoration: none;
     color: black;
 }
 
-#sponsors img {
-    display: block;
-    margin-left: 20px;
-    margin-top: 5px;
-    width: 40%;
+#sponsors img{
+    width: 20%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    
 }
-
-#sponsors a {
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 18px;
-    margin-left: 40px;
-    margin-top: 0;
-    margin-bottom: 5px;
-    text-decoration: none;
-    color: black;
-    display: block;
-    text-align: left;
-}
-
 
 /********************** POPUPS *********************/
 
